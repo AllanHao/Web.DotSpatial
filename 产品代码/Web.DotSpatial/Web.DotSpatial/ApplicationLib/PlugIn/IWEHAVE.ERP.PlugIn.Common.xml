@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AopCfgs>
+  <AgentAop>
+    <Aop Name="IWEHAVE.ERP.Auth.ServiceBP.Agent.LoginBPProxy" Assembly="IWEHAVE.ERP.PlugIn.Common,IWEHAVE.ERP.PlugIn.Common.LogInBPAgentExtend"/>
+    <Aop Name="IWEHAVE.ERP.Auth.ServiceBP.Agent.LogOutBPProxy" Assembly="IWEHAVE.ERP.PlugIn.Common,IWEHAVE.ERP.PlugIn.Common.LogOutBPAgentExtend"/>
+  </AgentAop>
+
+ <!--<ProxyAop>
+   <Aop Name="*" Assembly="IWEHAVE.ERP.PlugIn.Common,IWEHAVE.ERP.PlugIn.Common.AuthContextValidate"/>
+    <Aop Name="*" Assembly="IWEHAVE.ERP.PlugIn.Common,IWEHAVE.ERP.PlugIn.Common.ProxyCallLogger"/>
+    <Aop Name="*" Assembly="IWEHAVE.ERP.PlugIn.Common,IWEHAVE.ERP.PlugIn.Common.ProxyAuthValidate"/>
+  </ProxyAop>-->
+</AopCfgs>

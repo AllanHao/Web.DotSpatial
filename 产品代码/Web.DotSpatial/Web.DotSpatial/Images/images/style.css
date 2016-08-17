@@ -1,0 +1,15 @@
+@charset "utf-8";
+/* CSS Document */
+
+body{ margin:0 auto;color:#42424d; 
+ background:url(login_bg.png) repeat-x; background-color:#010510}
+.login_1{ width:749px; height:373px; background:url(login_bg1.png) no-repeat; margin:18px auto;}
+.login_1 input{ border:0; background-color:transparent; color:#42424d;height:20px;  }
+.input{width:200px; height:170px;padding:112px 0 0 218px; float:left;}
+.input p{ height:29px;   }
+.code1{ margin:0px 0 0 30px; }
+.button{float:right; margin:124px 183px 0 0;}
+a{ border:0; }
+img{ border:0; vertical-align: bottom;}
+#codecolor{ color:#999;}
+.foot{ margin:100px auto; text-align:center;}

@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<RuntimeConfig>
+  <AuthCfg>
+    <!--IsDataAuth是否启用数据权限,IsEnableCache是否启用数据权限缓存-->
+    <DataAuthCfg IsDataAuth="false"/>
+    <!--是否启用UI权限校验-->
+    <UIAuthCfg IsUIAuth="false" />
+  </AuthCfg>
+  <Server ServiceUrl="http://www.gaia.asia/service.ashx"/>
+  <!--2015-7-13配置平台GAIA下调用的服务-->
+  <ProxyCfg>
+    <!--登录服务-->
+    <LoginCfg  Name="IWEHAVE.ERP.Auth.ServiceBP.Agent.LoginBPProxy" />
+    <!--页面权限服务-->
+    <PageAuthCfg  Name="IWEHAVE.ERP.Auth.ServiceBP.Agent.GetPageAuthBPProxy" />
+    <!--向前台注册菜单项权限-->
+    <MenuItemAuthCfg  Name="IWEHAVE.ERP.Auth.ServiceBP.Agent.GetMenuItemAuthBPProxy" />
+    <!--获取数据权限片段-->
+    <DataAuthCfg  Name="IWEHAVE.ERP.Auth.ServiceBP.Agent.GetDataAuthBPProxy" />
+    <!--获取实体组织过滤-->
+    <EntityStrCfg  Name="IWEHAVE.ERP.Auth.ServiceBP.Agent.GetEntityStrBPProxy" />
+  </ProxyCfg>
+</RuntimeConfig>
+

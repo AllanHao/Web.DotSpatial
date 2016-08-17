@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Mappings>
+  <Mapping sourceType="bool" durationType="Boolean" databaseType="bit"/>
+  <Mapping sourceType="byte" durationType="Byte" databaseType="bit"/>
+  <Mapping sourceType="char" durationType="Char" databaseType="bit"/>
+  <Mapping sourceType="DateTime" durationType="DateTime" databaseType="datetime"/>
+  <Mapping sourceType="decimal" durationType="Decimal" databaseType="decimal(25, 8)"/>
+  <Mapping sourceType="double" durationType="Double" databaseType="decimal(25, 4)"/>
+  <Mapping sourceType="Guid" durationType="String" databaseType="nvarchar(50)"/>
+  <Mapping sourceType="short" durationType="Int16" databaseType="tinyint"/>
+  <Mapping sourceType="int" durationType="Int32" databaseType="int"/>
+  <Mapping sourceType="long" durationType="Int64" databaseType="bigint"/>
+  <Mapping sourceType="float" durationType="float" databaseType="decimal(18, 2)"/>
+  <Mapping sourceType="string" durationType="String" databaseType="nvarchar"/>
+  <Mapping sourceType="String" durationType="StringClob" databaseType="text"/>
+  <Mapping sourceType="object" durationType="object" databaseType="nvarchar(100)"/>
+</Mappings>

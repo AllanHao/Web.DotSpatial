@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ServiceCfg NS="IWEHAVE.ERP.CommonBP" SVC="0">
+  <Refrences>
+    <Refrence Assembly="IWEHAVE.ERP.CommonBE" />
+  </Refrences>
+  <Services>
+    <Service Name="GetEntityDataBP" />
+    <Service Name="WorkFlowBP" />
+  </Services>
+</ServiceCfg>

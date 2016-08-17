@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<objects xmlns="http://www.springframework.net">
+  <!--系统运行配置扩展-->
+  <object id="params_extend" name="params_extend" type="NHExt.Runtime.GAIA.Cfg,NHExt.Runtime.GAIA" singleton="false"></object>
+  <!--系统运行权限缓存扩展-->
+  <object id="auth_extend" name="auth_extend" type="NHExt.Runtime.GAIA.AuthContext,NHExt.Runtime.GAIA" singleton="false"></object>
+  <!--系统运行HQL解析扩展-->
+  <object id="parser_extend" name="parser_extend" type="NHExt.Runtime.GAIA.QueryParser,NHExt.Runtime.GAIA" singleton="false"></object>
+  <!--系统运行前端请求扩展-->
+  <object id="req_extend" name="req_extend" type="NHExt.Runtime.GAIA.HttpHandler.DirectRequest,NHExt.Runtime.GAIA" singleton="false"></object>
+  <!--Session扩展-->
+  <object id="session_extend" name="session_extend" type="NHExt.Runtime.GAIA.Session.SessionImpl,NHExt.Runtime.GAIA" singleton="false"></object>
+  <!--运行时信息扩展-->
+  <object id="proxy_context_extend" name="proxy_context_extend" type="NHExt.Runtime.GAIA.Proxy.ProxyContext,NHExt.Runtime.GAIA" singleton="false"></object>
+
+</objects>

@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+  <configSections>
+    <section name="hibernate-configuration" type="NHibernate.Cfg.ConfigurationSectionHandler,NHibernate"/>
+  </configSections>
+  <hibernate-configuration xmlns="urn:nhibernate-configuration-2.2">
+    <session-factory name="NHibernate.Test">
+      <property name="connection.driver_class">NHibernate.Driver.SqlClientDriver</property>
+      <property name="connection.connection_string">
+        Server=localhost;initial catalog=T3D;uid=sa;pwd=999999
+      </property>
+      <property name="adonet.batch_size">10</property>
+      <property name="show_sql">true</property>
+      <property name="dialect">NHibernate.Dialect.MsSql2008Dialect</property>
+      <property name="use_outer_join">true</property>
+      <property name="command_timeout">60</property>
+      <property name="query.substitutions">true 1, false 0, yes 'Y', no 'N'</property>
+      <property name="proxyfactory.factory_class">NHibernate.ByteCode.LinFu.ProxyFactoryFactory, NHibernate.ByteCode.LinFu</property>
+    </session-factory>
+  </hibernate-configuration>
+</configuration>

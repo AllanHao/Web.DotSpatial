@@ -1,0 +1,71 @@
+﻿/*自定义css*/
+.l-btn:focus {
+    outline: 0;
+}
+
+.l-btn-icon-top {
+    padding: 0 10px;
+}
+
+.datagrid-btn-separator {
+    height: 42px;
+}
+
+.datagrid-header td, .datagrid-body td, .datagrid-footer td {
+    border-width: 0 1px 0px 0;
+    border-style: solid;
+}
+
+.datagrid-btable {
+    border-bottom: 0px solid #ccc;
+}
+
+.datagrid-row-selected {
+    background: #4A5B79;
+}
+
+.datagrid-empty {
+    margin: 30px 0 0 0;
+    padding: 0 0 3px 10px;
+    border-bottom: 1px solid #ccc;
+    color: #f00;
+    width: 100%;
+}
+
+.layout-split-north {
+    border-bottom: 2px solid #efefef;
+}
+
+.layout-split-south {
+    border-top: 2px solid #efefef;
+}
+
+.layout-split-east {
+    border-left: 2px solid #efefef;
+}
+
+.layout-split-west {
+    border-right: 2px solid #efefef;
+}
+
+.l-btn-plain:hover {
+    background: #fff;
+    border-color: #ccc;
+}
+
+.accordion .accordion-header-selected {
+    background: #f3f3f3;
+}
+
+    .accordion .accordion-header-selected .panel-title {
+        color: #575765;
+    }
+
+.window {
+    background: #4A5B79;
+}
+
+    .window .panel-title {
+        color: #fff;
+    }
+ 

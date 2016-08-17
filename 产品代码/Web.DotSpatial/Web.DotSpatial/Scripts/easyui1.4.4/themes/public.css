@@ -1,0 +1,405 @@
+﻿body {
+    font-family: "微软雅黑";
+    font-size: 12px;
+    margin: 0;
+}
+
+h2 {
+    font-size: 18px;
+    color: #333;
+    font-weight: bold;
+    margin: 0;
+    margin-bottom: 15px;
+}
+
+ul li {
+    list-style-type: none;
+}
+
+.demo-info {
+    background: #FFFEE6;
+    color: #8F5700;
+    padding: 12px;
+}
+
+.demo-tip {
+    width: 24px;
+    height: 16px;
+    float: left;
+}
+
+.easyui-ref-ifr {
+    display: inline-block;
+    white-space: nowrap;
+    font-size: 12px;
+    margin: 0;
+    padding: 0;
+    border: 1px solid #A4BED4;
+    background: white;
+    height: 22px;
+    border-right: 0;
+}
+
+.easyui-ref-input {
+    float: left;
+    font-size: 12px;
+    border: 0px;
+    line-height: 22px;
+    height: 22px;
+    padding: 0;
+    margin: 0;
+    _height: 22px;
+    _line-height: 22px;
+    border-right: 1px solid #A4BED4;
+}
+
+.easyui-ref-btn {
+    display: inline-block;
+    width: 17px;
+    height: 22px;
+    margin: 0;
+    padding: 0;
+}
+
+.easyui-ref-clear {
+    background: url('icons/clear-trigger.gif') -51px -1px;
+}
+
+.easyui-ref-search {
+    background: url('icons/search-trigger.gif') -51px -1px;
+}
+
+.pop_ifr {
+    padding: 0;
+    margin: 0;
+}
+
+.pop_title {
+    text-align: center;
+    font-size: 20px;
+}
+
+.pop_body {
+    margin-top: 10px;
+}
+
+    .pop_body ul {
+        padding: 0;
+        margin: 0;
+    }
+
+    .pop_body li {
+        list-style-type: none;
+        padding: 5px 2px;
+    }
+
+        .pop_body li span.t {
+            /*font-size:14px;  */
+            display: inline-block;
+            width: 100px;
+            overflow: hidden;
+            text-align: right;
+            vertical-align: middle;
+        }
+
+        .pop_body li span.b {
+            display: inline-block;
+            padding: 0 0 0 10px;
+            width: 120px;
+            color: #00f;
+        }
+        /*大壮加小型气泡图样式t1和b1*/
+        .pop_body li span.t1 {
+            /*font-size:14px;  */
+            display: inline-block;
+            width: auto;
+            height: auto;
+            overflow: hidden;
+            text-align: right;
+            vertical-align: middle;
+            color: #000;
+        }
+
+        .pop_body li span.b1 {
+            display: inline-block;
+            padding: 0 0 0 5px;
+            width: auto;
+            height: auto;
+            color: #00f;
+        }
+
+.pop_toolbar {
+    padding: 10px 0 0 10px;
+}
+
+    .pop_toolbar a {
+        float: right;
+        font-size: 14px;
+        text-decoration: none;
+        padding: 0 5px;
+    }
+
+.clr {
+    width: 0px;
+    clear: both;
+}
+/*选择专题图样式*/
+.themelst {
+    padding: 0 0 0 30px;
+    height: 16px;
+}
+
+    .themelst a {
+        font-size: 14px;
+        text-decoration: none;
+    }
+
+        .themelst a:hover {
+            background-color: rgb(150,200,220);
+            text-decoration: underline;
+        }
+/*图例样式*/
+.theme-legend {
+    padding: 0;
+    margin: 5px;
+}
+
+.theme-color {
+    display: inline-block;
+    width: 40px;
+    height: 16px;
+}
+
+.theme-content {
+    display: inline-block;
+    font-size: 14px;
+    margin-left: 15px;
+}
+
+.theme-unit {
+    font-size: 12px;
+    color: #a44;
+    font-weight: bold;
+    float: right;
+    padding: 0;
+    margin: 0;
+}
+
+    .theme-unit .unit {
+        color: #000;
+        font-weight: normal;
+        font-size: 11px;
+        padding: 0 5px;
+    }
+
+.theme-memo {
+    padding-left: 10px;
+    color: #f11;
+}
+/*等待框样式*/
+.loadingPanel {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    background-color: #000;
+    filter: alpha(opacity=10);
+    -moz-opacity: 0.100;
+    opacity: 0.100;
+}
+
+.loadingMark {
+    position: absolute;
+    width: 214px;
+    height: 15px; /* border: 1px solid #94B5E7;*/
+    background-color: #F2F7FD;
+    background-image: url(icons/wait.gif);
+    background-position: 0px 50%;
+    background-repeat: no-repeat;
+    z-index: 9999;
+}
+
+.hide {
+    display: none;
+}
+
+table tr td {
+    padding: 0;
+    margin: 0;
+    font-size: 12px;
+}
+
+    table tr td.label-t {
+        text-align: right;
+        padding: 0 10px 0 3px;
+    }
+   
+
+    table tr td.label-l {
+        text-align: left;
+        padding: 0 3px;
+        width: 60px;
+    }
+
+.layout-expand div.panel-title {
+    position: relative;
+    top: 20px;
+}
+
+.datagrid-toolbar span.combo {
+    background: transparent;
+}
+
+.datagrid-toolbar .combo-text {
+    background: transparent;
+}
+
+span.datagrid-toolbar-label {
+    display: inline-block;
+    padding: 4px 5px 4px 5px;
+    line-height: 16px;
+    height: 16px;
+}
+
+
+body > form {
+    height: 100%;
+}
+
+.combobox-item {
+    cursor: pointer;
+}
+
+/*.combo {
+    border: 0px;
+    border-bottom: 1px solid #95B8E7;
+    background: inherit;
+}
+
+    .combo input[type="text"] {
+        border: 0px;
+    }*/
+
+.datagrid-body .datagrid-editable .datagrid-editable-input {
+    padding: 2px;
+    border: 0px;
+    border-bottom: 1px solid #95B8E7;
+    background: inherit;
+}
+/*easyui相关调整*/
+.layout-expand .panel-header {
+    background: transparent;
+    border-bottom-width: 0px;
+}
+
+
+/*表单相关*/
+.easyui-dialog {
+    border: 0;
+    overflow: hidden;
+}
+
+    .easyui-dialog table {
+        background: #fff;
+        margin: 0 0 30px 0;
+        padding: 0px;
+        border-collapse: collapse;
+        table-layout: fixed;
+        border: 0;
+    }
+
+        .easyui-dialog table td, .easyui-dialog table th {
+            border: solid #add9c0;
+            border-width: 0px 1px 1px 0px;
+            padding: 0px;
+        }
+
+            .easyui-dialog table td input {
+                border: 0;
+                padding: 4px 0 4px 4px;
+                margin: 0;
+                height: 14px;
+                line-height: 14px;
+                font-size: 12px;
+            }
+
+            .easyui-dialog table td textarea {
+                border: 0;
+            }
+
+            .easyui-dialog table td .numberbox {
+                border: 0;
+            }
+
+            .easyui-dialog table td .textbox {
+                border: 0;
+            }
+
+
+        .easyui-dialog table .combo {
+            border: 0;
+        }
+
+/**/
+.pop-dialog {
+    background: #fff;
+    margin: 0 0 30px 0;
+    padding: 0px;
+    border-collapse: collapse;
+    table-layout: fixed;
+    border: 0;
+}
+
+    .pop-dialog td, .pop-dialog th {
+        border: solid #add9c0;
+        border-width: 0px 1px 1px 0px;
+    }
+
+        .pop-dialog td input {
+            border: 0;
+            padding: 4px 0 4px 4px;
+            margin: 0;
+            height: 14px;
+            line-height: 14px;
+            font-size: 12px;
+        }
+
+        .pop-dialog td textarea {
+            border: 0;
+        }
+
+        .pop-dialog td .numberbox {
+            border: 0;
+        }
+
+        .pop-dialog td .textbox {
+            border: 0;
+        }
+
+
+    .pop-dialog .combo {
+        border: 0;
+    }
+
+.label-title {
+    text-align: right;
+    height: 24px;
+    white-space: nowrap;
+    font-weight: normal;
+    padding-left: 20px;
+    padding-right: 5px;
+}
+
+.easyui-dialog .label-title {
+    background: #F7F7F7;
+    padding-left: 20px;
+    padding-right: 5px;
+}
+
+.easyui-dialog .label-title span {
+    color: #f00;
+}

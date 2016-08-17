@@ -1,0 +1,377 @@
+.icon-blank
+{
+    background: url('icons/blank.gif') no-repeat;
+}
+.icon-add
+{
+    background: url('icons/edit_add.png') no-repeat;
+}
+.icon-edit
+{
+    background: url('icons/pencil.png') no-repeat;
+}
+.icon-remove
+{
+    background: url('icons/edit_remove.png') no-repeat;
+}
+.icon-save
+{
+    background: url('icons/filesave.png') no-repeat;
+}
+.icon-cut
+{
+    background: url('icons/cut.png') no-repeat;
+}
+.icon-ok
+{
+    background: url('icons/ok.png') no-repeat;
+}
+.icon-no
+{
+    background: url('icons/no.png') no-repeat;
+}
+.icon-cancel
+{
+    background: url('icons/cancel.png') no-repeat;
+}
+.icon-reload
+{
+    background: url('icons/reload.png') no-repeat;
+}
+.icon-page-reload
+{
+    background: url('icons/page_refresh.png') no-repeat;
+}
+.icon-search
+{
+    background: url('icons/search.png') no-repeat;
+}
+.icon-print
+{
+    background: url('icons/print.png') no-repeat;
+}
+.icon-help
+{
+    background: url('icons/help.png') no-repeat;
+}
+.icon-undo
+{
+    background: url('icons/undo.png') no-repeat;
+}
+.icon-redo
+{
+    background: url('icons/redo.png') no-repeat;
+}
+.icon-back
+{
+    background: url('icons/back.png') no-repeat;
+}
+.icon-sum
+{
+    background: url('icons/sum.png') no-repeat;
+}
+.icon-tip
+{
+    background: url('icons/tip.png') no-repeat;
+}
+.icon-form
+{
+    background: url('icons/form.png') no-repeat;
+}
+
+
+.icon-mini-add
+{
+    background: url('icons/mini_add.png') no-repeat 2px 2px;
+}
+.icon-mini-edit
+{
+    background: url('icons/mini_edit.png') no-repeat 2px 2px;
+}
+.icon-mini-refresh
+{
+    background: url('icons/mini_refresh.png') no-repeat 3px 2px;
+}
+.icon-tree-file
+{
+    background: url('icons/tree_file.gif') no-repeat;
+}
+.icon-tree_folder
+{
+    background: url('icons/tree_folder.gif') no-repeat;
+}
+.icon-tree_folder_open
+{
+    background: url('icons/tree_folder_open.gif') no-repeat;
+}
+
+.icon-org
+{
+    background: url('icons/org.png') no-repeat;
+}
+.icon-dept
+{
+    background: url('icons/dept.png') no-repeat;
+}
+.icon-station
+{
+    background: url('icons/station.gif') no-repeat;
+}
+.icon-role
+{
+    background: url('icons/role.gif') no-repeat;
+}
+.icon-user
+{
+    background: url('icons/user.png') no-repeat;
+}
+.icon-category
+{
+    background: url('icons/folder.gif') no-repeat;
+}
+.icon-page
+{
+    background: url('icons/form.png') no-repeat;
+}
+.icon-move
+{
+    background: url('icons/move.png') no-repeat;
+}
+.icon-project
+{
+    background: url('icons/project.png') no-repeat;
+}
+.icon-open
+{
+    background: url('icons/open.png') no-repeat;
+}
+.icon-lock
+{
+    background: url('icons/lock.png') no-repeat;
+}
+.icon-bp-key
+{
+    background: url('icons/bp_key.png') no-repeat;
+}
+.icon-page-key
+{
+    background: url('icons/page_key.png') no-repeat;
+}
+.icon-list
+{
+    background: url('icons/list.png') no-repeat;
+}
+.icon-group-auth
+{
+    background: url('icons/group_auth.png') no-repeat;
+}
+.icon-org-list
+{
+    background: url('icons/org_list.png') no-repeat;
+}
+.icon-menu
+{
+    background: url('icons/menu.png') no-repeat;
+}
+
+.icon-map-pan
+{
+    background: url('icons/MapPan.png') no-repeat;
+}
+.icon-map-refresh
+{
+    background: url('icons/MapRefresh.png') no-repeat;
+}
+.icon-map-select
+{
+    background: url('icons/MapSelect.png') no-repeat;
+}
+.icon-map-zoomin
+{
+    background: url('icons/MapZoomIn.png') no-repeat;
+}
+.icon-map-zoomout
+{
+    background: url('icons/MapZoomOut.png') no-repeat;
+}
+.icon-map-viewentire
+{
+    background: url('icons/MapEntire.png') no-repeat;
+}
+.icon-themepro
+{
+    background: url('icons/themepro.png') no-repeat;
+}
+.icon-square
+{
+    background: url('icons/square.png') no-repeat;
+}
+.icon-areatheme
+{
+    background: url('icons/areatheme.png') no-repeat;
+}
+
+.icon-colordetail
+{
+    background: url('icons/colordetail.png') no-repeat;
+}
+.icon-unique
+{
+    background: url('icons/unique.png') no-repeat;
+}
+.icon-range
+{
+    background: url('icons/unique.png') no-repeat;
+}
+.icon-flag-red
+{
+    background: url('icons/flag_red.png') no-repeat;
+}
+.icon-date-prev
+{
+    background: url('icons/date_previous.png') no-repeat;
+}
+.icon-date-next
+{
+    background: url('icons/date_next.png') no-repeat;
+}
+.icon-workday
+{
+    background: url('icons/flag_green.png') no-repeat;
+}
+.icon-holiday
+{
+    background: url('icons/flag_red.png') no-repeat;
+}
+/*天气相关图表*/
+
+.icon-weather-weather1
+{
+    background: url('icons/weather_sun.png') no-repeat;
+}
+.icon-weather-weather2
+{
+    background: url('icons/weather_clouds.png') no-repeat;
+}
+.icon-weather-weather3
+{
+    background: url('icons/weather_rain.png') no-repeat;
+}
+.icon-weather-weather4
+{
+    background: url('icons/weather_snow.png') no-repeat;
+}
+.icon-attach
+{
+    background: url('icons/attach.png') no-repeat;
+}
+.icon-entity
+{
+    background: url('icons/entity.png') no-repeat;
+}
+
+.icon-property
+{
+    background: url('icons/property.png') no-repeat;
+}
+.icon-enum
+{
+    background: url('icons/enum.png') no-repeat;
+}
+.icon-store
+{
+    background: url('icons/store.png') no-repeat;
+}
+
+.icon-merchant
+{
+    background: url('icons/merchant.png') no-repeat;
+}
+.icon-P1
+{
+    background: url('icons/P_1.png') no-repeat;
+}
+.icon-P2
+{
+    background: url('icons/P_2.png') no-repeat;
+}
+.icon-ammeter
+{
+    background: url('icons/ammeter.png') no-repeat;
+}
+.icon-water
+{
+    background: url('icons/water.png') no-repeat;
+}
+.icon-fee
+{
+    background: url('icons/fee.png') no-repeat;
+}
+.icon-money
+{
+    background: url('icons/money.png') no-repeat;
+}
+.icon-odFee
+{
+    background: url('icons/odFee.png') no-repeat;
+}
+.icon-odM
+{
+    background: url('icons/odM.png') no-repeat;
+}
+.icon-arrow-up
+{
+    background: url('icons/arrow_up.png') no-repeat;
+}
+.icon-arrow-down
+{
+    background: url('icons/arrow_down.png') no-repeat;
+}
+.icon-earth
+{
+    background: url('icons/earth.png') no-repeat;
+}
+/*excel导出*/
+.icon-excel
+{
+    background: url('icons/excel.png') no-repeat;
+}
+
+.icon-upload
+{
+    background: url('icons/upload.png') no-repeat;
+}
+
+.icon-download
+{
+    background: url('icons/download.png') no-repeat;
+}
+
+.icon-red_star
+{
+    background: url('icons/red_star.png') no-repeat;
+}
+.icon-green_star
+{
+    background: url('icons/green_star.png') no-repeat;
+}
+.icon-distance
+{
+    background: url('icons/ruler1.png') no-repeat;
+}
+.icon-sqare
+{
+    background: url('icons/ruler2.png') no-repeat;
+}
+.icon-MapPan
+{
+    background: url('icons/MapPan.png') no-repeat;
+}
+.icon-none
+{
+    background: none;
+}
+.icon-tree-folder
+{
+    background: url('icons/tree_folder.gif') no-repeat;
+}
