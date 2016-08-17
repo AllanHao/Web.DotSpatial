@@ -390,6 +390,10 @@
     <Content Include="Scripts\jscolor\jscolor.js" />
     <Content Include="Scripts\jshashtable-2.1.js" />
     <Content Include="Scripts\Login\Login.js" />
+    <Content Include="Scripts\OpenLayers\MapManager.js" />
+    <Content Include="Scripts\OpenLayers\ol.include.js" />
+    <Content Include="Scripts\OpenLayers\ol\ol-debug.js" />
+    <Content Include="Scripts\OpenLayers\ol\ol.js" />
     <Content Include="Scripts\Portal\Default.js" />
     <Content Include="Scripts\Portal\Desk.js" />
     <Content Include="Scripts\public.js" />
