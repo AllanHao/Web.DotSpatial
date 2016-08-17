@@ -21,6 +21,7 @@
         function init() {
             this.baseLayer = new ol.layer.Tile({ source: new ol.source.OSM() });
 
+            /** geoJson Layer
             var vectorSource = new ol.source.Vector();
 
             var url = 'Scripts/data/beijing.json';
@@ -35,7 +36,7 @@
                 var draw = new ol.interaction.Draw({
                     source: vectorSource,
                     features: this.features,
-                    type: 'Point'/** @type {ol.geom.GeometryType} */
+                    type: 'Point'
                 });
                 this.map.addInteraction(draw);
 
@@ -63,10 +64,11 @@
                     })
                 })
             });
+            **/
 
             /** China Vector Layer
             var chinaSource = new ol.source.Vector();
-    
+            
             $.ajax({
                 url: 'Scripts/data/china.geojson'
             }).done(function (response) {
@@ -88,8 +90,8 @@
                 }
             
             });
-    
-    
+            
+            
             this.wfsLayer = new ol.layer.Vector({
                 source: wfsSource//,
                 //style: new ol.style.Style({
@@ -101,18 +103,18 @@
             });
             **/
 
-            /** wmsLayer
+            //wmsLayer
             var wmsSource = new ol.source.TileWMS({
                 url: 'http://localhost:8080/geoserver/ws_test/wms',
                 params: { 'LAYERS': 'ws_test:f_1' },
                 serverType: 'geoserver',
                 crossOrigin: 'anonymous'
             });
-    
+            
             this.wmsLayer = new ol.layer.Tile({
                 source: wmsSource
             });
-            **/
+        
 
             /** featureLayer
             this.featureLayer = new ol.layer.Vector({ source: new ol.source.Vector() });
@@ -133,7 +135,7 @@
 
             this.options = {
                 logo: { src: 'Theme/images/face_monkey.png', href: 'http://www.openstreetmap.org/' },
-                layers: [this.baseLayer, this.geojsonLayer],
+                layers: [this.baseLayer, this.wmsLayer],
                 view: new ol.View({
                     // 设置北京为地图中心，此处进行坐标转换， 把EPSG:4326的坐标，转换为EPSG:3857坐标，因为ol默认使用的是EPSG:3857坐标
                     //center: ol.proj.transform([104.06, 30.67], 'EPSG:4326', 'EPSG:3857'),
