@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ServiceCfg NS="GIS.DotSpatial.DataBP" SVC="0">
+  <Refrences />
+  <Services>
+    <Service Name="InsertDataBP" />
+  </Services>
+</ServiceCfg>

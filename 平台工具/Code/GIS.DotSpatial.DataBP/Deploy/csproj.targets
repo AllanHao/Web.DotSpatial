@@ -1,0 +1,16 @@
+<Project DefaultTargets = "Compile"
+    xmlns="http://schemas.microsoft.com/developer/msbuild/2003" >
+  <ItemGroup>
+    <Reference Include="NHExt.Runtime">
+<HintPath>..\..\..\Runtime\NHExt.Runtime.dll</HintPath>
+</Reference>
+
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Entity\Position.cs" />
+
+  </ItemGroup>
+  <ItemGroup>
+    
+  </ItemGroup>
+</Project>

@@ -1,0 +1,22 @@
+<Project DefaultTargets = "Compile"
+    xmlns="http://schemas.microsoft.com/developer/msbuild/2003" >
+  <ItemGroup>
+    <Reference Include="NHExt.Runtime">
+<HintPath>..\..\..\Runtime\NHExt.Runtime.dll</HintPath>
+</Reference>
+<Reference Include="log4net">
+<HintPath>..\..\..\Runtime\log4net.dll</HintPath>
+</Reference>
+<Reference Include="GIS.DotSpatial.DataBP.Deploy">
+<HintPath>..\..\..\Runtime\..\MetaData\..\ApplicationLib\GIS.DotSpatial.DataBP.Deploy.dll</HintPath>
+</Reference>
+
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Proxy\InsertDataBPAgent.cs" />
+
+  </ItemGroup>
+  <ItemGroup>
+    
+  </ItemGroup>
+</Project>

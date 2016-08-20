@@ -1,0 +1,22 @@
+<BPProj namespace="GIS.DotSpatial.DataBP" Guid="fb0e8177-fe6a-41e0-9621-ab3611ea3976" Name="数据操作服务">
+  <BPList>
+    <BP Guid="c7b93019-c02f-4e63-93d6-711a2e617a66" Code="InsertDataBP" Name="新增数据" List="0" Auth="1" Trans="0" ReturnName="bool">
+      <Attributes>
+        <Attribute Guid="954ab4c6-0f32-48e4-b64f-79df36b4204e" Code="Type" Name="类型(1:点;2:线;3:面)" DataType="CommonType" DefaultValue="" Type="int" IsNull="0" />
+        <Attribute Guid="a22cef23-9e6e-4d91-b924-60e76bf79139" Code="PosList" Name="坐标串" DataType="CompositionType" DefaultValue="" RefGuid="76ffbb64-cdbd-4c98-9e8b-e90b0556804d" IsNull="0" />
+      </Attributes>
+    </BP>
+  </BPList>
+  <RefrenceList>
+    <Refrence Guid="fd282f24-b1f3-4faf-8b51-f6ba2e0eb8e2" RefProjName="数据操作服务.bp" RefrenceType="Deploy" RefFilePath="..\MetaData\数据操作服务.bp" />
+  </RefrenceList>
+  <Floder Guid="04a516ad-e0f9-46c2-9a56-1187201ed0b1" Name="DTO" />
+  <DTOList>
+    <DTO Guid="76ffbb64-cdbd-4c98-9e8b-e90b0556804d" Code="Position" Name="坐标" FloderGuid="04a516ad-e0f9-46c2-9a56-1187201ed0b1">
+      <Attributes>
+        <Attribute Guid="b20468b2-cd56-47f9-898a-5a527d64c611" Type="double" Code="X" Name="X坐标" DataType="CommonType" DefaultValue="" IsNull="0" IsViewer="0" />
+        <Attribute Guid="5c09ad37-a8f1-42d9-84f9-7c6c56a60784" Type="double" Code="Y" Name="Y坐标" DataType="CommonType" DefaultValue="" IsNull="0" IsViewer="0" />
+      </Attributes>
+    </DTO>
+  </DTOList>
+</BPProj>
