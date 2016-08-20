@@ -1,4 +1,12 @@
-﻿var MapManager = {
+﻿function delegate(obj, callback) {
+    return function () {
+        if (obj) {
+            callback.apply(obj, arguments);
+        }
+    }
+}
+
+var MapManager = {
     MapControl: function (id) {
         this.id = id;
         this.map = null;
@@ -8,7 +16,7 @@
         this.tailLayer = null;
         this.drawPolygon = null;
         this.selectedFeature = null;
-        this.mapUrl = "http://localhost:8080/geoserver/ws_test/wms";
+        this.mapUrl = "http://localhost:8080";
         this.baseLayerName = "ws_test:f_1";
         this.selectControl = null;
         this.features = [];
@@ -81,12 +89,50 @@
             **/
 
             //wfsLayer
+            var namespace = "ws_test";
+            var layerName = "L";
+            var mapUrl = this.mapUrl;
             var wfsSource = new ol.source.Vector({
                 format: new ol.format.GeoJSON(),
                 url: function (extent) {
-                    return '/Handler/OpenlayerProxy.ashx?URL=' + encodeURIComponent('http://localhost:8080/geoserver/ws_test/ows?service=WFS&version=1.1.0&request=GetFeature&typename=ws_test:R&outputFormat=application/json');
+                    var dataUrl = mapUrl + '/geoserver/' + namespace + '/ows?'
+                         + 'service=WFS&request=GetFeature&'
+                         + 'version=1.1.0&typename='
+                         + namespace
+                         + ':'
+                         + layerName + '&outputFormat=application/json';
+                    return '/Handler/OpenlayerProxy.ashx?URL=' + encodeURIComponent(dataUrl);
                 }
+                //url: function (extent) {
+                //    return '/Handler/OpenlayerProxy.ashx?URL=' + encodeURIComponent('http://localhost:8080/geoserver/ws_test/ows?service=WFS&version=1.1.0&request=GetFeature&typename=ws_test:R&outputFormat=application/json');
+                //}
 
+                /**另一种方式
+                loader: delegate(this, function (arry, resolution, projection, a, b) {
+                    var dataUrl = this.mapUrl + '/geoserver/' + namespace + '/ows?'
+                            + 'service=WFS&request=GetFeature&'
+                            + 'version=1.1.0&typename='
+                            + namespace
+                            + ':'
+                            + layerName + '&outputFormat=application/json';
+
+                    $.ajax({
+                        url: '/Handler/OpenlayerProxy.ashx?URL=' + encodeURIComponent(dataUrl)
+                    }).done(function (response) {
+                        var format = new ol.format.GeoJSON({
+                            featureNS: 'www.gaia.asia',
+                            featureType: layerName
+                        });
+                        var features = format.readFeatures(response,
+                                { featureProjection: projection }
+                        );
+                        wfsSource.addFeatures(features);
+                    });
+                }),
+                strategy: ol.loadingstrategy.tile(ol.tilegrid.createXYZ({
+                    maxZoom: 17
+                }))
+                **/
             });
 
 
