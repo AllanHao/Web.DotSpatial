@@ -80,41 +80,48 @@
             });
             **/
 
-            /** wfsLayer
+            //wfsLayer
             var wfsSource = new ol.source.Vector({
                 format: new ol.format.GeoJSON(),
                 url: function (extent) {
-                    return 'http://localhost:8080/geoserver/ws_test/ows?service=WFS&' +
-                        'version=1.1.0&request=GetFeature&typename=ws_test:f_1&' +
-                        'outputFormat=application/json';
+                    return '/Handler/OpenlayerProxy.ashx?URL=' + encodeURIComponent('http://localhost:8080/geoserver/ws_test/ows?service=WFS&version=1.1.0&request=GetFeature&typename=ws_test:R&outputFormat=application/json');
                 }
-            
+
             });
-            
-            
+
+
             this.wfsLayer = new ol.layer.Vector({
-                source: wfsSource//,
-                //style: new ol.style.Style({
-                //    stroke: new ol.style.Stroke({
-                //        color: 'rgba(0, 0, 255, 1.0)',
-                //        width: 2
-                //    })
-                //})
+                source: wfsSource,
+                style: new ol.style.Style({
+                    stroke: new ol.style.Stroke({
+                        color: 'rgba(0, 0, 255, 1.0)',
+                        width: 2
+                    }),
+                    fill: new ol.style.Fill({
+                        color: [0, 153, 255, 1]
+                    })
+                })
             });
-            **/
+
 
             //wmsLayer
-            var wmsSource = new ol.source.TileWMS({
-                url: 'http://localhost:8080/geoserver/ws_test/wms',
-                params: { 'LAYERS': 'ws_test:f_1' },
-                serverType: 'geoserver',
-                crossOrigin: 'anonymous'
-            });
-            
-            this.wmsLayer = new ol.layer.Tile({
-                source: wmsSource
-            });
-        
+            //var wmsSource = new ol.source.TileWMS({
+            //    url: 'http://localhost:8080/geoserver/ws_test/wms',
+            //    params: { 'LAYERS': 'ws_test:R' },
+            //    serverType: 'geoserver',
+            //    crossOrigin: 'anonymous',
+            //    style: new ol.style.Style({
+            //        stroke: new ol.style.Stroke({
+            //            color: 'red',
+            //            size: 1
+            //        })
+            //    })
+            //});
+
+            //this.wmsLayer = new ol.layer.Tile({
+            //    source: wmsSource
+            //});
+
 
             /** featureLayer
             this.featureLayer = new ol.layer.Vector({ source: new ol.source.Vector() });
@@ -135,14 +142,14 @@
 
             this.options = {
                 logo: { src: 'Theme/images/face_monkey.png', href: 'http://www.openstreetmap.org/' },
-                layers: [this.baseLayer, this.wmsLayer],
+                layers: [this.baseLayer, this.wfsLayer],
                 view: new ol.View({
                     // 设置北京为地图中心，此处进行坐标转换， 把EPSG:4326的坐标，转换为EPSG:3857坐标，因为ol默认使用的是EPSG:3857坐标
                     //center: ol.proj.transform([104.06, 30.67], 'EPSG:4326', 'EPSG:3857'),
-                    center: [116.38366, 39.90784],//[113.33243347168, 22.9747657775879],//
+                    center: [116.51146342, 39.92331272],//[113.33243347168, 22.9747657775879],//
                     // 指定投影使用EPSG:4326 WGS-1984
                     projection: 'EPSG:4326',
-                    zoom: 11,
+                    zoom: 17,
                 }),
                 target: this.id
             };

@@ -134,10 +134,6 @@
     <Content Include="Images\orderedList9.png" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
-    <Content Include="PartHandler\GetValiHandler.ashx" />
-    <Content Include="PartHandler\GetWeatherHandler.ashx" />
-    <Content Include="PartHandler\LogOutHandler.ashx" />
-    <Content Include="PartHandler\ParticularHandler.ashx" />
     <Content Include="Scripts\ajaxfileupload.js" />
     <Content Include="Scripts\DialogManager.js" />
     <Content Include="Scripts\easyui1.4.4\easyui-lang-zh_CN.js" />
@@ -373,6 +369,7 @@
     <Content Include="Scripts\echarts\build\source\chart\wordCloud.js" />
     <Content Include="Scripts\echarts\build\source\echarts-all.js" />
     <Content Include="Scripts\echarts\build\source\echarts.js" />
+    <Content Include="Handler\OpenlayerProxy.ashx" />
     <None Include="Scripts\jquery-1.4.1-vsdoc.js" />
     <Content Include="Scripts\jquery-1.4.1.js" />
     <Content Include="Scripts\jquery-1.4.1.min.js" />
@@ -418,17 +415,8 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
-    <Compile Include="PartHandler\GetValiHandler.ashx.cs">
-      <DependentUpon>GetValiHandler.ashx</DependentUpon>
-    </Compile>
-    <Compile Include="PartHandler\GetWeatherHandler.ashx.cs">
-      <DependentUpon>GetWeatherHandler.ashx</DependentUpon>
-    </Compile>
-    <Compile Include="PartHandler\LogOutHandler.ashx.cs">
-      <DependentUpon>LogOutHandler.ashx</DependentUpon>
-    </Compile>
-    <Compile Include="PartHandler\ParticularHandler.ashx.cs">
-      <DependentUpon>ParticularHandler.ashx</DependentUpon>
+    <Compile Include="Handler\OpenlayerProxy.ashx.cs">
+      <DependentUpon>OpenlayerProxy.ashx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
