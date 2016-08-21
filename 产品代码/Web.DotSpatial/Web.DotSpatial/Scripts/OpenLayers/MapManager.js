@@ -26,6 +26,11 @@ var MapManager = {
         this.geojsonLayer = null;
         this.chinaLayer = null;
 
+
+        this.pointDraw = null;//画点
+        this.lineDraw = null;//画线
+        this.regionDraw = null;//画面
+
         function init() {
             this.baseLayer = new ol.layer.Tile({ source: new ol.source.OSM() });
 
@@ -93,21 +98,21 @@ var MapManager = {
             var layerName = "L";
             var mapUrl = this.mapUrl;
             var wfsSource = new ol.source.Vector({
-                format: new ol.format.GeoJSON(),
-                url: function (extent) {
-                    var dataUrl = mapUrl + '/geoserver/' + namespace + '/ows?'
-                         + 'service=WFS&request=GetFeature&'
-                         + 'version=1.1.0&typename='
-                         + namespace
-                         + ':'
-                         + layerName + '&outputFormat=application/json';
-                    return '/Handler/OpenlayerProxy.ashx?URL=' + encodeURIComponent(dataUrl);
-                }
+                //format: new ol.format.GeoJSON(),
+                //url: function (extent) {
+                //    var dataUrl = mapUrl + '/geoserver/' + namespace + '/ows?'
+                //         + 'service=WFS&request=GetFeature&'
+                //         + 'version=1.1.0&typename='
+                //         + namespace
+                //         + ':'
+                //         + layerName + '&outputFormat=application/json';
+                //    return '/Handler/OpenlayerProxy.ashx?URL=' + encodeURIComponent(dataUrl);
+                //}
                 //url: function (extent) {
                 //    return '/Handler/OpenlayerProxy.ashx?URL=' + encodeURIComponent('http://localhost:8080/geoserver/ws_test/ows?service=WFS&version=1.1.0&request=GetFeature&typename=ws_test:R&outputFormat=application/json');
                 //}
 
-                /**另一种方式
+                /**另一种方式**/
                 loader: delegate(this, function (arry, resolution, projection, a, b) {
                     var dataUrl = this.mapUrl + '/geoserver/' + namespace + '/ows?'
                             + 'service=WFS&request=GetFeature&'
@@ -118,7 +123,7 @@ var MapManager = {
 
                     $.ajax({
                         url: '/Handler/OpenlayerProxy.ashx?URL=' + encodeURIComponent(dataUrl)
-                    }).done(function (response) {
+                    }).done(delegate(this, function (response) {
                         var format = new ol.format.GeoJSON({
                             featureNS: 'www.gaia.asia',
                             featureType: layerName
@@ -127,12 +132,34 @@ var MapManager = {
                                 { featureProjection: projection }
                         );
                         wfsSource.addFeatures(features);
-                    });
+                        this.features = features;
+                        //添加绘制
+                        this.lineDraw = new ol.interaction.Draw({
+                            source: wfsSource,
+                            features: this.features,
+                            type: 'LineString'
+                        });
+                        //  this.map.addInteraction(lineDraw);
+
+                        this.lineDraw.on('drawend', delegate(this, function (evt) {
+                            console.log(evt.feature);
+                            var parser = new ol.format.GeoJSON();
+                            //var features = vectorSource.getFeatures();
+                            var featuresGeoJSON = parser.writeFeatures(this.features);
+                            //$.ajax({
+                            //    url: url,
+                            //    type: 'POST',
+                            //    dataType: "jsonp",
+                            //    data: featuresGeoJSON,
+                            //    contentType: "application/x-www-form-urlencoded; charset=GBK",
+                            //});//.then(function (response) { console.log(response); })
+                        }), this);
+                    }));
                 }),
                 strategy: ol.loadingstrategy.tile(ol.tilegrid.createXYZ({
                     maxZoom: 17
                 }))
-                **/
+
             });
 
 
@@ -187,7 +214,7 @@ var MapManager = {
             **/
 
             this.options = {
-                logo: { src: 'Theme/images/face_monkey.png', href: 'http://www.openstreetmap.org/' },
+                logo: { src: '/Images/face_monkey.png', href: 'http://www.openstreetmap.org/' },
                 layers: [this.baseLayer, this.wfsLayer],
                 view: new ol.View({
                     // 设置北京为地图中心，此处进行坐标转换， 把EPSG:4326的坐标，转换为EPSG:3857坐标，因为ol默认使用的是EPSG:3857坐标

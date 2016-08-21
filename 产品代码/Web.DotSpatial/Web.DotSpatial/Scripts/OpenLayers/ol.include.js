@@ -7,8 +7,15 @@
         var script = "<script type='text/javascript' src=" + src + "></script>";
         document.writeln(script);
     }
+    function inputCss(css) {
+        var src = baseurl + css;
+        var script = " <link href='" + src + "' rel='stylesheet' />";
+
+        document.writeln(script);
+    }
     //加载类库资源文件
     function loadOLLibs() {
+        inputCss('ol/ol.css');
         inputScript('ol/ol-debug.js');
         //inputScript('deprecated.js');
         //inputScript('OpenLayers.debug.js');

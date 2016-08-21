@@ -121,6 +121,7 @@
     <Content Include="Default.aspx" />
     <Content Include="Images\accent.png" />
     <Content Include="Images\bullet.png" />
+    <Content Include="Images\face_monkey.png" />
     <Content Include="Images\heroAccent.png" />
     <Content Include="Images\orderedList0.png" />
     <Content Include="Images\orderedList1.png" />
@@ -390,6 +391,7 @@
     <Content Include="Scripts\OpenLayers\MapManager.js" />
     <Content Include="Scripts\OpenLayers\ol.include.js" />
     <Content Include="Scripts\OpenLayers\ol\ol-debug.js" />
+    <Content Include="Scripts\OpenLayers\ol\ol.css" />
     <Content Include="Scripts\OpenLayers\ol\ol.js" />
     <Content Include="Scripts\Portal\Default.js" />
     <Content Include="Scripts\Portal\Desk.js" />
