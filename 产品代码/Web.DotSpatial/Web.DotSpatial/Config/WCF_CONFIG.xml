@@ -1,0 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Services>
+  <Service Assembly="IWEHAVE.ERP.Auth.ServiceBP" Url="http://auth.gaiais.com/Services"></Service>
+</Services>

@@ -118,11 +118,13 @@
     <Content Include="Config\NH_CONFIG.xml" />
     <Content Include="Config\RUNTIME_CONFIG.xml" />
     <Content Include="Config\SPRING_CONFIG.xml" />
+    <Content Include="Config\WCF_CONFIG.xml" />
     <Content Include="Default.aspx" />
     <Content Include="Images\accent.png" />
     <Content Include="Images\bullet.png" />
     <Content Include="Images\face_monkey.png" />
     <Content Include="Images\heroAccent.png" />
+    <Content Include="Images\marker.png" />
     <Content Include="Images\orderedList0.png" />
     <Content Include="Images\orderedList1.png" />
     <Content Include="Images\orderedList2.png" />
@@ -329,48 +331,8 @@
     <Content Include="Scripts\easyui1.4.4\themes\icons\weather_sun.png" />
     <Content Include="Scripts\easyui1.4.4\themes\public.css" />
     <Content Include="Scripts\EasyUIExtend.js" />
-    <Content Include="Scripts\echarts3.0\echarts.js" />
-    <Content Include="Scripts\echarts3.0\echarts.min.js" />
-    <Content Include="Scripts\echarts\build\dist\chart\bar.js" />
-    <Content Include="Scripts\echarts\build\dist\chart\chord.js" />
-    <Content Include="Scripts\echarts\build\dist\chart\eventRiver.js" />
-    <Content Include="Scripts\echarts\build\dist\chart\force.js" />
-    <Content Include="Scripts\echarts\build\dist\chart\funnel.js" />
-    <Content Include="Scripts\echarts\build\dist\chart\gauge.js" />
-    <Content Include="Scripts\echarts\build\dist\chart\heatmap.js" />
-    <Content Include="Scripts\echarts\build\dist\chart\k.js" />
-    <Content Include="Scripts\echarts\build\dist\chart\line.js" />
-    <Content Include="Scripts\echarts\build\dist\chart\map.js" />
-    <Content Include="Scripts\echarts\build\dist\chart\pie.js" />
-    <Content Include="Scripts\echarts\build\dist\chart\radar.js" />
-    <Content Include="Scripts\echarts\build\dist\chart\scatter.js" />
-    <Content Include="Scripts\echarts\build\dist\chart\tree.js" />
-    <Content Include="Scripts\echarts\build\dist\chart\treemap.js" />
-    <Content Include="Scripts\echarts\build\dist\chart\venn.js" />
-    <Content Include="Scripts\echarts\build\dist\chart\wordCloud.js" />
-    <Content Include="Scripts\echarts\build\dist\echarts-all.js" />
-    <Content Include="Scripts\echarts\build\dist\echarts.js" />
-    <Content Include="Scripts\echarts\build\echarts-optimize-conf.js" />
-    <Content Include="Scripts\echarts\build\source\chart\bar.js" />
-    <Content Include="Scripts\echarts\build\source\chart\chord.js" />
-    <Content Include="Scripts\echarts\build\source\chart\eventRiver.js" />
-    <Content Include="Scripts\echarts\build\source\chart\force.js" />
-    <Content Include="Scripts\echarts\build\source\chart\funnel.js" />
-    <Content Include="Scripts\echarts\build\source\chart\gauge.js" />
-    <Content Include="Scripts\echarts\build\source\chart\heatmap.js" />
-    <Content Include="Scripts\echarts\build\source\chart\k.js" />
-    <Content Include="Scripts\echarts\build\source\chart\line.js" />
-    <Content Include="Scripts\echarts\build\source\chart\map.js" />
-    <Content Include="Scripts\echarts\build\source\chart\pie.js" />
-    <Content Include="Scripts\echarts\build\source\chart\radar.js" />
-    <Content Include="Scripts\echarts\build\source\chart\scatter.js" />
-    <Content Include="Scripts\echarts\build\source\chart\tree.js" />
-    <Content Include="Scripts\echarts\build\source\chart\treemap.js" />
-    <Content Include="Scripts\echarts\build\source\chart\venn.js" />
-    <Content Include="Scripts\echarts\build\source\chart\wordCloud.js" />
-    <Content Include="Scripts\echarts\build\source\echarts-all.js" />
-    <Content Include="Scripts\echarts\build\source\echarts.js" />
     <Content Include="Handler\OpenlayerProxy.ashx" />
+    <None Include="Properties\PublishProfiles\web.pubxml" />
     <None Include="Scripts\jquery-1.4.1-vsdoc.js" />
     <Content Include="Scripts\jquery-1.4.1.js" />
     <Content Include="Scripts\jquery-1.4.1.min.js" />
@@ -387,21 +349,16 @@
     <Content Include="Scripts\jscolor\hv.png" />
     <Content Include="Scripts\jscolor\jscolor.js" />
     <Content Include="Scripts\jshashtable-2.1.js" />
-    <Content Include="Scripts\Login\Login.js" />
+    <Content Include="Scripts\OpenLayers\MapManager_backup.js" />
     <Content Include="Scripts\OpenLayers\MapManager.js" />
     <Content Include="Scripts\OpenLayers\ol.include.js" />
     <Content Include="Scripts\OpenLayers\ol\ol-debug.js" />
     <Content Include="Scripts\OpenLayers\ol\ol.css" />
     <Content Include="Scripts\OpenLayers\ol\ol.js" />
-    <Content Include="Scripts\Portal\Default.js" />
-    <Content Include="Scripts\Portal\Desk.js" />
     <Content Include="Scripts\public.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Scripts\echarts\build\.DS_Store" />
-    <Content Include="Scripts\echarts\build\dist\.DS_Store" />
-    <Content Include="Scripts\echarts\build\source\.DS_Store" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -413,9 +370,6 @@
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Default.aspx.designer.cs">
-      <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
     <Compile Include="Handler\OpenlayerProxy.ashx.cs">
       <DependentUpon>OpenlayerProxy.ashx</DependentUpon>

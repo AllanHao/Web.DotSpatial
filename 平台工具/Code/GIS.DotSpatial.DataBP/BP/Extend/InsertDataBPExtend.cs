@@ -19,7 +19,7 @@ namespace GIS.DotSpatial.DataBP
             {
                 throw new NHExt.Runtime.Exceptions.BizException("没有传入点串");
             }
-            string path = "";
+            string path = System.Configuration.ConfigurationManager.AppSettings["DataUrl"];
             IFeatureSet fs = null;
             IGeometry geo = null;
             Shapefile sf = null;
@@ -31,7 +31,7 @@ namespace GIS.DotSpatial.DataBP
             switch (this.Type)
             {
                 case 1:
-                    path = "";
+                    path += "P.shp";
                     sf = new PointShapefile(path);
                     fs = new FeatureSet(sf.Features);
                     geo = new Point(cooArray[0]);
@@ -39,7 +39,7 @@ namespace GIS.DotSpatial.DataBP
                     fs.SaveAs(path, true);
                     break;
                 case 2:
-                    path = "";
+                    path += "L.shp";
                     sf = new LineShapefile(path);
                     fs = new FeatureSet(sf.Features);
                     geo = new LineString(cooArray);
@@ -47,10 +47,10 @@ namespace GIS.DotSpatial.DataBP
                     fs.SaveAs(path, true);
                     break;
                 case 3:
-                    path = "";
+                    path += "R.shp";
                     sf = new PolygonShapefile(path);
                     fs = new FeatureSet(sf.Features);
-                    geo = new LinearRing(cooArray);
+                    geo = new Polygon(cooArray);
                     fs.AddFeature(geo);
                     fs.SaveAs(path, true);
                     break;

@@ -17,12 +17,12 @@ var MapManager = {
         this.drawPolygon = null;
         this.selectedFeature = null;
         this.mapUrl = "http://localhost:8080";
-        this.baseLayerName = "ws_test:f_1";
-        this.selectControl = null;
         this.features = [];
         this.options = null;
         this.wmsLayer = null;
-        this.wfsLayer = null;
+        this.wfsRegionLayer = null;
+        this.wfsLineLayer = null;
+        this.wfsPointLayer = null;
         this.geojsonLayer = null;
         this.chinaLayer = null;
 
@@ -34,125 +34,86 @@ var MapManager = {
         function init() {
             this.baseLayer = new ol.layer.Tile({ source: new ol.source.OSM() });
 
-            /** geoJson Layer
-            var vectorSource = new ol.source.Vector();
 
-            var url = 'Scripts/data/beijing.json';
-            $.ajax({
-                url: url
-            }).done(delegate(this, function (response) {
-                this.features = (new ol.format.GeoJSON()).readFeatures(response)
-                vectorSource.addFeatures(this.features);
+            /**
+      * Elements that make up the popup.
+      */
+            var container = document.getElementById('popup');
+            var content = document.getElementById('popup-content');
+            var closer = document.getElementById('popup-closer');
 
 
-                //添加绘制
-                var draw = new ol.interaction.Draw({
-                    source: vectorSource,
-                    features: this.features,
-                    type: 'Point'
-                });
-                this.map.addInteraction(draw);
+            /**
+             * Create an overlay to anchor the popup to the map.
+             */
+            var overlay = new ol.Overlay(/** @type {olx.OverlayOptions} */({
+                element: container,
+                autoPan: true,
+                autoPanAnimation: {
+                    duration: 250
+                }
+            }));
 
-                draw.on('drawend', delegate(this, function (evt) {
-                    console.log(evt.feature);
-                    var parser = new ol.format.GeoJSON();
-                    //var features = vectorSource.getFeatures();
-                    var featuresGeoJSON = parser.writeFeatures(this.features);
-                    $.ajax({
-                        url: url,
-                        type: 'POST',
-                        dataType: "jsonp",
-                        data: featuresGeoJSON,
-                        contentType: "application/x-www-form-urlencoded; charset=GBK",
-                    });//.then(function (response) { console.log(response); })
-                }), this);
 
-            }))
-            this.geojsonLayer = new ol.layer.Vector({
-                source: vectorSource,
-                style: new ol.style.Style({
-                    image: new ol.style.Icon({
-                        src: '../Theme/images/marker.png',
-                        anchor: [0.5, 1]    // 设置图标位置
-                    })
-                })
-            });
-            **/
+            /**
+             * Add a click handler to hide the popup.
+             * @return {boolean} Don't follow the href.
+             */
+            closer.onclick = function () {
+                overlay.setPosition(undefined);
+                closer.blur();
+                return false;
+            };
 
-            /** China Vector Layer
-            var chinaSource = new ol.source.Vector();
-            
-            $.ajax({
-                url: 'Scripts/data/china.geojson'
-            }).done(function (response) {
-                chinaSource.addFeatures((new ol.format.GeoJSON()).readFeatures(response));
-            })
-            this.chinaLayer = new ol.layer.Vector({
-                source: chinaSource
-               
-            });
-            **/
+
 
             //wfsLayer
             var namespace = "ws_test";
-            var layerName = "L";
+            var lineLayerName = "L";
             var mapUrl = this.mapUrl;
-            var wfsSource = new ol.source.Vector({
-                //format: new ol.format.GeoJSON(),
-                //url: function (extent) {
-                //    var dataUrl = mapUrl + '/geoserver/' + namespace + '/ows?'
-                //         + 'service=WFS&request=GetFeature&'
-                //         + 'version=1.1.0&typename='
-                //         + namespace
-                //         + ':'
-                //         + layerName + '&outputFormat=application/json';
-                //    return '/Handler/OpenlayerProxy.ashx?URL=' + encodeURIComponent(dataUrl);
-                //}
-                //url: function (extent) {
-                //    return '/Handler/OpenlayerProxy.ashx?URL=' + encodeURIComponent('http://localhost:8080/geoserver/ws_test/ows?service=WFS&version=1.1.0&request=GetFeature&typename=ws_test:R&outputFormat=application/json');
-                //}
-
-                /**另一种方式**/
+            var wfsLineSource = new ol.source.Vector({
                 loader: delegate(this, function (arry, resolution, projection, a, b) {
                     var dataUrl = this.mapUrl + '/geoserver/' + namespace + '/ows?'
                             + 'service=WFS&request=GetFeature&'
                             + 'version=1.1.0&typename='
                             + namespace
                             + ':'
-                            + layerName + '&outputFormat=application/json';
+                            + lineLayerName + '&outputFormat=application/json';
 
                     $.ajax({
                         url: '/Handler/OpenlayerProxy.ashx?URL=' + encodeURIComponent(dataUrl)
                     }).done(delegate(this, function (response) {
                         var format = new ol.format.GeoJSON({
                             featureNS: 'www.gaia.asia',
-                            featureType: layerName
+                            featureType: lineLayerName
                         });
                         var features = format.readFeatures(response,
                                 { featureProjection: projection }
                         );
-                        wfsSource.addFeatures(features);
+                        wfsLineSource.addFeatures(features);
                         this.features = features;
                         //添加绘制
                         this.lineDraw = new ol.interaction.Draw({
-                            source: wfsSource,
+                            source: wfsLineSource,
                             features: this.features,
                             type: 'LineString'
                         });
-                        //  this.map.addInteraction(lineDraw);
-
                         this.lineDraw.on('drawend', delegate(this, function (evt) {
                             console.log(evt.feature);
-                            var parser = new ol.format.GeoJSON();
-                            //var features = vectorSource.getFeatures();
-                            var featuresGeoJSON = parser.writeFeatures(this.features);
-                            //$.ajax({
-                            //    url: url,
-                            //    type: 'POST',
-                            //    dataType: "jsonp",
-                            //    data: featuresGeoJSON,
-                            //    contentType: "application/x-www-form-urlencoded; charset=GBK",
-                            //});//.then(function (response) { console.log(response); })
+                            var geo = evt.feature.getGeometry();
+                            var array = geo.flatCoordinates;
+                            var args = {};
+                            args.Type = 2;
+                            args.PosList = new Array();
+                            for (var i = 0; i < array.length; i = i + 2) {
+                                args.PosList.push({ X: array[i], Y: array[i + 1] });
+                            }
+                            doActionAsync("GIS.DotSpatial.DataBP.Agent.InsertDataBPProxy", args, function (res) {
+                                if (res) {
+
+                                }
+                            }, null, null, true);
+
                         }), this);
                     }));
                 }),
@@ -162,9 +123,8 @@ var MapManager = {
 
             });
 
-
-            this.wfsLayer = new ol.layer.Vector({
-                source: wfsSource,
+            this.wfsLineLayer = new ol.layer.Vector({
+                source: wfsLineSource,
                 style: new ol.style.Style({
                     stroke: new ol.style.Stroke({
                         color: 'rgba(0, 0, 255, 1.0)',
@@ -176,46 +136,144 @@ var MapManager = {
                 })
             });
 
+            //wfsLayer
 
-            //wmsLayer
-            //var wmsSource = new ol.source.TileWMS({
-            //    url: 'http://localhost:8080/geoserver/ws_test/wms',
-            //    params: { 'LAYERS': 'ws_test:R' },
-            //    serverType: 'geoserver',
-            //    crossOrigin: 'anonymous',
-            //    style: new ol.style.Style({
-            //        stroke: new ol.style.Stroke({
-            //            color: 'red',
-            //            size: 1
-            //        })
-            //    })
-            //});
+            var regionLayerName = "R";
+            var mapUrl = this.mapUrl;
+            var wfsRegionSource = new ol.source.Vector({
+                loader: delegate(this, function (arry, resolution, projection, a, b) {
+                    var dataUrl = this.mapUrl + '/geoserver/' + namespace + '/ows?'
+                            + 'service=WFS&request=GetFeature&'
+                            + 'version=1.1.0&typename='
+                            + namespace
+                            + ':'
+                            + regionLayerName + '&outputFormat=application/json';
 
-            //this.wmsLayer = new ol.layer.Tile({
-            //    source: wmsSource
-            //});
+                    $.ajax({
+                        url: '/Handler/OpenlayerProxy.ashx?URL=' + encodeURIComponent(dataUrl)
+                    }).done(delegate(this, function (response) {
+                        var format = new ol.format.GeoJSON({
+                            featureNS: 'www.gaia.asia',
+                            featureType: regionLayerName
+                        });
+                        var features = format.readFeatures(response,
+                                { featureProjection: projection }
+                        );
+                        wfsRegionSource.addFeatures(features);
+                        this.features = features;
+                        //添加绘制
+                        this.regionDraw = new ol.interaction.Draw({
+                            source: wfsRegionSource,
+                            features: this.features,
+                            type: 'Polygon'
+                        });
+                        this.regionDraw.on('drawend', delegate(this, function (evt) {
+                            console.log(evt.feature);
+                            var geo = evt.feature.getGeometry();
+                            var array = geo.flatCoordinates;
+                            var args = {};
+                            args.Type = 3;
+                            args.PosList = new Array();
+                            for (var i = 0; i < array.length; i = i + 2) {
+                                args.PosList.push({ X: array[i], Y: array[i + 1] });
+                            }
+                            doActionAsync("GIS.DotSpatial.DataBP.Agent.InsertDataBPProxy", args, function (res) {
+                                if (res) {
 
+                                }
+                            }, null, null, true);
+                        }), this);
+                    }));
+                }),
+                strategy: ol.loadingstrategy.tile(ol.tilegrid.createXYZ({
+                    maxZoom: 17
+                }))
 
-            /** featureLayer
-            this.featureLayer = new ol.layer.Vector({ source: new ol.source.Vector() });
-            // 创建一个Feature，并设置好在地图上的位置
-            var anchor = new ol.Feature({
-                geometry: new ol.geom.Point([116.39142, 39.90255])
             });
-            // 设置样式，在样式中就可以设置图标
-            anchor.setStyle(new ol.style.Style({
-                image: new ol.style.Icon({
-                    src: '../Theme/images/marker.png',
-                    anchor: [0.5, 1]    // 设置图标位置
+
+            this.wfsRegionLayer = new ol.layer.Vector({
+                source: wfsRegionSource,
+                style: new ol.style.Style({
+                    stroke: new ol.style.Stroke({
+                        color: 'rgba(0, 0, 255, 1.0)',
+                        width: 2
+                    }),
+                    fill: new ol.style.Fill({
+                        color: [0, 153, 255, 1]
+                    })
                 })
-            }));
-            // 添加到之前的创建的layer中去
-            this.featureLayer.getSource().addFeature(anchor);
-            **/
+            });
+
+            //wfsLayer
+
+            var pointLayerName = "P";
+            var mapUrl = this.mapUrl;
+            var wfsPointSource = new ol.source.Vector({
+                loader: delegate(this, function (arry, resolution, projection, a, b) {
+                    var dataUrl = this.mapUrl + '/geoserver/' + namespace + '/ows?'
+                            + 'service=WFS&request=GetFeature&'
+                            + 'version=1.1.0&typename='
+                            + namespace
+                            + ':'
+                            + pointLayerName + '&outputFormat=application/json';
+
+                    $.ajax({
+                        url: '/Handler/OpenlayerProxy.ashx?URL=' + encodeURIComponent(dataUrl)
+                    }).done(delegate(this, function (response) {
+                        var format = new ol.format.GeoJSON({
+                            featureNS: 'www.gaia.asia',
+                            featureType: pointLayerName
+                        });
+                        var features = format.readFeatures(response,
+                                { featureProjection: projection }
+                        );
+                        wfsPointSource.addFeatures(features);
+                        this.features = features;
+                        //添加绘制
+                        this.pointDraw = new ol.interaction.Draw({
+                            source: wfsPointSource,
+                            features: this.features,
+                            type: 'Point'
+                        });
+                        this.pointDraw.on('drawend', delegate(this, function (evt) {
+                            console.log(evt.feature);
+                            var geo = evt.feature.getGeometry();
+                            var array = geo.flatCoordinates;
+                            var args = {};
+                            args.Type = 1;
+                            args.PosList = new Array();
+                            for (var i = 0; i < array.length; i = i + 2) {
+                                args.PosList.push({ X: array[i], Y: array[i + 1] });
+                            }
+                            doActionAsync("GIS.DotSpatial.DataBP.Agent.InsertDataBPProxy", args, function (res) {
+                                if (res) {
+
+                                }
+                            }, null, null, true);
+
+                        }), this);
+                    }));
+                }),
+                strategy: ol.loadingstrategy.tile(ol.tilegrid.createXYZ({
+                    maxZoom: 17
+                }))
+
+            });
+
+            this.wfsPointLayer = new ol.layer.Vector({
+                source: wfsPointSource,
+                style: new ol.style.Style({
+                    image: new ol.style.Icon({
+                        src: '/Images/marker.png'
+                    })
+                })
+            });
+
 
             this.options = {
                 logo: { src: '/Images/face_monkey.png', href: 'http://www.openstreetmap.org/' },
-                layers: [this.baseLayer, this.wfsLayer],
+                layers: [this.baseLayer, this.wfsLineLayer, this.wfsPointLayer, this.wfsRegionLayer],
+                overlays: [overlay],
                 view: new ol.View({
                     // 设置北京为地图中心，此处进行坐标转换， 把EPSG:4326的坐标，转换为EPSG:3857坐标，因为ol默认使用的是EPSG:3857坐标
                     //center: ol.proj.transform([104.06, 30.67], 'EPSG:4326', 'EPSG:3857'),
@@ -238,11 +296,15 @@ var MapManager = {
             // 监听地图点击事件
             this.map.on('click', delegate(this, function (event) {
                 var feature = this.map.forEachFeatureAtPixel(event.pixel, function (feature) {
+                    if (feature) {
+                        console.log(feature);
+                        var coordinate = event.coordinate;
+                        content.innerHTML = '<p>UserID:' + feature.values_.UserID + '</p> ';
+                        overlay.setPosition(coordinate);
+                    }
                     return feature;
                 });
-                if (event) {
 
-                }
             }));
 
             this.map.on('pointermove', delegate(this, function (evt) {
