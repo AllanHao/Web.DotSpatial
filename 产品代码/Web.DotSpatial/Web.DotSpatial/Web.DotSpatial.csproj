@@ -96,20 +96,21 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ApplicationLib\GIS.DotSpatial.DataBP.Agent.dll" />
+    <Content Include="ApplicationLib\GIS.DotSpatial.DataBP.Agent.pdb" />
+    <Content Include="ApplicationLib\GIS.DotSpatial.DataBP.Deploy.dll" />
+    <Content Include="ApplicationLib\GIS.DotSpatial.DataBP.Deploy.pdb" />
+    <Content Include="ApplicationLib\GIS.DotSpatial.DataBP.dll" />
+    <Content Include="ApplicationLib\GIS.DotSpatial.DataBP.pdb" />
     <Content Include="ApplicationLib\IWEHAVE.ERP.Auth.ServiceBP.Agent.dll" />
     <Content Include="ApplicationLib\IWEHAVE.ERP.Auth.ServiceBP.Agent.pdb" />
     <Content Include="ApplicationLib\IWEHAVE.ERP.AuthBE.Deploy.dll" />
     <Content Include="ApplicationLib\IWEHAVE.ERP.AuthBE.Deploy.pdb" />
     <Content Include="ApplicationLib\IWEHAVE.ERP.CommonBE.Deploy.dll" />
-    <Content Include="ApplicationLib\IWEHAVE.ERP.CommonBE.Deploy.pdb" />
     <Content Include="ApplicationLib\IWEHAVE.ERP.CommonBE.dll" />
-    <Content Include="ApplicationLib\IWEHAVE.ERP.CommonBE.pdb" />
     <Content Include="ApplicationLib\IWEHAVE.ERP.CommonBP.Agent.dll" />
-    <Content Include="ApplicationLib\IWEHAVE.ERP.CommonBP.Agent.pdb" />
     <Content Include="ApplicationLib\IWEHAVE.ERP.CommonBP.Deploy.dll" />
-    <Content Include="ApplicationLib\IWEHAVE.ERP.CommonBP.Deploy.pdb" />
     <Content Include="ApplicationLib\IWEHAVE.ERP.CommonBP.dll" />
-    <Content Include="ApplicationLib\IWEHAVE.ERP.CommonBP.pdb" />
     <Content Include="ApplicationLib\IWEHAVE.ERP.CommonBP.svc" />
     <Content Include="ApplicationLib\PlugIn\IWEHAVE.ERP.PlugIn.Common.dll" />
     <Content Include="ApplicationLib\PlugIn\IWEHAVE.ERP.PlugIn.Common.pdb" />
