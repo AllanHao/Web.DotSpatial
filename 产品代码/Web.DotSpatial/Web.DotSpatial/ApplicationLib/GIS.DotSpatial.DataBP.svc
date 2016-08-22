@@ -3,5 +3,6 @@
   <Refrences />
   <Services>
     <Service Name="InsertDataBP" />
+    <Service Name="DeleteDataBP" />
   </Services>
 </ServiceCfg>
