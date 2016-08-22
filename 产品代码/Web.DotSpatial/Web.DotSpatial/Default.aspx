@@ -143,7 +143,7 @@
     <form id="form1" runat="server">
         <div data-options="region:'north',border:'false',height:'50'" class="main-top" style="color: #fff; background: rgb(74, 91, 121);">
             <div class="head-left">
-                <img class="logo" src="../../Images/top-left.png" style="width: 30px; height: 30px" /><span>DEMO OF OL+GeoServer+DotSpatial</span>
+                <img class="logo" src="../../Images/top-left.png" style="width: 30px; height: 30px" /><span>DEMO OF OL+GEOSERVER+DOTSPATIAL</span>
             </div>
             <div class="head-right">
 
