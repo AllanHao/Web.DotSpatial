@@ -38,6 +38,10 @@ namespace GIS.DotSpatial.DataBP
                 default:
                     throw new NHExt.Runtime.Exceptions.BizException("没有传入数据类型");
             }
+            if (sf.Features.Count <= 1)
+            {
+                throw new NHExt.Runtime.Exceptions.BizException("数据集中至少需要有一条数据");
+            }
             fs = new FeatureSet(sf.Features);
             IFeature feature = fs.Features.ToList().Find((f) => { return (f.DataRow["ID"] == null ? "" : f.DataRow["ID"].ToString()) == this.ID; });
             if (feature != null)
