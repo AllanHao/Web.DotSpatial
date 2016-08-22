@@ -35,7 +35,9 @@ namespace GIS.DotSpatial.DataBP
                     sf = new PointShapefile(path);
                     fs = new FeatureSet(sf.Features);
                     geo = new Point(cooArray[0]);
-                    fs.AddFeature(geo);
+
+                    IFeature p = fs.AddFeature(geo);
+                    p.DataRow["ID"] = InsertDataBP.BuildID();
                     fs.SaveAs(path, true);
                     break;
                 case 2:
@@ -43,7 +45,8 @@ namespace GIS.DotSpatial.DataBP
                     sf = new LineShapefile(path);
                     fs = new FeatureSet(sf.Features);
                     geo = new LineString(cooArray);
-                    fs.AddFeature(geo);
+                    IFeature l = fs.AddFeature(geo);
+                    l.DataRow["ID"] = InsertDataBP.BuildID();
                     fs.SaveAs(path, true);
                     break;
                 case 3:
@@ -51,13 +54,19 @@ namespace GIS.DotSpatial.DataBP
                     sf = new PolygonShapefile(path);
                     fs = new FeatureSet(sf.Features);
                     geo = new Polygon(cooArray);
-                    fs.AddFeature(geo);
+                    IFeature r = fs.AddFeature(geo);
+                    r.DataRow["ID"] = InsertDataBP.BuildID();
                     fs.SaveAs(path, true);
                     break;
                 default:
                     throw new NHExt.Runtime.Exceptions.BizException("没有传入数据类型");
             }
             return true;
+        }
+        internal static string BuildID()
+        {
+            string id = DateTime.Now.ToString("yyMMddHHmmssfff");
+            return id;
         }
     }
 }

@@ -6,6 +6,12 @@
         <Attribute Guid="a22cef23-9e6e-4d91-b924-60e76bf79139" Code="PosList" Name="坐标串" DataType="CompositionType" DefaultValue="" RefGuid="76ffbb64-cdbd-4c98-9e8b-e90b0556804d" IsNull="0" />
       </Attributes>
     </BP>
+    <BP Guid="ccf250fc-26a3-4d15-994a-ea1a813de521" Code="DeleteDataBP" Name="删除数据" List="0" Auth="1" Trans="0" ReturnName="bool">
+      <Attributes>
+        <Attribute Guid="76a80f98-d750-4cbc-a939-5a2b68e0da43" Code="ID" Name="ID" DataType="CommonType" DefaultValue="" Type="string" IsNull="0" />
+        <Attribute Guid="6b4046b2-94b9-4579-add7-8a34586a5980" Code="Type" Name="数据类型" DataType="CommonType" DefaultValue="" Type="int" IsNull="0" />
+      </Attributes>
+    </BP>
   </BPList>
   <RefrenceList>
     <Refrence Guid="fd282f24-b1f3-4faf-8b51-f6ba2e0eb8e2" RefProjName="数据操作服务.bp" RefrenceType="Deploy" RefFilePath="..\MetaData\数据操作服务.bp" />

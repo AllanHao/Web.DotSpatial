@@ -14,6 +14,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Proxy\InsertDataBPAgent.cs" />
+<Compile Include="Proxy\DeleteDataBPAgent.cs" />
 
   </ItemGroup>
   <ItemGroup>

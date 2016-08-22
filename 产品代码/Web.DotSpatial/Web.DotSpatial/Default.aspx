@@ -118,6 +118,24 @@
                     }
                 }
             });
+            $("#btnDelPoint").click(function () {
+                if (mapWin) {
+                    mapWin.IsDel = true;
+                    mapWin.DelType = 1;
+                }
+            });
+            $("#btnDelLine").click(function () {
+                if (mapWin) {
+                    mapWin.IsDel = true;
+                    mapWin.DelType = 2;
+                }
+            });
+            $("#btnDelRegion").click(function () {
+                if (mapWin) {
+                    mapWin.IsDel = true;
+                    mapWin.DelType = 3;
+                }
+            });
         });
     </script>
 </head>
@@ -153,6 +171,18 @@
                 </li>
                 <li>
                     <input id="btnRegion" type="button" value="画面" />
+
+                </li>
+                <li>
+                    <input id="btnDelPoint" type="button" value="删点" />
+
+                </li>
+                <li>
+                    <input id="btnDelLine" type="button" value="删线" />
+
+                </li>
+                <li>
+                    <input id="btnDelRegion" type="button" value="删面" />
 
                 </li>
             </ul>

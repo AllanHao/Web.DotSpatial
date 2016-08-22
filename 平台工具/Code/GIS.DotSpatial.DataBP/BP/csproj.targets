@@ -17,6 +17,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BPEntity\InsertDataBP.cs" />
+<Compile Include="BPEntity\DeleteDataBP.cs" />
 
   </ItemGroup>
   <ItemGroup>

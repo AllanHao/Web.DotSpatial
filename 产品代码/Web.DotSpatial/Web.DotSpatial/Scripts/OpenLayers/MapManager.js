@@ -30,6 +30,8 @@ var MapManager = {
         this.pointDraw = null;//画点
         this.lineDraw = null;//画线
         this.regionDraw = null;//画面
+        this.IsDel = false;//是否执行删除操作
+        this.DelType = "";//待删除数据类型
 
         function init() {
             this.baseLayer = new ol.layer.Tile({ source: new ol.source.OSM() });
@@ -227,11 +229,15 @@ var MapManager = {
                         var features = format.readFeatures(response,
                                 { featureProjection: projection }
                         );
-                        features[0].setStyle(new ol.style.Style({
-                            image: new ol.style.Icon({
-                                src: '/Images/face_monkey.png'
-                            })
-                        }));
+                        //test
+                        if (features && features.length > 0) {
+                            features[0].setStyle(new ol.style.Style({
+                                image: new ol.style.Icon({
+                                    src: '/Images/face_monkey.png'
+                                })
+                            }));
+                        }
+
                         wfsPointSource.addFeatures(features);
                         this.features = features;
                         //添加绘制
@@ -300,15 +306,31 @@ var MapManager = {
 
             // 监听地图点击事件
             this.map.on('click', delegate(this, function (event) {
-                var feature = this.map.forEachFeatureAtPixel(event.pixel, function (feature) {
+                var feature = this.map.forEachFeatureAtPixel(event.pixel, delegate(this, function (feature) {
                     if (feature) {
-                        console.log(feature);
-                        var coordinate = event.coordinate;
-                        content.innerHTML = '<p>UserID:' + feature.values_.UserID + '</p> ';
-                        overlay.setPosition(coordinate);
+                        if (this.IsDel) {
+                            var id = feature.values_.ID;
+                            var args = {};
+                            args.ID = id;
+                            args.Type = this.DelType;
+                            $.messager.confirm("提示", "确认删除该地物？", function (r) {
+                                if (r) {
+                                    doActionAsync("GIS.DotSpatial.DataBP.Agent.DeleteDataBPProxy", args, function (res) {
+                                        if (res) {
+                                            this.IsDel = false;
+                                        }
+                                    }, null, null, true);
+                                }
+                            });
+                        } else {
+                            console.log(feature);
+                            var coordinate = event.coordinate;
+                            content.innerHTML = '<p>ID:' + feature.values_.ID + '</p> ';
+                            overlay.setPosition(coordinate);
+                        }
                     }
                     return feature;
-                });
+                }));
 
             }));
 
@@ -334,9 +356,19 @@ var MapManager = {
 
         }
         //释放图层
-        function destory() { }
+        function destory() {
+            if (this.wfsRegionLayer) {
+
+            }
+        };
         this.LoadMap = function () {
+
             init.call(this)
-        }
+        };
+        window.onresize = delegate(this, function () {
+            if (this.map) {
+                this.map.updateSize();
+            }
+        });
     }
 }
