@@ -116,7 +116,9 @@
     <Content Include="ApplicationLib\PlugIn\IWEHAVE.ERP.PlugIn.Common.pdb" />
     <Content Include="ApplicationLib\PlugIn\IWEHAVE.ERP.PlugIn.Common.xml" />
     <Content Include="Config\LOG_CONFIG.xml" />
-    <Content Include="Config\NH_CONFIG.xml" />
+    <Content Include="Config\NH_CONFIG.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Config\RUNTIME_CONFIG.xml" />
     <Content Include="Config\SPRING_CONFIG.xml" />
     <Content Include="Config\WCF_CONFIG.xml" />
@@ -138,6 +140,10 @@
     <Content Include="Images\orderedList9.png" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="Portal\css\default.css" />
+    <Content Include="Portal\Default.aspx" />
+    <Content Include="Portal\Layout.js" />
+    <Content Include="Portal\OverView.aspx" />
     <Content Include="Scripts\ajaxfileupload.js" />
     <Content Include="Scripts\DialogManager.js" />
     <Content Include="Scripts\easyui1.4.4\easyui-lang-zh_CN.js" />
@@ -374,6 +380,17 @@
     </Compile>
     <Compile Include="Handler\OpenlayerProxy.ashx.cs">
       <DependentUpon>OpenlayerProxy.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Portal\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Portal\OverView.aspx.cs">
+      <DependentUpon>OverView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Portal\OverView.aspx.designer.cs">
+      <DependentUpon>OverView.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

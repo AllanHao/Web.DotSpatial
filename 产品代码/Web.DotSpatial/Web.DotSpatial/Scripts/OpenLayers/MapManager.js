@@ -227,6 +227,11 @@ var MapManager = {
                         var features = format.readFeatures(response,
                                 { featureProjection: projection }
                         );
+                        features[0].setStyle(new ol.style.Style({
+                            image: new ol.style.Icon({
+                                src: '/Images/face_monkey.png'
+                            })
+                        }));
                         wfsPointSource.addFeatures(features);
                         this.features = features;
                         //添加绘制

@@ -6,6 +6,7 @@
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title></title>
+    <link href="Portal/css/default.css" rel="stylesheet" />
     <link href="Scripts/easyui1.4.4/themes/gray/easyui.css" rel="stylesheet" />
     <link href="Scripts/easyui1.4.4/themes/icon.css" rel="stylesheet" />
     <link href="Scripts/easyui1.4.4/themes/gray/easyui.customer.css" rel="stylesheet" />
@@ -122,6 +123,17 @@
 </head>
 <body class="easyui-layout">
     <form id="form1" runat="server">
+        <div data-options="region:'north',border:'false',height:'50'" class="main-top" style="color: #fff; background: rgb(74, 91, 121);">
+            <div class="head-left">
+                <img class="logo" src="../../Images/top-left.png" style="width: 30px; height: 30px" /><span>DEMO OF OL+GeoServer+DotSpatial</span>
+            </div>
+            <div class="head-right">
+
+                <div id="calender" class="top-text" style="width: 320px; cursor: pointer;">
+                </div>
+
+            </div>
+        </div>
         <div data-options="region:'center',split:false">
             <div id="map1" style="width: 100%; height: 100%"></div>
             <div id="popup" class="ol-popup">
@@ -144,6 +156,19 @@
 
                 </li>
             </ul>
+        </div>
+        <div data-options="region:'south',border:false">
+            <div id="footer" class="cs-south" style="height: 25px;">
+                <div class="footer-number" style="width: 30%; text-align: left; float: left; line-height: 25px;">
+                    <span style="padding-left: 5px;"></span>源代码：<a href="https://github.com/AllanHao/Web.DotSpatial" target="_blank"
+                        style="color: white;">Allan.Hao</a>
+                </div>
+                <div class="footer-number" style="width: 40%; text-align: center; float: left; line-height: 25px; color: #fff;">
+                    CopyRight © 2014 - 2016 By Allan.Hao
+                </div>
+                <div class="clear">
+                </div>
+            </div>
         </div>
     </form>
 </body>

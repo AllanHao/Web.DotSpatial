@@ -1,0 +1,179 @@
+﻿body {
+    font-family: Verdana, 微软雅黑,黑体;
+}
+
+a {
+    text-decoration: none;
+}
+
+.main-top {
+    overflow: hidden;
+    position: relative;
+    top: 0px;
+}
+
+    .main-top .head-left {
+        position: relative;
+        float: left;
+        height: 100%;
+        font-family: Verdana, 微软雅黑,黑体;
+    }
+
+        .main-top .head-left .logo {
+            float: left;
+            margin: 8px 0 10px 10px;
+        }
+
+        .main-top .head-left span {
+            margin-left: 10px;
+            line-height: 44px;
+            font-size: 20px;
+        }
+
+    .main-top .head-right {
+        height: 100%;
+        float: right;
+        right: 10px;
+        position: relative;
+    }
+
+        .main-top .head-right .top-area {
+            margin: 0px 0px 0px 0px;
+        }
+
+.top-text {
+    margin-top: 5px;
+    width: 100px;
+    line-height: 38px;
+    float: right;
+}
+
+    .top-text span {
+        line-height: 38px;
+        margin: 0 5px;
+        height: 43px;
+    }
+
+.organizebt {
+    background: url(../../Images/top-button-organize.png) no-repeat left 8px;
+    width: 20px;
+    height: 20px;
+    float: left;
+}
+
+.topbt {
+    float: right;
+}
+
+.top-text a {
+    margin: 0 5px;
+    float: left;
+    cursor: pointer;
+}
+
+    .top-text a:link {
+        color: #fff;
+    }
+
+    .top-text a:hover {
+        color: #999;
+    }
+
+    .top-text a:active {
+        color: #fff;
+    }
+
+    .top-text a:visited {
+        color: #fff;
+    }
+
+.topcancel {
+    background: url(/../Images/top-button-cancel.png) no-repeat left 8px;
+    width: 20px;
+    height: 20px;
+    float: left;
+}
+
+.password {
+    background: url(/../Images/top-button-password.png) no-repeat left 8px;
+    width: 22px;
+    height: 20px;
+    float: left;
+}
+
+.panel-body iframe {
+    width: 100%;
+    height: 100%;
+}
+
+.tabs-panels .panel-body {
+    overflow: hidden;
+}
+
+.panel-body {
+    position: relative;
+    background: inherit;
+}
+
+.iframe_main {
+    position: absolute;
+    top: 2px;
+    bottom: 2px;
+    left: 2px;
+    right: 2px;
+    min-width: 800px;
+    min-height: 0px;
+    overflow: hidden;
+}
+
+.panel-body iframe {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+.footer-number {
+    font-weight: bold;
+    color: #fff;
+}
+
+#footer {
+    height: 28px;
+    overflow: hidden;
+    background: #4A5B79;
+}
+
+.ul-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+    .ul-menu .ul-menu-item {
+        background-position: 10px 12px;
+    }
+
+.ul-menu-item {
+    padding: 10px 10px 10px 32px;
+    border-bottom: 1px dotted rgb(204, 204, 204);
+    cursor: pointer;
+    font-size: 14px;
+    color: rgb(102, 102, 102);
+    font-family: 微软雅黑;
+    font-weight: bold;
+}
+
+    .ul-menu-item:hover {
+        background-color: #e0e0ee;
+        color: #222;
+        font-family: 微软雅黑;
+    }
+
+.accordion .accordion-header-selected {
+    background: rgb(74, 91, 121);
+}
+
+.tree-node-selected {
+    background: rgb(74, 91, 121);
+}
