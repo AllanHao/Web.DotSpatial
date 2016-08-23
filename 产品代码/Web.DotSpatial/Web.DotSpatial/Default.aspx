@@ -196,7 +196,7 @@
         <div data-options="region:'south',border:false">
             <div id="footer" class="cs-south" style="height: 25px;">
                 <div class="footer-number" style="width: 30%; text-align: left; float: left; line-height: 25px;">
-                    <span style="padding-left: 5px;"></span>源代码：<a href="https://github.com/AllanHao/Web.DotSpatial" target="_blank"
+                    <span style="padding-left: 5px;"></span>Powered By：<a href="https://github.com/AllanHao/Web.DotSpatial" target="_blank"
                         style="color: white;">Allan.Hao</a>
                 </div>
                 <div class="footer-number" style="width: 40%; text-align: center; float: left; line-height: 25px; color: #fff;">
