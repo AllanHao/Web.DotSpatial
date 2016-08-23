@@ -33,43 +33,13 @@ var MapManager = {
         this.IsDel = false;//是否执行删除操作
         this.DelType = "";//待删除数据类型
 
+        this.popupObj = {};//气泡对象封装
+        this.loadSuccessCallback = null;
+
         function init() {
             this.baseLayer = new ol.layer.Tile({ source: new ol.source.OSM() });
 
-
-            /**
-      * Elements that make up the popup.
-      */
-            var container = document.getElementById('popup');
-            var content = document.getElementById('popup-content');
-            var closer = document.getElementById('popup-closer');
-
-
-            /**
-             * Create an overlay to anchor the popup to the map.
-             */
-            var overlay = new ol.Overlay(/** @type {olx.OverlayOptions} */({
-                element: container,
-                autoPan: true,
-                autoPanAnimation: {
-                    duration: 250
-                }
-            }));
-
-
-            /**
-             * Add a click handler to hide the popup.
-             * @return {boolean} Don't follow the href.
-             */
-            closer.onclick = function () {
-                overlay.setPosition(undefined);
-                closer.blur();
-                return false;
-            };
-
-
-
-            //wfsLayer
+            //wfsLineLayer
             var namespace = "ws_test";
             var lineLayerName = "L";
             var mapUrl = this.mapUrl;
@@ -138,7 +108,7 @@ var MapManager = {
                 })
             });
 
-            //wfsLayer
+            //wfsRegionLayer
 
             var regionLayerName = "R";
             var mapUrl = this.mapUrl;
@@ -284,7 +254,7 @@ var MapManager = {
             this.options = {
                 logo: { src: '/Images/face_monkey.png', href: 'http://www.openstreetmap.org/' },
                 layers: [this.baseLayer, this.wfsLineLayer, this.wfsPointLayer, this.wfsRegionLayer],
-                overlays: [overlay],
+                overlays: [this.popupObj.overlay],
                 view: new ol.View({
                     // 设置北京为地图中心，此处进行坐标转换， 把EPSG:4326的坐标，转换为EPSG:3857坐标，因为ol默认使用的是EPSG:3857坐标
                     //center: ol.proj.transform([104.06, 30.67], 'EPSG:4326', 'EPSG:3857'),
@@ -325,8 +295,8 @@ var MapManager = {
                         } else {
                             console.log(feature);
                             var coordinate = event.coordinate;
-                            content.innerHTML = '<p>ID:' + feature.values_.ID + '</p> ';
-                            overlay.setPosition(coordinate);
+                            this.popupObj.content.innerHTML = '<p>ID:' + feature.values_.ID + '</p> ';
+                            this.popupObj.overlay.setPosition(coordinate);
                         }
                     }
                     return feature;
@@ -353,7 +323,9 @@ var MapManager = {
                 }
                 //this.map.getTargetElement().style.cursor = hit ? 'pointer' : '';
             }));
-
+            if (this.loadSuccessCallback) {
+                this.loadSuccessCallback;
+            }
         }
         //释放图层
         function destory() {
@@ -365,10 +337,18 @@ var MapManager = {
 
             init.call(this)
         };
-        window.onresize = delegate(this, function () {
-            if (this.map) {
-                this.map.updateSize();
-            }
-        });
+        function checkSize() {
+            //var small = this.map.getSize()[0] < 600;
+            //attribution.setCollapsible(small);
+            //attribution.setCollapsed(small);
+            this.map.updateSize();
+        }
+        window.addEventListener('resize', delegate(this, checkSize));
+        //checkSize.call(this);
+        //window.onresize = delegate(this, function () {
+        //    if (this.map) {
+        //        this.map.updateSize();
+        //    }
+        //});
     }
 }
