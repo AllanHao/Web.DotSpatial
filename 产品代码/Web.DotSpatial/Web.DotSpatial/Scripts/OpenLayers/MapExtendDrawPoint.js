@@ -55,7 +55,7 @@
                         }
                         doActionAsync("GIS.DotSpatial.DataBP.Agent.InsertDataBPProxy", args, delegate(this, function (res) {
                             if (res) {
-                                //  this.wfsPointLayer.getSource().addFeature(evt.feature);
+                                this.wfsPointLayer.getSource().getFeatures();
                             }
                         }), null, null, true);
 
@@ -77,5 +77,39 @@
                 })
             })
         });
+
+        function loaderFunction(extent, resolution, projection) {
+            var dataUrl = this.mapUrl + '/geoserver/' + namespace + '/ows?'
+                        + 'service=WFS&request=GetFeature&'
+                        + 'version=1.1.0&typename='
+                        + namespace
+                        + ':'
+                        + pointLayerName + '&outputFormat=application/json';
+            var url = '/Handler/OpenlayerProxy.ashx?URL=' + encodeURIComponent(dataUrl);
+            $.ajax({
+                url: url,
+                success: function (data) {
+                    var format = new ol.format.GeoJSON({
+                        featureNS: 'www.gaia.asia',
+                        featureType: pointLayerName
+                    });
+                    var features = format.readFeatures(data,
+                               { featureProjection: projection }
+                       );
+                    //test
+                    if (features && features.length > 0) {
+                        features[0].setStyle(new ol.style.Style({
+                            image: new ol.style.Icon({
+                                src: '/Images/face_monkey.png'
+                            })
+                        }));
+                    }
+                    this.features = features;
+                    wfsPointSource.clear(true);
+                    wfsPointSource.addFeatures(features);
+                }
+            });
+        }
+
     }
 }
