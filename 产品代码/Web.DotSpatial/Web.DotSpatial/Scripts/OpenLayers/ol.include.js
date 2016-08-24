@@ -20,7 +20,7 @@
         //inputScript('deprecated.js');
         //inputScript('OpenLayers.debug.js');
         inputScript('MapManager.js');
-        inputScript('MapExtendPopUp.js');
+        inputScript('MapExtendPopup.js');
         inputScript('MapExtendDrawPoint.js');
         inputScript('MapExtendDrawLine.js');
         inputScript('MapExtendDrawRegion.js');

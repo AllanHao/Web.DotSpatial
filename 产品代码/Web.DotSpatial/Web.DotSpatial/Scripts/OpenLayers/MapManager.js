@@ -11,20 +11,8 @@ var MapManager = {
         this.id = id;
         this.map = null;
         this.baseLayer = null;
-        this.featureLayer = null;
-        this.themeLayer = null;
-        this.tailLayer = null;
-        this.drawPolygon = null;
-        this.selectedFeature = null;
         this.mapUrl = "http://localhost:8080";
-        this.features = [];
         this.options = null;
-        this.wmsLayer = null;
-        this.wfsRegionLayer = null;
-        this.wfsLineLayer = null;
-        this.wfsPointLayer = null;
-        this.geojsonLayer = null;
-        this.chinaLayer = null;
 
         this.IsDel = false;//是否执行删除操作
         this.DelType = "";//待删除数据类型
@@ -84,8 +72,8 @@ var MapManager = {
                         } else {
                             console.log(feature);
                             var coordinate = event.coordinate;
-                            this.popupObj.content.innerHTML = '<p>ID:' + feature.values_.ID + '</p> ';
-                            this.popupObj.overlay.setPosition(coordinate);
+                            this.Popup.content.innerHTML = '<p>ID:' + feature.values_.ID + '</p> ';
+                            this.Popup.overlay.setPosition(coordinate);
                         }
                     }
                     return feature;
@@ -121,9 +109,7 @@ var MapManager = {
         }
         //释放图层
         function destory() {
-            if (this.wfsRegionLayer) {
 
-            }
         };
         this.LoadMap = function () {
             init.call(this);

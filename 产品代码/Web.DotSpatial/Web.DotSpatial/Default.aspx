@@ -73,24 +73,24 @@
     <script type="text/javascript">
         $(document).ready(function () {
             var mapWin = new MapManager.MapControl("map1");
-            mapWin.popupObj = new mapWin.PopUp('popup', 'popup-content', 'popup-closer');
-            var drawPoint = new mapWin.DrawPoint();
-            var drawLine = new mapWin.DrawLine();
-            var drawRegion = new mapWin.DrawRegion();
+            mapWin.Popup.init();// = new mapWin.Popup('popup', 'popup-content', 'popup-closer');
+            mapWin.DrawPoint.init();
+            mapWin.DrawLine.init();
+            mapWin.DrawRegion.init();
             mapWin.loadSuccessCallback = function () {
                 if (mapWin.map) {
-                    if (drawPoint && drawPoint.wfsPointLayer) {
-                        mapWin.map.addLayer(drawPoint.wfsPointLayer);
+                    if (mapWin.DrawPoint.wfsPointLayer) {
+                        mapWin.map.addLayer(mapWin.DrawPoint.wfsPointLayer);
                     }
-                    if (drawLine && drawLine.wfsLineLayer) {
-                        mapWin.map.addLayer(drawLine.wfsLineLayer);
+                    if (mapWin.DrawLine.wfsLineLayer) {
+                        mapWin.map.addLayer(mapWin.DrawLine.wfsLineLayer);
                     }
-                    if (drawRegion && drawRegion.wfsRegionLayer) {
-                        mapWin.map.addLayer(drawRegion.wfsRegionLayer);
+                    if (mapWin.DrawRegion.wfsRegionLayer) {
+                        mapWin.map.addLayer(mapWin.DrawRegion.wfsRegionLayer);
                     }
 
-                    if (mapWin.popupObj && mapWin.popupObj.overlay) {
-                        mapWin.map.addOverlay(mapWin.popupObj.overlay);
+                    if (mapWin.Popup.overlay) {
+                        mapWin.map.addOverlay(mapWin.Popup.overlay);
                     }
                 }
             };

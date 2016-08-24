@@ -1,27 +1,30 @@
-﻿MapManager.MapControl.prototype.PopUp = function (container, content, closer) {
+﻿MapManager.MapControl.prototype.Popup = {
     // Elements that make up the popup.
-    this.container = document.getElementById(container);//'popup'
-    this.content = document.getElementById(content);//'popup-content'
-    this.closer = document.getElementById(closer); //'popup-closer'
+    container: null,//气泡容器
+    content: null,//气泡显示内容
+    closer: null, //气泡关闭按钮
+    overlay: null,//气泡所在图层
 
-
-    //Create an overlay to anchor the popup to the map.
-    this.overlay = new ol.Overlay(/** @type {olx.OverlayOptions} */({
-        element: this.container,
-        autoPan: true,
-        autoPanAnimation: {
-            duration: 250
-        }
-    }));
-
-
-    /**
+    init: function () {
+        this.container = document.getElementById('popup');
+        this.content = document.getElementById('popup-content');
+        this.closer = document.getElementById('popup-closer');
+        this.overlay = new ol.Overlay(/** @type {olx.OverlayOptions} */({
+            element: this.container,
+            autoPan: true,
+            autoPanAnimation: {
+                duration: 250
+            }
+        }));
+        /**
     * Add a click handler to hide the popup.
     * @return {boolean} Don't follow the href.
     */
-    this.closer.onclick = delegate(this, function () {
-        this.overlay.setPosition(undefined);
-        this.closer.blur();
-        return false;
-    });
+        this.closer.onclick = delegate(this, function () {
+            this.overlay.setPosition(undefined);
+            this.closer.blur();
+            return false;
+        });
+    }
+
 }
