@@ -3,6 +3,7 @@
     wfsPointLayer: null,//点图层
     mapUrl: "http://localhost:8080",
     features: [],
+    drawedCallback: null,
     init: function () {
         var namespace = "ws_test";
         var pointLayerName = "P";
@@ -53,9 +54,12 @@
                         for (var i = 0; i < array.length; i = i + 2) {
                             args.PosList.push({ X: array[i], Y: array[i + 1] });
                         }
-                        doActionAsync("GIS.DotSpatial.DataBP.Agent.InsertDataBPProxy", args, delegate(this, function (res) {
-                            if (res) {
-                                this.wfsPointLayer.getSource().getFeatures();
+                        doActionAsync("GIS.DotSpatial.DataBP.Agent.InsertDataBPProxy", { DataDTO: args }, delegate(this, function (data) {
+                            if (data) {
+                                evt.feature.values_.ID = data.CID;
+                                if (this.drawedCallback) {
+                                    this.drawedCallback();
+                                }
                             }
                         }), null, null, true);
 

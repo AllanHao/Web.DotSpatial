@@ -97,17 +97,28 @@
             if (mapWin) {
                 mapWin.LoadMap();
             }
+            mapWin.DrawPoint.drawedCallback = function () {
+                $("#btnPoint").click();
+            };
+            mapWin.DrawLine.drawedCallback = function () {
+                $("#btnLine").click();
+            };
+            mapWin.DrawRegion.drawedCallback = function () {
+                $("#btnRegion").click();
+            };
             $("#btnPoint").click(function () {
                 if ($("#btnPoint").hasClass("btnSelectedClass")) {
                     if (mapWin && mapWin.DrawPoint.draw) {
                         mapWin.map.removeInteraction(mapWin.DrawPoint.draw);
                         $("#btnPoint").removeClass("btnSelectedClass");
+                        mapWin.map.on('click', mapWin.clickHandler, mapWin);
                     }
 
                 } else {
                     if (mapWin && mapWin.DrawPoint.draw) {
                         mapWin.map.addInteraction(mapWin.DrawPoint.draw);
                         $("#btnPoint").addClass("btnSelectedClass");
+                        mapWin.map.un('click', mapWin.clickHandler, mapWin);
                     }
                 }
             });
@@ -116,12 +127,14 @@
                     if (mapWin && mapWin.DrawLine.draw) {
                         mapWin.map.removeInteraction(mapWin.DrawLine.draw);
                         $("#btnLine").removeClass("btnSelectedClass");
+                        mapWin.map.on('click', mapWin.clickHandler, mapWin);
                     }
 
                 } else {
                     if (mapWin && mapWin.DrawLine.draw) {
                         mapWin.map.addInteraction(mapWin.DrawLine.draw);
                         $("#btnLine").addClass("btnSelectedClass");
+                        mapWin.map.un('click', mapWin.clickHandler, mapWin);
                     }
                 }
             });
@@ -130,12 +143,14 @@
                     if (mapWin && mapWin.DrawRegion.draw) {
                         mapWin.map.removeInteraction(mapWin.DrawRegion.draw);
                         $("#btnRegion").removeClass("btnSelectedClass");
+                        mapWin.map.on('click', mapWin.clickHandler, mapWin);
                     }
 
                 } else {
                     if (mapWin && mapWin.DrawRegion.draw) {
                         mapWin.map.addInteraction(mapWin.DrawRegion.draw);
                         $("#btnRegion").addClass("btnSelectedClass");
+                        mapWin.map.un('click', mapWin.clickHandler, mapWin);
                     }
                 }
             });

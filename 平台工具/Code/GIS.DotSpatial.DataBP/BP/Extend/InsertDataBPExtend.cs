@@ -9,13 +9,17 @@ namespace GIS.DotSpatial.DataBP
 {
     public partial class InsertDataBP
     {
-        private bool DoExtend()
+        private GIS.DotSpatial.DataBP.Deploy.DataDTO DoExtend()
         {
-            if (this.Type <= 0)
+            if (this.DataDTO == null)
+            {
+                throw new NHExt.Runtime.Exceptions.BizException("没有传入待新增的数据DTO");
+            }
+            if (this.DataDTO.Type <= 0)
             {
                 throw new NHExt.Runtime.Exceptions.BizException("没有传入数据类型");
             }
-            if (this.PosList == null || this.PosList.Count <= 0)
+            if (this.DataDTO.PosList == null || this.DataDTO.PosList.Count <= 0)
             {
                 throw new NHExt.Runtime.Exceptions.BizException("没有传入点串");
             }
@@ -24,11 +28,12 @@ namespace GIS.DotSpatial.DataBP
             IGeometry geo = null;
             Shapefile sf = null;
             List<Coordinate> cooArray = new List<Coordinate>();
-            foreach (var pos in this.PosList)
+            foreach (var pos in this.DataDTO.PosList)
             {
                 cooArray.Add(new Coordinate(new double[] { pos.X, pos.Y }));
             }
-            switch (this.Type)
+            string id = InsertDataBP.BuildID();
+            switch (this.DataDTO.Type)
             {
                 case 1:
                     path += "P.shp";
@@ -37,7 +42,7 @@ namespace GIS.DotSpatial.DataBP
                     geo = new Point(cooArray[0]);
 
                     IFeature p = fs.AddFeature(geo);
-                    p.DataRow["ID"] = InsertDataBP.BuildID();
+                    p.DataRow["ID"] = id;
                     fs.SaveAs(path, true);
                     break;
                 case 2:
@@ -46,7 +51,7 @@ namespace GIS.DotSpatial.DataBP
                     fs = new FeatureSet(sf.Features);
                     geo = new LineString(cooArray);
                     IFeature l = fs.AddFeature(geo);
-                    l.DataRow["ID"] = InsertDataBP.BuildID();
+                    l.DataRow["ID"] = id;
                     fs.SaveAs(path, true);
                     break;
                 case 3:
@@ -55,18 +60,20 @@ namespace GIS.DotSpatial.DataBP
                     fs = new FeatureSet(sf.Features);
                     geo = new Polygon(cooArray);
                     IFeature r = fs.AddFeature(geo);
-                    r.DataRow["ID"] = InsertDataBP.BuildID();
+                    r.DataRow["ID"] = id;
                     fs.SaveAs(path, true);
                     break;
                 default:
                     throw new NHExt.Runtime.Exceptions.BizException("没有传入数据类型");
             }
-            return true;
+            this.DataDTO.CID = id;
+            return this.DataDTO;
         }
         internal static string BuildID()
         {
             string id = DateTime.Now.ToString("yyMMddHHmmssfff");
             return id;
         }
+
     }
 }

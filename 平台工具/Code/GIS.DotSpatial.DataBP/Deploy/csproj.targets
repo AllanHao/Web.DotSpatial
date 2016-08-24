@@ -8,6 +8,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entity\Position.cs" />
+<Compile Include="Entity\DataDTO.cs" />
 
   </ItemGroup>
   <ItemGroup>

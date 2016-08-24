@@ -34,40 +34,22 @@ public InsertDataBP()
  
 }
 /// <summary>
-/// 类型(1:点;2:线;3:面)
+/// 数据DTO
 /// </summary>
-private int  _Type ;
+private GIS.DotSpatial.DataBP.Deploy.DataDTO  _DataDTO ;
 /// <summary>
-/// 类型(1:点;2:线;3:面)
+/// 数据DTO
 /// </summary>
-public virtual int Type
+public virtual GIS.DotSpatial.DataBP.Deploy.DataDTO DataDTO
 {
 get{
-return _Type;
+return _DataDTO;
 }
 set{
- _Type= value;
+ _DataDTO= value;
 }
 }
-
-/// <summary>
-/// 坐标串
-/// </summary>
-private List<GIS.DotSpatial.DataBP.Deploy.Position> _PosList ;
-/// <summary>
-/// 坐标串
-/// </summary>
-public virtual List<GIS.DotSpatial.DataBP.Deploy.Position> PosList
-{
-get{
-return _PosList;
-}
-set{
- _PosList= value;
-}
-}
-
-internal bool Do()
+internal GIS.DotSpatial.DataBP.Deploy.DataDTO Do()
 {
     NHExt.Runtime.Proxy.ProxyContext ctx = new NHExt.Runtime.Proxy.ProxyContext();
     ctx.ProxyGuid = this._guid;
@@ -118,7 +100,7 @@ public override NHExt.Runtime.Model.WCFCallDTO DoWCF(NHExt.Runtime.Proxy.ProxyCo
 	callDTO.Result = xml;
 	return callDTO;
 }
-private bool DoCommon(NHExt.Runtime.Proxy.ProxyContext ctx)
+private GIS.DotSpatial.DataBP.Deploy.DataDTO DoCommon(NHExt.Runtime.Proxy.ProxyContext ctx)
 {
 	using (NHExt.Runtime.Session.Transaction trans = NHExt.Runtime.Session.Transaction.New(NHExt.Runtime.Enums.TransactionSupport.Support, ctx.UseReadDB))
 	{
@@ -154,7 +136,7 @@ private bool DoCommon(NHExt.Runtime.Proxy.ProxyContext ctx)
 	}
 }
 
-private bool TypeConvert(bool obj)
+private GIS.DotSpatial.DataBP.Deploy.DataDTO TypeConvert(GIS.DotSpatial.DataBP.Deploy.DataDTO obj)
 {
 
 return obj;
@@ -164,25 +146,14 @@ protected override void InitParameter(NHExt.Runtime.Proxy.ProxyContext ctx){
 	base.InitParameter(ctx);
 	if(ctx != null){
 if(this.CallerType == NHExt.Runtime.Session.CallerTypeEnum.WCF){
-	this._Type = NHExt.Runtime.Serialize.XmlSerialize.DeSerialize<int >(ctx.ParamList[0].ToString());
-	ctx.ParamList[0] = this._Type;
+	this._DataDTO = NHExt.Runtime.Serialize.XmlSerialize.DeSerialize<GIS.DotSpatial.DataBP.Deploy.DataDTO >(ctx.ParamList[0].ToString());
+	ctx.ParamList[0] = this._DataDTO;
 }
 else{
 	if(ctx.ParamList.Count > 0){
-	this._Type = (int )ctx.ParamList[0];
+	this._DataDTO = (GIS.DotSpatial.DataBP.Deploy.DataDTO )ctx.ParamList[0];
 	}else{
-		ctx.ParamList.Add(this._Type);
-	}
-}
-if(this.CallerType == NHExt.Runtime.Session.CallerTypeEnum.WCF){
-	this._PosList = NHExt.Runtime.Serialize.XmlSerialize.DeSerialize<List<GIS.DotSpatial.DataBP.Deploy.Position >>(ctx.ParamList[1].ToString());
-	ctx.ParamList[1] = this._PosList;
-}
-else{
-	if(ctx.ParamList.Count > 1){
-		this._PosList = (List<GIS.DotSpatial.DataBP.Deploy.Position >)ctx.ParamList[1];
-	 }else{
-		ctx.ParamList.Add(this._PosList);
+		ctx.ParamList.Add(this._DataDTO);
 	}
 }
 	}
@@ -190,11 +161,8 @@ else{
 	public override void SetValue(object obj, string memberName)
 	{
 		switch(memberName){
-case "Type" :
-	this._Type = this.TransferValue<int>(obj);
-	break;
-case "PosList" :
-	this._PosList = this.TransferValue<List<GIS.DotSpatial.DataBP.Deploy.Position> >(obj);
+case "DataDTO" :
+	this._DataDTO = this.TransferValue<GIS.DotSpatial.DataBP.Deploy.DataDTO>(obj);
 	break;
 		default:
 			base.SetValue(obj,memberName);

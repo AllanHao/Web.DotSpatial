@@ -2,6 +2,7 @@
     draw: null,//画线
     wfsLineLayer: null,//线图层
     mapUrl: "http://localhost:8080",
+    drawedCallback: null,
     init: function () {
         var namespace = "ws_test";
         var lineLayerName = "L";
@@ -43,11 +44,14 @@
                         for (var i = 0; i < array.length; i = i + 2) {
                             args.PosList.push({ X: array[i], Y: array[i + 1] });
                         }
-                        doActionAsync("GIS.DotSpatial.DataBP.Agent.InsertDataBPProxy", args, function (res) {
-                            if (res) {
-
+                        doActionAsync("GIS.DotSpatial.DataBP.Agent.InsertDataBPProxy", { DataDTO: args }, delegate(this, function (data) {
+                            if (data) {
+                                evt.feature.values_.ID = data.CID;
+                                if (this.drawedCallback) {
+                                    this.drawedCallback();
+                                }
                             }
-                        }, null, null, true);
+                        }), null, null, true);
 
                     }), this);
                 }));

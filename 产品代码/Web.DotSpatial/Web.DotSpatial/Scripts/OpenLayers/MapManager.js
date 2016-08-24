@@ -20,6 +20,43 @@ var MapManager = {
         this.popupObj = {};//气泡对象封装
         this.loadSuccessCallback = null;
 
+        this.clickHandler = function (event) {
+            var feature = this.map.forEachFeatureAtPixel(event.pixel, delegate(this, function (feature) {
+                if (feature) {
+                    if (this.IsDel) {
+                        var id = feature.values_.ID;
+                        var args = {};
+                        args.ID = id;
+                        args.Type = this.DelType;
+                        $.messager.confirm("提示", "确认删除该地物？", delegate(this, function (r) {
+                            if (r) {
+                                doActionAsync("GIS.DotSpatial.DataBP.Agent.DeleteDataBPProxy", args, delegate(this, function (res) {
+                                    if (res) {
+                                        if (this.DelType == 1) {
+                                            this.DrawPoint.wfsPointLayer.getSource().removeFeature(feature);
+                                        }
+                                        else if (this.DelType == 2) {
+                                            this.DrawLine.wfsLineLayer.getSource().removeFeature(feature);
+                                        }
+                                        else if (this.DelType == 3) {
+                                            this.DrawRegion.wfsRegionLayer.getSource().removeFeature(feature);
+                                        }
+                                    }
+                                    this.IsDel = false;
+                                }), null, null, true);
+                            }
+                        }));
+                    } else {
+                        console.log(feature);
+                        var coordinate = event.coordinate;
+                        this.Popup.content.innerHTML = '<p>ID:' + feature.values_.ID + '</p> ';
+                        this.Popup.overlay.setPosition(coordinate);
+                    }
+                }
+                return feature;
+            }));
+        };
+
         function init() {
             this.baseLayer = new ol.layer.Tile({ source: new ol.source.OSM() });
             //this.baseLayer.on('loadend', delegate(this, function () {
@@ -52,43 +89,7 @@ var MapManager = {
 
 
             // 监听地图点击事件
-            this.map.on('click', delegate(this, function (event) {
-                var feature = this.map.forEachFeatureAtPixel(event.pixel, delegate(this, function (feature) {
-                    if (feature) {
-                        if (this.IsDel) {
-                            var id = feature.values_.ID;
-                            var args = {};
-                            args.ID = id;
-                            args.Type = this.DelType;
-                            $.messager.confirm("提示", "确认删除该地物？", delegate(this, function (r) {
-                                if (r) {
-                                    doActionAsync("GIS.DotSpatial.DataBP.Agent.DeleteDataBPProxy", args, delegate(this, function (res) {
-                                        if (res) {
-                                            if (this.DelType == 1) {
-                                                this.DrawPoint.wfsPointLayer.getSource().removeFeature(feature);
-                                            }
-                                            else if (this.DelType == 2) {
-                                                this.DrawLine.wfsLineLayer.getSource().removeFeature(feature);
-                                            }
-                                            else if (this.DelType == 3) {
-                                                this.DrawRegion.wfsRegionLayer.getSource().removeFeature(feature);
-                                            }
-                                        }
-                                        this.IsDel = false;
-                                    }), null, null, true);
-                                }
-                            }));
-                        } else {
-                            console.log(feature);
-                            var coordinate = event.coordinate;
-                            this.Popup.content.innerHTML = '<p>ID:' + feature.values_.ID + '</p> ';
-                            this.Popup.overlay.setPosition(coordinate);
-                        }
-                    }
-                    return feature;
-                }));
-
-            }));
+            this.map.on('click', this.clickHandler, this);
 
             this.map.on('pointermove', delegate(this, function (evt) {
                 if (evt.dragging) {

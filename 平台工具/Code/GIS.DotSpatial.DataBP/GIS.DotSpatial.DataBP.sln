@@ -1,10 +1,10 @@
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{c56dab57-2834-4e65-a487-15899be8b619}") = "GIS.DotSpatial.DataBP.Deploy", "Deploy\GIS.DotSpatial.DataBP.Deploy.csproj ", "{4EAC600C-1D82-433C-AC4C-2E6CA1AF4C20}"
+Project("{5f298abc-adf0-45e4-beaa-ff2bb4aa2ba1}") = "GIS.DotSpatial.DataBP.Deploy", "Deploy\GIS.DotSpatial.DataBP.Deploy.csproj ", "{4EAC600C-1D82-433C-AC4C-2E6CA1AF4C20}"
 EndProject
-Project("{9fb545c1-c02f-4185-9579-081085eab4cc}") = "GIS.DotSpatial.DataBP.Agent", "Agent\GIS.DotSpatial.DataBP.Agent.csproj ", "{BA8C7A13-2AB8-4E44-B158-04C21B2A7B01}"
+Project("{a681b374-aeb4-41af-9c8a-c4199ff6647c}") = "GIS.DotSpatial.DataBP.Agent", "Agent\GIS.DotSpatial.DataBP.Agent.csproj ", "{BA8C7A13-2AB8-4E44-B158-04C21B2A7B01}"
 EndProject
-Project("{a4f03e75-af37-43e3-af27-d5dc7c6f0f51}") = "GIS.DotSpatial.DataBP", "BP\GIS.DotSpatial.DataBP.csproj ", "{58D2EC34-C5F1-4753-B2F1-2C744EF3C5CC}"
+Project("{ed9cbf7d-0c79-48f6-a854-fd5dc4ed956c}") = "GIS.DotSpatial.DataBP", "BP\GIS.DotSpatial.DataBP.csproj ", "{58D2EC34-C5F1-4753-B2F1-2C744EF3C5CC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

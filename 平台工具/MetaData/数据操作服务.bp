@@ -1,9 +1,8 @@
 <BPProj namespace="GIS.DotSpatial.DataBP" Guid="fb0e8177-fe6a-41e0-9621-ab3611ea3976" Name="数据操作服务">
   <BPList>
-    <BP Guid="c7b93019-c02f-4e63-93d6-711a2e617a66" Code="InsertDataBP" Name="新增数据" List="0" Auth="1" Trans="0" ReturnName="bool">
+    <BP Guid="c7b93019-c02f-4e63-93d6-711a2e617a66" Code="InsertDataBP" Name="新增数据" List="0" Auth="1" Trans="0" ReturnGuid="400cfc1f-9de0-45a8-bd1f-0deaee99d3bc" IsEntity="0">
       <Attributes>
-        <Attribute Guid="954ab4c6-0f32-48e4-b64f-79df36b4204e" Code="Type" Name="类型(1:点;2:线;3:面)" DataType="CommonType" DefaultValue="" Type="int" IsNull="0" />
-        <Attribute Guid="a22cef23-9e6e-4d91-b924-60e76bf79139" Code="PosList" Name="坐标串" DataType="CompositionType" DefaultValue="" RefGuid="76ffbb64-cdbd-4c98-9e8b-e90b0556804d" IsNull="0" />
+        <Attribute Guid="d03f2552-3056-41d6-8593-a42e7b447718" Code="DataDTO" Name="数据DTO" DataType="RefreceType" DefaultValue="" RefGuid="400cfc1f-9de0-45a8-bd1f-0deaee99d3bc" IsNull="0" />
       </Attributes>
     </BP>
     <BP Guid="ccf250fc-26a3-4d15-994a-ea1a813de521" Code="DeleteDataBP" Name="删除数据" List="0" Auth="1" Trans="0" ReturnName="bool">
@@ -22,6 +21,14 @@
       <Attributes>
         <Attribute Guid="b20468b2-cd56-47f9-898a-5a527d64c611" Type="double" Code="X" Name="X坐标" DataType="CommonType" DefaultValue="" IsNull="0" IsViewer="0" />
         <Attribute Guid="5c09ad37-a8f1-42d9-84f9-7c6c56a60784" Type="double" Code="Y" Name="Y坐标" DataType="CommonType" DefaultValue="" IsNull="0" IsViewer="0" />
+      </Attributes>
+    </DTO>
+    <DTO Guid="400cfc1f-9de0-45a8-bd1f-0deaee99d3bc" Code="DataDTO" Name="数据DTO" FloderGuid="04a516ad-e0f9-46c2-9a56-1187201ed0b1">
+      <Attributes>
+        <Attribute Guid="f768686f-b3aa-4947-8b68-da3d1e3144e0" Type="string" Code="CID" Name="ID" DataType="CommonType" DefaultValue="" IsNull="0" IsViewer="0" />
+        <Attribute Guid="b118315a-17ce-45d3-937b-4d8606d9097e" Type="string" Code="Name" Name="名称" DataType="CommonType" DefaultValue="" IsNull="0" IsViewer="0" />
+        <Attribute Guid="8f5216a2-738d-49a2-9065-f0d776f52547" Type="int" Code="Type" Name="数据类型(1:点;2:线;3:面)" DataType="CommonType" DefaultValue="" IsNull="0" IsViewer="0" />
+        <Attribute Guid="a462de80-f0fe-4b77-8163-3de7d9565682" RefGuid="76ffbb64-cdbd-4c98-9e8b-e90b0556804d" Code="PosList" Name="坐标串" DataType="CompositionType" DefaultValue="" IsNull="0" IsViewer="0" />
       </Attributes>
     </DTO>
   </DTOList>

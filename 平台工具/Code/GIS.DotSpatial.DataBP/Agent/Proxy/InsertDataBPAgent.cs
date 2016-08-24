@@ -21,39 +21,21 @@ namespace GIS.DotSpatial.DataBP.Agent
 		}
 
 /// <summary>
-/// 类型(1:点;2:线;3:面)
+/// 数据DTO
 /// </summary>
-private int  _Type ;
+private GIS.DotSpatial.DataBP.Deploy.DataDTO  _DataDTO ;
 /// <summary>
-/// 类型(1:点;2:线;3:面)
+/// 数据DTO
 /// </summary>
-public virtual int Type
+public virtual GIS.DotSpatial.DataBP.Deploy.DataDTO DataDTO
 {
 get{
-return _Type;
+return _DataDTO;
 }
 set{
- _Type= value;
+ _DataDTO= value;
 }
 }
-
-/// <summary>
-/// 坐标串
-/// </summary>
-private List<GIS.DotSpatial.DataBP.Deploy.Position> _PosList ;
-/// <summary>
-/// 坐标串
-/// </summary>
-public virtual List<GIS.DotSpatial.DataBP.Deploy.Position> PosList
-{
-get{
-return _PosList;
-}
-set{
- _PosList= value;
-}
-}
-
 public InsertDataBPProxy()
 {
 	this.invoker.RemoteIP = this.RemoteIP;
@@ -68,17 +50,16 @@ public InsertDataBPProxy()
 public override object DoProxy()
 {
 	this.invoker.SourcePage = this.SourcePage;
-	this.invoker.ParamList.Add(this._Type);
-	this.invoker.ParamList.Add(this._PosList);
+	this.invoker.ParamList.Add(this._DataDTO);
 	List<NHExt.Runtime.AOP.IAgentAspect> aspectList = NHExt.Runtime.AOP.AspectManager.BuildAgentAspect(this.ProxyName);
 	foreach (NHExt.Runtime.AOP.IAgentAspect aspect in aspectList) {
 		aspect.BeforeDo(this,invoker.ParamList);
 	}
 	object obj = this.invoker.Do();
 	if(this.IsTask){
-		return default(bool);
+		return default(GIS.DotSpatial.DataBP.Deploy.DataDTO);
 	}
-	bool result;
+	GIS.DotSpatial.DataBP.Deploy.DataDTO result;
 	if (this.invoker.CallerType == NHExt.Runtime.Session.CallerTypeEnum.WCF)
 	{
 		string xml = string.Empty;
@@ -87,15 +68,15 @@ public override object DoProxy()
 		}
 		NHExt.Runtime.Logger.LoggerHelper.Info("远程wcf返回数据为:" + xml, NHExt.Runtime.Logger.LoggerInstance.RuntimeLogger);
 		try{
-			result = NHExt.Runtime.Serialize.XmlSerialize.DeSerialize<bool>(xml);
+			result = NHExt.Runtime.Serialize.XmlSerialize.DeSerialize<GIS.DotSpatial.DataBP.Deploy.DataDTO>(xml);
 		}
 		catch(Exception ex){
-			 throw new NHExt.Runtime.Exceptions.RuntimeException("反序列化WCF返回数据错误，实体类型“"+typeof(bool).FullName+"”,返回数据为"+xml);
+			 throw new NHExt.Runtime.Exceptions.RuntimeException("反序列化WCF返回数据错误，实体类型“"+typeof(GIS.DotSpatial.DataBP.Deploy.DataDTO).FullName+"”,返回数据为"+xml);
 		}
 	}
 	else
 	{
-		result= (bool)obj;
+		result= (GIS.DotSpatial.DataBP.Deploy.DataDTO)obj;
 	}
 	foreach (NHExt.Runtime.AOP.IAgentAspect aspect in aspectList)
 	{
@@ -105,20 +86,17 @@ public override object DoProxy()
 
 
 	}
-	public bool Do()
+	public GIS.DotSpatial.DataBP.Deploy.DataDTO Do()
 	{
-		 bool obj = ( bool)this.DoProxy();
+		 GIS.DotSpatial.DataBP.Deploy.DataDTO obj = ( GIS.DotSpatial.DataBP.Deploy.DataDTO)this.DoProxy();
 		 return obj;
 	}
 
 	public override void SetValue(object obj, string memberName)
 	{
 		switch(memberName){
-case "Type" :
-	this._Type = this.TransferValue<int>(obj);
-	break;
-case "PosList" :
-	this._PosList = this.TransferValue<List<GIS.DotSpatial.DataBP.Deploy.Position> >(obj);
+case "DataDTO" :
+	this._DataDTO = this.TransferValue<GIS.DotSpatial.DataBP.Deploy.DataDTO>(obj);
 	break;
 		default:
 			base.SetValue(obj,memberName);
