@@ -2,6 +2,7 @@
     draw: null,//画点
     wfsPointLayer: null,//点图层
     mapUrl: "http://localhost:8080",
+    features: [],
     init: function () {
         var namespace = "ws_test";
         var pointLayerName = "P";
@@ -23,8 +24,8 @@
                         featureType: pointLayerName
                     });
                     var features = format.readFeatures(response,
-                            { featureProjection: projection }
-                    );
+                               { featureProjection: projection }
+                       );
                     //test
                     if (features && features.length > 0) {
                         features[0].setStyle(new ol.style.Style({
@@ -52,11 +53,11 @@
                         for (var i = 0; i < array.length; i = i + 2) {
                             args.PosList.push({ X: array[i], Y: array[i + 1] });
                         }
-                        doActionAsync("GIS.DotSpatial.DataBP.Agent.InsertDataBPProxy", args, function (res) {
+                        doActionAsync("GIS.DotSpatial.DataBP.Agent.InsertDataBPProxy", args, delegate(this, function (res) {
                             if (res) {
-
+                                //  this.wfsPointLayer.getSource().addFeature(evt.feature);
                             }
-                        }, null, null, true);
+                        }), null, null, true);
 
                     }), this);
                 }));

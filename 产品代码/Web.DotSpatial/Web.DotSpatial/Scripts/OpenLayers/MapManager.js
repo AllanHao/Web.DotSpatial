@@ -60,15 +60,24 @@ var MapManager = {
                             var args = {};
                             args.ID = id;
                             args.Type = this.DelType;
-                            $.messager.confirm("提示", "确认删除该地物？", function (r) {
+                            $.messager.confirm("提示", "确认删除该地物？", delegate(this, function (r) {
                                 if (r) {
-                                    doActionAsync("GIS.DotSpatial.DataBP.Agent.DeleteDataBPProxy", args, function (res) {
+                                    doActionAsync("GIS.DotSpatial.DataBP.Agent.DeleteDataBPProxy", args, delegate(this, function (res) {
                                         if (res) {
-                                            this.IsDel = false;
+                                            if (this.DelType == 1) {
+                                                this.DrawPoint.wfsPointLayer.getSource().removeFeature(feature);
+                                            }
+                                            else if (this.DelType == 2) {
+                                                this.DrawLine.wfsLineLayer.getSource().removeFeature(feature);
+                                            }
+                                            else if (this.DelType == 3) {
+                                                this.DrawRegion.wfsRegionLayer.getSource().removeFeature(feature);
+                                            }
                                         }
-                                    }, null, null, true);
+                                        this.IsDel = false;
+                                    }), null, null, true);
                                 }
-                            });
+                            }));
                         } else {
                             console.log(feature);
                             var coordinate = event.coordinate;

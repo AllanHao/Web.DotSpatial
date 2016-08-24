@@ -99,42 +99,42 @@
             }
             $("#btnPoint").click(function () {
                 if ($("#btnPoint").hasClass("btnSelectedClass")) {
-                    if (mapWin && drawPoint) {
-                        mapWin.map.removeInteraction(drawPoint.draw);
+                    if (mapWin && mapWin.DrawPoint.draw) {
+                        mapWin.map.removeInteraction(mapWin.DrawPoint.draw);
                         $("#btnPoint").removeClass("btnSelectedClass");
                     }
 
                 } else {
-                    if (mapWin && drawPoint) {
-                        mapWin.map.addInteraction(drawPoint.draw);
+                    if (mapWin && mapWin.DrawPoint.draw) {
+                        mapWin.map.addInteraction(mapWin.DrawPoint.draw);
                         $("#btnPoint").addClass("btnSelectedClass");
                     }
                 }
             });
             $("#btnLine").click(function () {
                 if ($("#btnLine").hasClass("btnSelectedClass")) {
-                    if (mapWin && drawLine) {
-                        mapWin.map.removeInteraction(drawLine.draw);
+                    if (mapWin && mapWin.DrawLine.draw) {
+                        mapWin.map.removeInteraction(mapWin.DrawLine.draw);
                         $("#btnLine").removeClass("btnSelectedClass");
                     }
 
                 } else {
-                    if (mapWin && drawLine) {
-                        mapWin.map.addInteraction(drawLine.draw);
+                    if (mapWin && mapWin.DrawLine.draw) {
+                        mapWin.map.addInteraction(mapWin.DrawLine.draw);
                         $("#btnLine").addClass("btnSelectedClass");
                     }
                 }
             });
             $("#btnRegion").click(function () {
                 if ($("#btnRegion").hasClass("btnSelectedClass")) {
-                    if (mapWin && drawRegion) {
-                        mapWin.map.removeInteraction(drawRegion.draw);
+                    if (mapWin && mapWin.DrawRegion.draw) {
+                        mapWin.map.removeInteraction(mapWin.DrawRegion.draw);
                         $("#btnRegion").removeClass("btnSelectedClass");
                     }
 
                 } else {
-                    if (mapWin && drawRegion) {
-                        mapWin.map.addInteraction(drawRegion.draw);
+                    if (mapWin && mapWin.DrawRegion.draw) {
+                        mapWin.map.addInteraction(mapWin.DrawRegion.draw);
                         $("#btnRegion").addClass("btnSelectedClass");
                     }
                 }
@@ -211,8 +211,12 @@
         <div data-options="region:'south',border:false">
             <div id="footer" class="cs-south" style="height: 25px;">
                 <div class="footer-number" style="width: 30%; text-align: left; float: left; line-height: 25px;">
-                    <span style="padding-left: 5px;"></span>Powered By：<a href="https://github.com/AllanHao/Web.DotSpatial" target="_blank"
-                        style="color: white;">Allan.Hao</a>
+                    <span style="padding-left: 5px;"></span><a href="https://github.com/openlayers/ol3" target="_blank"
+                        style="color: white;">OpenLayers</a>
+                    <span style="padding-left: 5px;"></span><a href="https://github.com/geoserver/geoserver" target="_blank"
+                        style="color: white;">GeoServer</a>
+                    <span style="padding-left: 5px;"></span><a href="https://github.com/DotSpatial/DotSpatial" target="_blank"
+                        style="color: white;">DotSpatial</a>
                 </div>
                 <div class="footer-number" style="width: 40%; text-align: center; float: left; line-height: 25px; color: #fff;">
                     CopyRight © 2014 - 2016 By Allan.Hao
