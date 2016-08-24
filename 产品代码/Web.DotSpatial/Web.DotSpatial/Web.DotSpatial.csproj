@@ -356,6 +356,7 @@
     <Content Include="Scripts\jscolor\hv.png" />
     <Content Include="Scripts\jscolor\jscolor.js" />
     <Content Include="Scripts\jshashtable-2.1.js" />
+    <Content Include="Scripts\OpenLayers\MapDrawPointExtend.js" />
     <Content Include="Scripts\OpenLayers\MapManager_backup.js" />
     <Content Include="Scripts\OpenLayers\MapManager.js" />
     <Content Include="Scripts\OpenLayers\MapPopUpExtend.js" />

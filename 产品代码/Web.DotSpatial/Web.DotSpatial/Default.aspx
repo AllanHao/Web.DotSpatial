@@ -74,10 +74,14 @@
         $(document).ready(function () {
             var mapWin = new MapManager.MapControl("map1");
             mapWin.popupObj = new mapWin.PopUp('popup', 'popup-content', 'popup-closer');
+            var drawPoint = new mapWin.DrawPoint();
             mapWin.loadSuccessCallback = function () {
-                //if (mapWin.map) {
-                //    mapWin.map.addOverLay(mapWin.popupObj.overlay);
-                //}
+                if (mapWin.map) {
+                    // mapWin.map.addOverLay(mapWin.popupObj.overlay);
+                    if (drawPoint && drawPoint.wfsPointLayer) {
+                        mapWin.map.addLayer(drawPoint.wfsPointLayer);
+                    }
+                }
             };
             if (mapWin) {
                 mapWin.LoadMap();

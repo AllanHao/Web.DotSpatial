@@ -21,6 +21,7 @@
         //inputScript('OpenLayers.debug.js');
         inputScript('MapManager.js');
         inputScript('MapPopUpExtend.js');
+        inputScript('MapDrawPointExtend.js');
         //inputScript('jquery-1.7.1.min.js');
         //inputScript('public.js');
         //inputScript('OpenLayers.Control.Legend.js');

@@ -38,7 +38,11 @@ var MapManager = {
 
         function init() {
             this.baseLayer = new ol.layer.Tile({ source: new ol.source.OSM() });
-
+            //this.baseLayer.on('loadend', delegate(this, function () {
+            //    if (this.loadSuccessCallback) {
+            //        this.loadSuccessCallback;
+            //    }
+            //}));
             //wfsLineLayer
             var namespace = "ws_test";
             var lineLayerName = "L";
@@ -176,84 +180,12 @@ var MapManager = {
                 })
             });
 
-            //wfsLayer
 
-            var pointLayerName = "P";
-            var mapUrl = this.mapUrl;
-            var wfsPointSource = new ol.source.Vector({
-                loader: delegate(this, function (arry, resolution, projection, a, b) {
-                    var dataUrl = this.mapUrl + '/geoserver/' + namespace + '/ows?'
-                            + 'service=WFS&request=GetFeature&'
-                            + 'version=1.1.0&typename='
-                            + namespace
-                            + ':'
-                            + pointLayerName + '&outputFormat=application/json';
-
-                    $.ajax({
-                        url: '/Handler/OpenlayerProxy.ashx?URL=' + encodeURIComponent(dataUrl)
-                    }).done(delegate(this, function (response) {
-                        var format = new ol.format.GeoJSON({
-                            featureNS: 'www.gaia.asia',
-                            featureType: pointLayerName
-                        });
-                        var features = format.readFeatures(response,
-                                { featureProjection: projection }
-                        );
-                        //test
-                        if (features && features.length > 0) {
-                            features[0].setStyle(new ol.style.Style({
-                                image: new ol.style.Icon({
-                                    src: '/Images/face_monkey.png'
-                                })
-                            }));
-                        }
-
-                        wfsPointSource.addFeatures(features);
-                        this.features = features;
-                        //添加绘制
-                        this.pointDraw = new ol.interaction.Draw({
-                            source: wfsPointSource,
-                            features: this.features,
-                            type: 'Point'
-                        });
-                        this.pointDraw.on('drawend', delegate(this, function (evt) {
-                            console.log(evt.feature);
-                            var geo = evt.feature.getGeometry();
-                            var array = geo.flatCoordinates;
-                            var args = {};
-                            args.Type = 1;
-                            args.PosList = new Array();
-                            for (var i = 0; i < array.length; i = i + 2) {
-                                args.PosList.push({ X: array[i], Y: array[i + 1] });
-                            }
-                            doActionAsync("GIS.DotSpatial.DataBP.Agent.InsertDataBPProxy", args, function (res) {
-                                if (res) {
-
-                                }
-                            }, null, null, true);
-
-                        }), this);
-                    }));
-                }),
-                strategy: ol.loadingstrategy.tile(ol.tilegrid.createXYZ({
-                    maxZoom: 17
-                }))
-
-            });
-
-            this.wfsPointLayer = new ol.layer.Vector({
-                source: wfsPointSource,
-                style: new ol.style.Style({
-                    image: new ol.style.Icon({
-                        src: '/Images/marker.png'
-                    })
-                })
-            });
 
 
             this.options = {
                 logo: { src: '/Images/face_monkey.png', href: 'http://www.openstreetmap.org/' },
-                layers: [this.baseLayer, this.wfsLineLayer, this.wfsPointLayer, this.wfsRegionLayer],
+                layers: [this.baseLayer, this.wfsLineLayer, this.wfsRegionLayer],
                 overlays: [this.popupObj.overlay],
                 view: new ol.View({
                     // 设置北京为地图中心，此处进行坐标转换， 把EPSG:4326的坐标，转换为EPSG:3857坐标，因为ol默认使用的是EPSG:3857坐标
@@ -323,9 +255,12 @@ var MapManager = {
                 }
                 //this.map.getTargetElement().style.cursor = hit ? 'pointer' : '';
             }));
-            if (this.loadSuccessCallback) {
-                this.loadSuccessCallback;
-            }
+            this.map.once('postrender', delegate(this, function () {
+                if (this.loadSuccessCallback) {
+                    this.loadSuccessCallback.call(this);
+                }
+                //alert(this.map);
+            }));
         }
         //释放图层
         function destory() {
@@ -334,8 +269,8 @@ var MapManager = {
             }
         };
         this.LoadMap = function () {
+            init.call(this);
 
-            init.call(this)
         };
         function checkSize() {
             //var small = this.map.getSize()[0] < 600;
