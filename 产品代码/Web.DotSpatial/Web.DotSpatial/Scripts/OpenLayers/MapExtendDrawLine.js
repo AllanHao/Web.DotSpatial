@@ -1,54 +1,43 @@
-﻿MapManager.MapControl.prototype.DrawPoint = function () {
-    this.pointDraw = null;//画点
-    this.wfsPointLayer = null;//点图层
+﻿MapManager.MapControl.prototype.DrawLine = function () {
+    this.draw = null;//画线
+    this.wfsLineLayer = null;//线图层
     this.mapUrl = "http://localhost:8080";
-    //   this.addPointLayer = function () {
-    //wfsLayer
     var namespace = "ws_test";
-    var pointLayerName = "P";
+    var lineLayerName = "L";
     var mapUrl = this.mapUrl;
-    var wfsPointSource = new ol.source.Vector({
+    var wfsLineSource = new ol.source.Vector({
         loader: delegate(this, function (arry, resolution, projection, a, b) {
             var dataUrl = this.mapUrl + '/geoserver/' + namespace + '/ows?'
                     + 'service=WFS&request=GetFeature&'
                     + 'version=1.1.0&typename='
                     + namespace
                     + ':'
-                    + pointLayerName + '&outputFormat=application/json';
+                    + lineLayerName + '&outputFormat=application/json';
 
             $.ajax({
                 url: '/Handler/OpenlayerProxy.ashx?URL=' + encodeURIComponent(dataUrl)
             }).done(delegate(this, function (response) {
                 var format = new ol.format.GeoJSON({
                     featureNS: 'www.gaia.asia',
-                    featureType: pointLayerName
+                    featureType: lineLayerName
                 });
                 var features = format.readFeatures(response,
                         { featureProjection: projection }
                 );
-                //test
-                if (features && features.length > 0) {
-                    features[0].setStyle(new ol.style.Style({
-                        image: new ol.style.Icon({
-                            src: '/Images/face_monkey.png'
-                        })
-                    }));
-                }
-
-                wfsPointSource.addFeatures(features);
+                wfsLineSource.addFeatures(features);
                 this.features = features;
                 //添加绘制
-                this.pointDraw = new ol.interaction.Draw({
-                    source: wfsPointSource,
+                this.draw = new ol.interaction.Draw({
+                    source: wfsLineSource,
                     features: this.features,
-                    type: 'Point'
+                    type: 'LineString'
                 });
-                this.pointDraw.on('drawend', delegate(this, function (evt) {
+                this.draw.on('drawend', delegate(this, function (evt) {
                     console.log(evt.feature);
                     var geo = evt.feature.getGeometry();
                     var array = geo.flatCoordinates;
                     var args = {};
-                    args.Type = 1;
+                    args.Type = 2;
                     args.PosList = new Array();
                     for (var i = 0; i < array.length; i = i + 2) {
                         args.PosList.push({ X: array[i], Y: array[i + 1] });
@@ -68,14 +57,16 @@
 
     });
 
-
-    this.wfsPointLayer = new ol.layer.Vector({
-        source: wfsPointSource,
+    this.wfsLineLayer = new ol.layer.Vector({
+        source: wfsLineSource,
         style: new ol.style.Style({
-            image: new ol.style.Icon({
-                src: '/Images/marker.png'
+            stroke: new ol.style.Stroke({
+                color: 'rgba(0, 0, 255, 1.0)',
+                width: 2
+            }),
+            fill: new ol.style.Fill({
+                color: [0, 153, 255, 1]
             })
         })
     });
-    // }
 }

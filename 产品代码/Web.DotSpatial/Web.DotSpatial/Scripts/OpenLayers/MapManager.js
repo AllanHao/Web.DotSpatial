@@ -26,10 +26,6 @@ var MapManager = {
         this.geojsonLayer = null;
         this.chinaLayer = null;
 
-
-        this.pointDraw = null;//画点
-        this.lineDraw = null;//画线
-        this.regionDraw = null;//画面
         this.IsDel = false;//是否执行删除操作
         this.DelType = "";//待删除数据类型
 
@@ -43,150 +39,11 @@ var MapManager = {
             //        this.loadSuccessCallback;
             //    }
             //}));
-            //wfsLineLayer
-            var namespace = "ws_test";
-            var lineLayerName = "L";
-            var mapUrl = this.mapUrl;
-            var wfsLineSource = new ol.source.Vector({
-                loader: delegate(this, function (arry, resolution, projection, a, b) {
-                    var dataUrl = this.mapUrl + '/geoserver/' + namespace + '/ows?'
-                            + 'service=WFS&request=GetFeature&'
-                            + 'version=1.1.0&typename='
-                            + namespace
-                            + ':'
-                            + lineLayerName + '&outputFormat=application/json';
-
-                    $.ajax({
-                        url: '/Handler/OpenlayerProxy.ashx?URL=' + encodeURIComponent(dataUrl)
-                    }).done(delegate(this, function (response) {
-                        var format = new ol.format.GeoJSON({
-                            featureNS: 'www.gaia.asia',
-                            featureType: lineLayerName
-                        });
-                        var features = format.readFeatures(response,
-                                { featureProjection: projection }
-                        );
-                        wfsLineSource.addFeatures(features);
-                        this.features = features;
-                        //添加绘制
-                        this.lineDraw = new ol.interaction.Draw({
-                            source: wfsLineSource,
-                            features: this.features,
-                            type: 'LineString'
-                        });
-                        this.lineDraw.on('drawend', delegate(this, function (evt) {
-                            console.log(evt.feature);
-                            var geo = evt.feature.getGeometry();
-                            var array = geo.flatCoordinates;
-                            var args = {};
-                            args.Type = 2;
-                            args.PosList = new Array();
-                            for (var i = 0; i < array.length; i = i + 2) {
-                                args.PosList.push({ X: array[i], Y: array[i + 1] });
-                            }
-                            doActionAsync("GIS.DotSpatial.DataBP.Agent.InsertDataBPProxy", args, function (res) {
-                                if (res) {
-
-                                }
-                            }, null, null, true);
-
-                        }), this);
-                    }));
-                }),
-                strategy: ol.loadingstrategy.tile(ol.tilegrid.createXYZ({
-                    maxZoom: 17
-                }))
-
-            });
-
-            this.wfsLineLayer = new ol.layer.Vector({
-                source: wfsLineSource,
-                style: new ol.style.Style({
-                    stroke: new ol.style.Stroke({
-                        color: 'rgba(0, 0, 255, 1.0)',
-                        width: 2
-                    }),
-                    fill: new ol.style.Fill({
-                        color: [0, 153, 255, 1]
-                    })
-                })
-            });
-
-            //wfsRegionLayer
-
-            var regionLayerName = "R";
-            var mapUrl = this.mapUrl;
-            var wfsRegionSource = new ol.source.Vector({
-                loader: delegate(this, function (arry, resolution, projection, a, b) {
-                    var dataUrl = this.mapUrl + '/geoserver/' + namespace + '/ows?'
-                            + 'service=WFS&request=GetFeature&'
-                            + 'version=1.1.0&typename='
-                            + namespace
-                            + ':'
-                            + regionLayerName + '&outputFormat=application/json';
-
-                    $.ajax({
-                        url: '/Handler/OpenlayerProxy.ashx?URL=' + encodeURIComponent(dataUrl)
-                    }).done(delegate(this, function (response) {
-                        var format = new ol.format.GeoJSON({
-                            featureNS: 'www.gaia.asia',
-                            featureType: regionLayerName
-                        });
-                        var features = format.readFeatures(response,
-                                { featureProjection: projection }
-                        );
-                        wfsRegionSource.addFeatures(features);
-                        this.features = features;
-                        //添加绘制
-                        this.regionDraw = new ol.interaction.Draw({
-                            source: wfsRegionSource,
-                            features: this.features,
-                            type: 'Polygon'
-                        });
-                        this.regionDraw.on('drawend', delegate(this, function (evt) {
-                            console.log(evt.feature);
-                            var geo = evt.feature.getGeometry();
-                            var array = geo.flatCoordinates;
-                            var args = {};
-                            args.Type = 3;
-                            args.PosList = new Array();
-                            for (var i = 0; i < array.length; i = i + 2) {
-                                args.PosList.push({ X: array[i], Y: array[i + 1] });
-                            }
-                            doActionAsync("GIS.DotSpatial.DataBP.Agent.InsertDataBPProxy", args, function (res) {
-                                if (res) {
-
-                                }
-                            }, null, null, true);
-                        }), this);
-                    }));
-                }),
-                strategy: ol.loadingstrategy.tile(ol.tilegrid.createXYZ({
-                    maxZoom: 17
-                }))
-
-            });
-
-            this.wfsRegionLayer = new ol.layer.Vector({
-                source: wfsRegionSource,
-                style: new ol.style.Style({
-                    stroke: new ol.style.Stroke({
-                        color: 'rgba(0, 0, 255, 1.0)',
-                        width: 2
-                    }),
-                    fill: new ol.style.Fill({
-                        color: [0, 153, 255, 1]
-                    })
-                })
-            });
-
-
-
 
             this.options = {
                 logo: { src: '/Images/face_monkey.png', href: 'http://www.openstreetmap.org/' },
-                layers: [this.baseLayer, this.wfsLineLayer, this.wfsRegionLayer],
-                overlays: [this.popupObj.overlay],
+                layers: [this.baseLayer],
+                //overlays: [this.popupObj.overlay],
                 view: new ol.View({
                     // 设置北京为地图中心，此处进行坐标转换， 把EPSG:4326的坐标，转换为EPSG:3857坐标，因为ol默认使用的是EPSG:3857坐标
                     //center: ol.proj.transform([104.06, 30.67], 'EPSG:4326', 'EPSG:3857'),
@@ -270,7 +127,6 @@ var MapManager = {
         };
         this.LoadMap = function () {
             init.call(this);
-
         };
         function checkSize() {
             //var small = this.map.getSize()[0] < 600;

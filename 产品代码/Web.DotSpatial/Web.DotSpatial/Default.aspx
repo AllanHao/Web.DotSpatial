@@ -75,11 +75,22 @@
             var mapWin = new MapManager.MapControl("map1");
             mapWin.popupObj = new mapWin.PopUp('popup', 'popup-content', 'popup-closer');
             var drawPoint = new mapWin.DrawPoint();
+            var drawLine = new mapWin.DrawLine();
+            var drawRegion = new mapWin.DrawRegion();
             mapWin.loadSuccessCallback = function () {
                 if (mapWin.map) {
-                    // mapWin.map.addOverLay(mapWin.popupObj.overlay);
                     if (drawPoint && drawPoint.wfsPointLayer) {
                         mapWin.map.addLayer(drawPoint.wfsPointLayer);
+                    }
+                    if (drawLine && drawLine.wfsLineLayer) {
+                        mapWin.map.addLayer(drawLine.wfsLineLayer);
+                    }
+                    if (drawRegion && drawRegion.wfsRegionLayer) {
+                        mapWin.map.addLayer(drawRegion.wfsRegionLayer);
+                    }
+
+                    if (mapWin.popupObj && mapWin.popupObj.overlay) {
+                        mapWin.map.addOverlay(mapWin.popupObj.overlay);
                     }
                 }
             };
@@ -88,42 +99,42 @@
             }
             $("#btnPoint").click(function () {
                 if ($("#btnPoint").hasClass("btnSelectedClass")) {
-                    if (mapWin && mapWin.pointDraw) {
-                        mapWin.map.removeInteraction(mapWin.pointDraw);
+                    if (mapWin && drawPoint) {
+                        mapWin.map.removeInteraction(drawPoint.draw);
                         $("#btnPoint").removeClass("btnSelectedClass");
                     }
 
                 } else {
-                    if (mapWin && mapWin.pointDraw) {
-                        mapWin.map.addInteraction(mapWin.pointDraw);
+                    if (mapWin && drawPoint) {
+                        mapWin.map.addInteraction(drawPoint.draw);
                         $("#btnPoint").addClass("btnSelectedClass");
                     }
                 }
             });
             $("#btnLine").click(function () {
                 if ($("#btnLine").hasClass("btnSelectedClass")) {
-                    if (mapWin && mapWin.lineDraw) {
-                        mapWin.map.removeInteraction(mapWin.lineDraw);
+                    if (mapWin && drawLine) {
+                        mapWin.map.removeInteraction(drawLine.draw);
                         $("#btnLine").removeClass("btnSelectedClass");
                     }
 
                 } else {
-                    if (mapWin && mapWin.lineDraw) {
-                        mapWin.map.addInteraction(mapWin.lineDraw);
+                    if (mapWin && drawLine) {
+                        mapWin.map.addInteraction(drawLine.draw);
                         $("#btnLine").addClass("btnSelectedClass");
                     }
                 }
             });
             $("#btnRegion").click(function () {
                 if ($("#btnRegion").hasClass("btnSelectedClass")) {
-                    if (mapWin && mapWin.regionDraw) {
-                        mapWin.map.removeInteraction(mapWin.regionDraw);
+                    if (mapWin && drawRegion) {
+                        mapWin.map.removeInteraction(drawRegion.draw);
                         $("#btnRegion").removeClass("btnSelectedClass");
                     }
 
                 } else {
-                    if (mapWin && mapWin.regionDraw) {
-                        mapWin.map.addInteraction(mapWin.regionDraw);
+                    if (mapWin && drawRegion) {
+                        mapWin.map.addInteraction(drawRegion.draw);
                         $("#btnRegion").addClass("btnSelectedClass");
                     }
                 }
