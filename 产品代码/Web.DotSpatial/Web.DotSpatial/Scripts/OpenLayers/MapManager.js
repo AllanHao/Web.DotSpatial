@@ -24,7 +24,29 @@ var MapManager = {
             var feature = this.map.forEachFeatureAtPixel(event.pixel, function (feature) {
                 if (feature) {
                     if (this.IsDel) {
-
+                        this.IsDel = false;
+                        var id = feature.values_.ID;
+                        var args = {};
+                        args.ID = id;
+                        args.Type = feature.values_.Type;
+                        $.messager.confirm("提示", "确认删除该地物？", delegate(this, function (r) {
+                            if (r) {
+                                doActionAsync("GIS.DotSpatial.DataBP.Agent.DeleteDataBPProxy", args, delegate(this, function (res) {
+                                    if (res) {
+                                        var type = feature.values_.Type;
+                                        if (type == 1) {
+                                            this.DrawPoint.wfsPointLayer.getSource().removeFeature(feature);
+                                        }
+                                        else if (type == 2) {
+                                            this.DrawLine.wfsLineLayer.getSource().removeFeature(feature);
+                                        }
+                                        else if (type == 3) {
+                                            this.DrawRegion.wfsRegionLayer.getSource().removeFeature(feature);
+                                        }
+                                    }
+                                }), null, null, true);
+                            }
+                        }));
                     } else {
                         console.log(feature);
                         var coordinate = event.coordinate;
@@ -37,32 +59,7 @@ var MapManager = {
         };
 
         this.doubleClickHandler = function (event) {
-            var feature = this.map.forEachFeatureAtPixel(event.pixel, function (feature) {
-                if (feature) {
-                    var id = feature.values_.ID;
-                    var args = {};
-                    args.ID = id;
-                    args.Type = feature.values_.Type;
-                    $.messager.confirm("提示", "确认删除该地物？", delegate(this, function (r) {
-                        if (r) {
-                            doActionAsync("GIS.DotSpatial.DataBP.Agent.DeleteDataBPProxy", args, delegate(this, function (res) {
-                                if (res) {
-                                    if (this.DelType == 1) {
-                                        this.DrawPoint.wfsPointLayer.getSource().removeFeature(feature);
-                                    }
-                                    else if (this.DelType == 2) {
-                                        this.DrawLine.wfsLineLayer.getSource().removeFeature(feature);
-                                    }
-                                    else if (this.DelType == 3) {
-                                        this.DrawRegion.wfsRegionLayer.getSource().removeFeature(feature);
-                                    }
-                                }
-                                this.IsDel = false;
-                            }), null, null, true);
-                        }
-                    }));
-                }
-            }, this);
+
         };
 
         function init() {
@@ -85,6 +82,7 @@ var MapManager = {
                     projection: 'EPSG:4326',
                     zoom: 17,
                 }),
+                interactions: ol.interaction.defaults({ doubleClickZoom: false }),
                 target: this.id
             };
 
@@ -98,6 +96,7 @@ var MapManager = {
 
             // 监听地图点击事件
             this.map.on('click', this.clickHandler, this);
+            this.map.on('dblclick', this.doubleClickHandler, this);
 
             this.map.on('pointermove', delegate(this, function (evt) {
                 if (evt.dragging) {

@@ -57,6 +57,7 @@
                         doActionAsync("GIS.DotSpatial.DataBP.Agent.InsertDataBPProxy", { DataDTO: args }, delegate(this, function (data) {
                             if (data) {
                                 evt.feature.values_.ID = data.CID;
+                                evt.feature.values_.Type = data.Type;
                                 if (this.drawedCallback) {
                                     this.drawedCallback();
                                 }

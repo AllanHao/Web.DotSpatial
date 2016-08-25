@@ -127,6 +127,12 @@
                 $("#btnRegion").click();
             };
             $("#btnPoint").bind('click', function () {
+                if ($("#btnLine").linkbutton('options').selected) {
+                    $("#btnLine").click();
+                }
+                if ($("#btnRegion").linkbutton('options').selected) {
+                    $("#btnRegion").click();
+                }
                 if ($("#btnPoint").linkbutton('options').selected) {
                     if (mapWin && mapWin.DrawPoint.draw) {
                         mapWin.map.removeInteraction(mapWin.DrawPoint.draw);
@@ -143,6 +149,12 @@
                 }
             });
             $("#btnLine").bind('click', function () {
+                if ($("#btnPoint").linkbutton('options').selected) {
+                    $("#btnPoint").click();
+                }
+                if ($("#btnRegion").linkbutton('options').selected) {
+                    $("#btnRegion").click();
+                }
                 if ($("#btnLine").linkbutton('options').selected) {
                     if (mapWin && mapWin.DrawLine.draw) {
                         mapWin.map.removeInteraction(mapWin.DrawLine.draw);
@@ -159,6 +171,12 @@
                 }
             });
             $("#btnRegion").bind('click', function () {
+                if ($("#btnPoint").linkbutton('options').selected) {
+                    $("#btnPoint").click();
+                }
+                if ($("#btnLine").linkbutton('options').selected) {
+                    $("#btnLine").click();
+                }
                 if ($("#btnRegion").linkbutton('options').selected) {
                     if (mapWin && mapWin.DrawRegion.draw) {
                         mapWin.map.removeInteraction(mapWin.DrawRegion.draw);
@@ -174,22 +192,9 @@
                     }
                 }
             });
-            $("#btnDelPoint").bind('click', function () {
+            $("#btnDelGeo").bind('click', function () {
                 if (mapWin) {
                     mapWin.IsDel = true;
-                    mapWin.DelType = 1;
-                }
-            });
-            $("#btnDelLine").bind('click', function () {
-                if (mapWin) {
-                    mapWin.IsDel = true;
-                    mapWin.DelType = 2;
-                }
-            });
-            $("#btnDelRegion").bind('click', function () {
-                if (mapWin) {
-                    mapWin.IsDel = true;
-                    mapWin.DelType = 3;
                 }
             });
         });
@@ -225,13 +230,7 @@
                     </li>
                     <li>
                         <a id="btnRegion" class="easyui-linkbutton">画面</a>
-                    </li>
-                    <li>
-                        <a id="btnDelPoint" class="easyui-linkbutton">删点</a>
-                        <a id="btnDelLine" class="easyui-linkbutton">删线</a>
-                    </li>
-                    <li>
-                        <a id="btnDelRegion" class="easyui-linkbutton">删面</a>
+                        <a id="btnDelGeo" class="easyui-linkbutton">删除</a>
                     </li>
                 </ul>
             </fieldset>

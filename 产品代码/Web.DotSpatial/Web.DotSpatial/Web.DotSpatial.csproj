@@ -147,31 +147,16 @@
     <Content Include="ApplicationLib\IWEHAVE.ERP.CommonBE.Deploy.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="ApplicationLib\IWEHAVE.ERP.CommonBE.Deploy.pdb">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="ApplicationLib\IWEHAVE.ERP.CommonBE.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="ApplicationLib\IWEHAVE.ERP.CommonBE.pdb">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="ApplicationLib\IWEHAVE.ERP.CommonBP.Agent.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="ApplicationLib\IWEHAVE.ERP.CommonBP.Agent.pdb">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="ApplicationLib\IWEHAVE.ERP.CommonBP.Deploy.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="ApplicationLib\IWEHAVE.ERP.CommonBP.Deploy.pdb">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="ApplicationLib\IWEHAVE.ERP.CommonBP.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="ApplicationLib\IWEHAVE.ERP.CommonBP.pdb">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="ApplicationLib\IWEHAVE.ERP.CommonBP.svc">

@@ -108,7 +108,7 @@ namespace GIS.DotSpatial.DataBP
         public static void AddAttributes(this IFeature target, string attr, Type type)
         {
             System.Data.DataColumn col = new System.Data.DataColumn();
-            col.ColumnName = "ID";
+            col.ColumnName = attr;
             col.DataType = type;
             target.DataRow.Table.Columns.Add(col);
         }
