@@ -197,6 +197,36 @@
                     mapWin.IsDel = true;
                 }
             });
+            $('#btnModifyPoint').bind('click', function () {
+                if ($('#btnModifyPoint').linkbutton('options').selected) {
+                    mapWin.map.removeInteraction(mapWin.DrawPoint.modify);
+                    $("#btnModifyPoint").linkbutton('unselect');
+                }
+                else {
+                    mapWin.map.addInteraction(mapWin.DrawPoint.modify);
+                    $("#btnModifyPoint").linkbutton('select');
+                }
+            });
+            $('#btnModifyLine').bind('click', function () {
+                if ($('#btnModifyLine').linkbutton('options').selected) {
+                    mapWin.map.removeInteraction(mapWin.DrawLine.modify);
+                    $("#btnModifyLine").linkbutton('unselect');
+                }
+                else {
+                    mapWin.map.addInteraction(mapWin.DrawLine.modify);
+                    $("#btnModifyLine").linkbutton('select');
+                }
+            });
+            $('#btnModifyRegion').bind('click', function () {
+                if ($('#btnModifyRegion').linkbutton('options').selected) {
+                    mapWin.map.removeInteraction(mapWin.DrawRegion.modify);
+                    $("#btnModifyRegion").linkbutton('unselect');
+                }
+                else {
+                    mapWin.map.addInteraction(mapWin.DrawRegion.modify);
+                    $("#btnModifyRegion").linkbutton('select');
+                }
+            });
         });
     </script>
 </head>
@@ -231,6 +261,14 @@
                     <li>
                         <a id="btnRegion" class="easyui-linkbutton">画面</a>
                         <a id="btnDelGeo" class="easyui-linkbutton">删除</a>
+                    </li>
+                    <li>---------------------------</li>
+                    <li>
+                        <a id="btnModifyPoint" class="easyui-linkbutton">改点</a>
+                        <a id="btnModifyLine" class="easyui-linkbutton">改线</a>
+                    </li>
+                    <li>
+                        <a id="btnModifyRegion" class="easyui-linkbutton">改面</a>
                     </li>
                 </ul>
             </fieldset>

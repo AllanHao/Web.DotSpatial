@@ -96,72 +96,72 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ApplicationLib\GIS.DotSpatial.DataBP.Agent.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="ApplicationLib\GIS.DotSpatial.DataBP.Agent.pdb">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="ApplicationLib\GIS.DotSpatial.DataBP.Deploy.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="ApplicationLib\GIS.DotSpatial.DataBP.Deploy.pdb">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="ApplicationLib\GIS.DotSpatial.DataBP.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="ApplicationLib\GIS.DotSpatial.DataBP.pdb">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="ApplicationLib\GIS.DotSpatial.DataBP.svc">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="ApplicationLib\IWEHAVE.ERP.Auth.ServiceBP.Agent.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="ApplicationLib\IWEHAVE.ERP.Auth.ServiceBP.Agent.pdb">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="ApplicationLib\IWEHAVE.ERP.Auth.ServiceBP.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="ApplicationLib\IWEHAVE.ERP.AuthBE.Deploy.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="ApplicationLib\IWEHAVE.ERP.AuthBE.Deploy.pdb">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="ApplicationLib\IWEHAVE.ERP.AuthBE.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="ApplicationLib\IWEHAVE.ERP.AuthBP.Agent.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="ApplicationLib\IWEHAVE.ERP.AuthBP.Deploy.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="ApplicationLib\IWEHAVE.ERP.AuthBP.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="ApplicationLib\IWEHAVE.ERP.CommonBE.Deploy.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="ApplicationLib\IWEHAVE.ERP.CommonBE.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="ApplicationLib\IWEHAVE.ERP.CommonBP.Agent.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="ApplicationLib\IWEHAVE.ERP.CommonBP.Deploy.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="ApplicationLib\IWEHAVE.ERP.CommonBP.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="ApplicationLib\IWEHAVE.ERP.CommonBP.svc">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    <EmbeddedResource Include="ApplicationLib\GIS.DotSpatial.DataBP.Agent.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ApplicationLib\GIS.DotSpatial.DataBP.Agent.pdb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ApplicationLib\GIS.DotSpatial.DataBP.Deploy.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ApplicationLib\GIS.DotSpatial.DataBP.Deploy.pdb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ApplicationLib\GIS.DotSpatial.DataBP.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ApplicationLib\GIS.DotSpatial.DataBP.pdb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ApplicationLib\GIS.DotSpatial.DataBP.svc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ApplicationLib\IWEHAVE.ERP.Auth.ServiceBP.Agent.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ApplicationLib\IWEHAVE.ERP.Auth.ServiceBP.Agent.pdb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ApplicationLib\IWEHAVE.ERP.Auth.ServiceBP.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ApplicationLib\IWEHAVE.ERP.AuthBE.Deploy.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ApplicationLib\IWEHAVE.ERP.AuthBE.Deploy.pdb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ApplicationLib\IWEHAVE.ERP.AuthBE.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ApplicationLib\IWEHAVE.ERP.AuthBP.Agent.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ApplicationLib\IWEHAVE.ERP.AuthBP.Deploy.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ApplicationLib\IWEHAVE.ERP.AuthBP.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ApplicationLib\IWEHAVE.ERP.CommonBE.Deploy.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ApplicationLib\IWEHAVE.ERP.CommonBE.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ApplicationLib\IWEHAVE.ERP.CommonBP.Agent.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ApplicationLib\IWEHAVE.ERP.CommonBP.Deploy.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ApplicationLib\IWEHAVE.ERP.CommonBP.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ApplicationLib\IWEHAVE.ERP.CommonBP.svc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
     <Content Include="ApplicationLib\PlugIn\IWEHAVE.ERP.PlugIn.Common.dll" />
     <Content Include="ApplicationLib\PlugIn\IWEHAVE.ERP.PlugIn.Common.pdb" />
     <Content Include="ApplicationLib\PlugIn\IWEHAVE.ERP.PlugIn.Common.xml" />

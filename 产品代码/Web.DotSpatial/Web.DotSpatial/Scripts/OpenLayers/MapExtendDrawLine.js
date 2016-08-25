@@ -1,5 +1,6 @@
 ﻿MapManager.MapControl.prototype.DrawLine = {
     draw: null,//画线
+    modify: null,//改线
     wfsLineLayer: null,//线图层
     mapUrl: "http://localhost:8080",
     drawedCallback: null,
@@ -34,6 +35,17 @@
                         features: this.features,
                         type: 'LineString'
                     });
+                    //this.modify = new ol.interaction.Modify({
+                    //    source: wfsLineLayer,
+                    //    features: this.features,
+                    //    // the SHIFT key must be pressed to delete vertices, so
+                    //    // that new vertices can be drawn at the same position
+                    //    // of existing vertices
+                    //    deleteCondition: function (event) {
+                    //        return ol.events.condition.shiftKeyOnly(event) &&
+                    //            ol.events.condition.singleClick(event);
+                    //    }
+                    //});
                     this.draw.on('drawend', delegate(this, function (evt) {
                         console.log(evt.feature);
                         var geo = evt.feature.getGeometry();
