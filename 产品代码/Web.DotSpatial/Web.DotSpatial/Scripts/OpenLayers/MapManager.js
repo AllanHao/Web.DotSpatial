@@ -129,6 +129,9 @@ var MapManager = {
             //attribution.setCollapsible(small);
             //attribution.setCollapsed(small);
             this.map.updateSize();
+            this.baseLayer.redraw();
+            //this.map.getView().setZoom(5);
+            //this.map.render();
         }
         window.addEventListener('resize', delegate(this, checkSize));
         //checkSize.call(this);
