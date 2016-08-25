@@ -8,6 +8,7 @@
     <title></title>
     <link href="Portal/css/default.css" rel="stylesheet" />
     <link href="Scripts/easyui1.4.4/themes/gray/easyui.css" rel="stylesheet" />
+    <link href="Scripts/easyui1.4.4/themes/gray/easyui.customer.css" rel="stylesheet" />
     <link href="Scripts/easyui1.4.4/themes/icon.css" rel="stylesheet" />
     <link href="Scripts/easyui1.4.4/themes/gray/easyui.customer.css" rel="stylesheet" />
     <link href="Scripts/easyui1.4.4/themes/public.css" rel="stylesheet" />
@@ -66,9 +67,27 @@
             right: 8px;
         }
 
-            .ol-popup-closer:after {
-                content: "✖";
-            }
+        li {
+            padding-top: 5px;
+        }
+
+        .ol-popup-closer:after {
+            content: "✖";
+        }
+
+        .easyui-linkbutton {
+            width: 60px;
+            margin-left: 5px;
+            margin-top: 5px;
+        }
+
+        fieldset {
+            padding: 1px;
+        }
+
+        ul {
+            padding: 0 20px 0 20px;
+        }
     </style>
     <script type="text/javascript">
         $(document).ready(function () {
@@ -98,6 +117,7 @@
                 mapWin.LoadMap();
             }
             mapWin.DrawPoint.drawedCallback = function () {
+                //$("#btnPoint").linkbutton('click');
                 $("#btnPoint").click();
             };
             mapWin.DrawLine.drawedCallback = function () {
@@ -106,67 +126,67 @@
             mapWin.DrawRegion.drawedCallback = function () {
                 $("#btnRegion").click();
             };
-            $("#btnPoint").click(function () {
-                if ($("#btnPoint").hasClass("btnSelectedClass")) {
+            $("#btnPoint").bind('click', function () {
+                if ($("#btnPoint").linkbutton('options').selected) {
                     if (mapWin && mapWin.DrawPoint.draw) {
                         mapWin.map.removeInteraction(mapWin.DrawPoint.draw);
-                        $("#btnPoint").removeClass("btnSelectedClass");
+                        $("#btnPoint").linkbutton('unselect');
                         mapWin.map.on('click', mapWin.clickHandler, mapWin);
                     }
 
                 } else {
                     if (mapWin && mapWin.DrawPoint.draw) {
                         mapWin.map.addInteraction(mapWin.DrawPoint.draw);
-                        $("#btnPoint").addClass("btnSelectedClass");
+                        $("#btnPoint").linkbutton('select');
                         mapWin.map.un('click', mapWin.clickHandler, mapWin);
                     }
                 }
             });
-            $("#btnLine").click(function () {
-                if ($("#btnLine").hasClass("btnSelectedClass")) {
+            $("#btnLine").bind('click', function () {
+                if ($("#btnLine").linkbutton('options').selected) {
                     if (mapWin && mapWin.DrawLine.draw) {
                         mapWin.map.removeInteraction(mapWin.DrawLine.draw);
-                        $("#btnLine").removeClass("btnSelectedClass");
+                        $("#btnLine").linkbutton('unselect');
                         mapWin.map.on('click', mapWin.clickHandler, mapWin);
                     }
 
                 } else {
                     if (mapWin && mapWin.DrawLine.draw) {
                         mapWin.map.addInteraction(mapWin.DrawLine.draw);
-                        $("#btnLine").addClass("btnSelectedClass");
+                        $("#btnLine").linkbutton('select');
                         mapWin.map.un('click', mapWin.clickHandler, mapWin);
                     }
                 }
             });
-            $("#btnRegion").click(function () {
-                if ($("#btnRegion").hasClass("btnSelectedClass")) {
+            $("#btnRegion").bind('click', function () {
+                if ($("#btnRegion").linkbutton('options').selected) {
                     if (mapWin && mapWin.DrawRegion.draw) {
                         mapWin.map.removeInteraction(mapWin.DrawRegion.draw);
-                        $("#btnRegion").removeClass("btnSelectedClass");
+                        $("#btnRegion").linkbutton('unselect');
                         mapWin.map.on('click', mapWin.clickHandler, mapWin);
                     }
 
                 } else {
                     if (mapWin && mapWin.DrawRegion.draw) {
                         mapWin.map.addInteraction(mapWin.DrawRegion.draw);
-                        $("#btnRegion").addClass("btnSelectedClass");
+                        $("#btnRegion").linkbutton('select');
                         mapWin.map.un('click', mapWin.clickHandler, mapWin);
                     }
                 }
             });
-            $("#btnDelPoint").click(function () {
+            $("#btnDelPoint").bind('click', function () {
                 if (mapWin) {
                     mapWin.IsDel = true;
                     mapWin.DelType = 1;
                 }
             });
-            $("#btnDelLine").click(function () {
+            $("#btnDelLine").bind('click', function () {
                 if (mapWin) {
                     mapWin.IsDel = true;
                     mapWin.DelType = 2;
                 }
             });
-            $("#btnDelRegion").click(function () {
+            $("#btnDelRegion").bind('click', function () {
                 if (mapWin) {
                     mapWin.IsDel = true;
                     mapWin.DelType = 3;
@@ -196,32 +216,25 @@
             </div>
         </div>
         <div data-options="region:'east',split:true " style="width: 200px">
-            <ul id="btnList">
-                <li>
-                    <input id="btnPoint" type="button" value="画点" />
-
-                </li>
-                <li>
-                    <input id="btnLine" type="button" value="画线" />
-
-                </li>
-                <li>
-                    <input id="btnRegion" type="button" value="画面" />
-
-                </li>
-                <li>
-                    <input id="btnDelPoint" type="button" value="删点" />
-
-                </li>
-                <li>
-                    <input id="btnDelLine" type="button" value="删线" />
-
-                </li>
-                <li>
-                    <input id="btnDelRegion" type="button" value="删面" />
-
-                </li>
-            </ul>
+            <fieldset>
+                <legend>数据操作</legend>
+                <ul id="btnList">
+                    <li>
+                        <a id="btnPoint" class="easyui-linkbutton">画点</a>
+                        <a id="btnLine" class="easyui-linkbutton">画线</a>
+                    </li>
+                    <li>
+                        <a id="btnRegion" class="easyui-linkbutton">画面</a>
+                    </li>
+                    <li>
+                        <a id="btnDelPoint" class="easyui-linkbutton">删点</a>
+                        <a id="btnDelLine" class="easyui-linkbutton">删线</a>
+                    </li>
+                    <li>
+                        <a id="btnDelRegion" class="easyui-linkbutton">删面</a>
+                    </li>
+                </ul>
+            </fieldset>
         </div>
         <div data-options="region:'south',border:false">
             <div id="footer" class="cs-south" style="height: 25px;">
