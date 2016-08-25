@@ -425,6 +425,7 @@
     <Content Include="Scripts\OpenLayers\MapExtendDrawLine.js" />
     <Content Include="Scripts\OpenLayers\MapExtendDrawPoint.js" />
     <Content Include="Scripts\OpenLayers\MapExtendDrawRegion.js" />
+    <Content Include="Scripts\OpenLayers\MapInstance.js" />
     <Content Include="Scripts\OpenLayers\MapManager_backup.js" />
     <Content Include="Scripts\OpenLayers\MapManager.js" />
     <Content Include="Scripts\OpenLayers\MapExtendPopup.js" />
