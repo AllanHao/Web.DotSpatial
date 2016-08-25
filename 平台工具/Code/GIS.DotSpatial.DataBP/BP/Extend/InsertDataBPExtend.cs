@@ -44,13 +44,14 @@ namespace GIS.DotSpatial.DataBP
                     IFeature p = fs.AddFeature(geo);
                     if (!p.DataRow.Table.Columns.Contains("ID"))
                     {
-                        System.Data.DataColumn col = new System.Data.DataColumn();
-                        col.ColumnName = "ID";
-                        col.DataType = typeof(string);
-
-                        p.DataRow.Table.Columns.Add(col);
+                        p.AddAttributes("ID", typeof(string));
+                    }
+                    if (!p.DataRow.Table.Columns.Contains("Type"))
+                    {
+                        p.AddAttributes("Type", typeof(Int32));
                     }
                     p.DataRow["ID"] = id;
+                    p.DataRow["Type"] = this.DataDTO.Type;
                     fs.SaveAs(path, true);
                     break;
                 case 2:
@@ -61,13 +62,14 @@ namespace GIS.DotSpatial.DataBP
                     IFeature l = fs.AddFeature(geo);
                     if (!l.DataRow.Table.Columns.Contains("ID"))
                     {
-                        System.Data.DataColumn col = new System.Data.DataColumn();
-                        col.ColumnName = "ID";
-                        col.DataType = typeof(string);
-
-                        l.DataRow.Table.Columns.Add(col);
+                        l.AddAttributes("ID", typeof(string));
+                    }
+                    if (!l.DataRow.Table.Columns.Contains("Type"))
+                    {
+                        l.AddAttributes("Type", typeof(Int32));
                     }
                     l.DataRow["ID"] = id;
+                    l.DataRow["Type"] = this.DataDTO.Type;
                     fs.SaveAs(path, true);
                     break;
                 case 3:
@@ -78,13 +80,14 @@ namespace GIS.DotSpatial.DataBP
                     IFeature r = fs.AddFeature(geo);
                     if (!r.DataRow.Table.Columns.Contains("ID"))
                     {
-                        System.Data.DataColumn col = new System.Data.DataColumn();
-                        col.ColumnName = "ID";
-                        col.DataType = typeof(string);
-
-                        r.DataRow.Table.Columns.Add(col);
+                        r.AddAttributes("ID", typeof(string));
+                    }
+                    if (!r.DataRow.Table.Columns.Contains("Type"))
+                    {
+                        r.AddAttributes("Type", typeof(Int32));
                     }
                     r.DataRow["ID"] = id;
+                    r.DataRow["Type"] = this.DataDTO.Type;
                     fs.SaveAs(path, true);
                     break;
                 default:
@@ -99,5 +102,15 @@ namespace GIS.DotSpatial.DataBP
             return id;
         }
 
+    }
+    public static class DotSpatialExtension
+    {
+        public static void AddAttributes(this IFeature target, string attr, Type type)
+        {
+            System.Data.DataColumn col = new System.Data.DataColumn();
+            col.ColumnName = "ID";
+            col.DataType = type;
+            target.DataRow.Table.Columns.Add(col);
+        }
     }
 }
