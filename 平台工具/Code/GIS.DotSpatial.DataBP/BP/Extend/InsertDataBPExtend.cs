@@ -42,6 +42,14 @@ namespace GIS.DotSpatial.DataBP
                     geo = new Point(cooArray[0]);
 
                     IFeature p = fs.AddFeature(geo);
+                    if (!p.DataRow.Table.Columns.Contains("ID"))
+                    {
+                        System.Data.DataColumn col = new System.Data.DataColumn();
+                        col.ColumnName = "ID";
+                        col.DataType = typeof(string);
+
+                        p.DataRow.Table.Columns.Add(col);
+                    }
                     p.DataRow["ID"] = id;
                     fs.SaveAs(path, true);
                     break;
@@ -51,6 +59,14 @@ namespace GIS.DotSpatial.DataBP
                     fs = new FeatureSet(sf.Features);
                     geo = new LineString(cooArray);
                     IFeature l = fs.AddFeature(geo);
+                    if (!l.DataRow.Table.Columns.Contains("ID"))
+                    {
+                        System.Data.DataColumn col = new System.Data.DataColumn();
+                        col.ColumnName = "ID";
+                        col.DataType = typeof(string);
+
+                        l.DataRow.Table.Columns.Add(col);
+                    }
                     l.DataRow["ID"] = id;
                     fs.SaveAs(path, true);
                     break;
@@ -60,6 +76,14 @@ namespace GIS.DotSpatial.DataBP
                     fs = new FeatureSet(sf.Features);
                     geo = new Polygon(cooArray);
                     IFeature r = fs.AddFeature(geo);
+                    if (!r.DataRow.Table.Columns.Contains("ID"))
+                    {
+                        System.Data.DataColumn col = new System.Data.DataColumn();
+                        col.ColumnName = "ID";
+                        col.DataType = typeof(string);
+
+                        r.DataRow.Table.Columns.Add(col);
+                    }
                     r.DataRow["ID"] = id;
                     fs.SaveAs(path, true);
                     break;
