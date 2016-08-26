@@ -18,6 +18,7 @@
   <ItemGroup>
     <Compile Include="BPEntity\InsertDataBP.cs" />
 <Compile Include="BPEntity\DeleteDataBP.cs" />
+<Compile Include="BPEntity\ModifyGeometryBP.cs" />
 
   </ItemGroup>
   <ItemGroup>

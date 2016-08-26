@@ -4,5 +4,6 @@
   <Services>
     <Service Name="InsertDataBP" />
     <Service Name="DeleteDataBP" />
+    <Service Name="ModifyGeometryBP" />
   </Services>
 </ServiceCfg>

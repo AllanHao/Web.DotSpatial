@@ -7,22 +7,26 @@ using System.Text;
 
 namespace GIS.DotSpatial.DataBP
 {
-    public partial class DeleteDataBP
+    public partial class ModifyGeometryBP
     {
-        private bool DoExtend()
+        private GIS.DotSpatial.DataBP.Deploy.DataDTO DoExtend()
         {
-            if (this.Type <= 0)
+            if (this.DataDTO == null || this.DataDTO.PosList == null)
+            {
+                throw new NHExt.Runtime.Exceptions.BizException("没有传入待修改的数据");
+            }
+            if (this.DataDTO.Type <= 0)
             {
                 throw new NHExt.Runtime.Exceptions.BizException("没有传入数据类型");
             }
-            if (string.IsNullOrEmpty(this.ID))
+            if (string.IsNullOrEmpty(this.DataDTO.CID))
             {
                 throw new NHExt.Runtime.Exceptions.BizException("待删除的数据ID不能为空");
             }
             string path = System.Configuration.ConfigurationManager.AppSettings["DataUrl"];
             Shapefile sf = null;
             FeatureSet fs = null;
-            switch (this.Type)
+            switch (this.DataDTO.Type)
             {
                 case 1:
                     path += "P.shp";
@@ -39,20 +43,20 @@ namespace GIS.DotSpatial.DataBP
                 default:
                     throw new NHExt.Runtime.Exceptions.BizException("没有传入数据类型");
             }
-            if (sf.Features.Count <= 1)
-            {
-                throw new NHExt.Runtime.Exceptions.BizException("数据集中至少需要有一条数据");
-            }
+
             fs = new FeatureSet(sf.Features);
-            IFeature feature = fs.Features.ToList().Find((f) => { return (f.DataRow["ID"] == null ? "" : f.DataRow["ID"].ToString()) == this.ID; });
+            IFeature feature = fs.Features.ToList().Find((f) => { return (f.DataRow["ID"] == null ? "" : f.DataRow["ID"].ToString()) == this.DataDTO.CID; });
             if (feature != null)
             {
-                fs.Features.Remove(feature);
+                List<Coordinate> cooArray = new List<Coordinate>();
+                foreach (var pos in this.DataDTO.PosList)
+                {
+                    cooArray.Add(new Coordinate(new double[] { pos.X, pos.Y }));
+                }
+                feature.Coordinates = cooArray;
                 fs.SaveAs(path, true);
-                return true;
             }
-            return false;
-
+            return this.DataDTO;
         }
     }
 }

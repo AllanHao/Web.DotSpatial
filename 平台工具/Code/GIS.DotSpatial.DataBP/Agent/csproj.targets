@@ -15,6 +15,7 @@
   <ItemGroup>
     <Compile Include="Proxy\InsertDataBPAgent.cs" />
 <Compile Include="Proxy\DeleteDataBPAgent.cs" />
+<Compile Include="Proxy\ModifyGeometryBPAgent.cs" />
 
   </ItemGroup>
   <ItemGroup>

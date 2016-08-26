@@ -11,6 +11,11 @@
         <Attribute Guid="6b4046b2-94b9-4579-add7-8a34586a5980" Code="Type" Name="数据类型" DataType="CommonType" DefaultValue="" Type="int" IsNull="0" />
       </Attributes>
     </BP>
+    <BP Guid="0bf1e872-8278-471c-8015-954672d137c7" Code="ModifyGeometryBP" Name="编辑形状" List="0" Auth="1" Trans="0" ReturnGuid="400cfc1f-9de0-45a8-bd1f-0deaee99d3bc" IsEntity="0">
+      <Attributes>
+        <Attribute Guid="d7d53798-9ca4-4286-a289-cd76d40527c7" Code="DataDTO" Name="数据DTO" DataType="RefreceType" DefaultValue="" RefGuid="400cfc1f-9de0-45a8-bd1f-0deaee99d3bc" IsNull="0" />
+      </Attributes>
+    </BP>
   </BPList>
   <RefrenceList>
     <Refrence Guid="fd282f24-b1f3-4faf-8b51-f6ba2e0eb8e2" RefProjName="数据操作服务.bp" RefrenceType="Deploy" RefFilePath="..\MetaData\数据操作服务.bp" />
