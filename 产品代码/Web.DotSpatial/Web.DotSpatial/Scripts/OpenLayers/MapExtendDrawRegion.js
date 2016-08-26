@@ -93,11 +93,6 @@
                             }
                             doActionAsync("GIS.DotSpatial.DataBP.Agent.ModifyGeometryBPProxy", { DataDTO: args }, delegate(this, function (data) {
                                 if (data) {
-                                    //evt.feature.values_.ID = data.CID;
-                                    //evt.feature.values_.Type = data.Type;
-                                    //if (this.drawedCallback) {
-                                    //    this.drawedCallback();
-                                    //}
                                 }
                             }), null, null, true);
                         }
@@ -119,7 +114,8 @@
                 }),
                 fill: new ol.style.Fill({
                     color: [0, 153, 255, 1]
-                })
+                }),
+                text: new ol.style.Text()
             })
         });
     }
