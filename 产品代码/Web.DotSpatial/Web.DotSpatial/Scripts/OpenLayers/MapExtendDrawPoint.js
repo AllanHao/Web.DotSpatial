@@ -48,7 +48,7 @@
                         type: 'Point'
                     });
 
-                    this.draw.on('drawend', delegate(this, function (evt) {
+                    this.draw.on('drawend', function (evt) {
                         console.log(evt.feature);
                         var geo = evt.feature.getGeometry();
                         var array = geo.flatCoordinates;
@@ -68,7 +68,7 @@
                             }
                         }), null, null, true);
 
-                    }), this);
+                    }, this);
 
                     this.modify = new ol.interaction.Modify({
                         features: this.features,
@@ -80,6 +80,10 @@
                                 ol.events.condition.singleClick(event);
                         }
                     });
+                    this.modify.on('modifyend', function (evt) {
+                        var features = evt.features;
+                        console.log(features);
+                    }, this);
                 }));
             }),
             strategy: ol.loadingstrategy.tile(ol.tilegrid.createXYZ({
