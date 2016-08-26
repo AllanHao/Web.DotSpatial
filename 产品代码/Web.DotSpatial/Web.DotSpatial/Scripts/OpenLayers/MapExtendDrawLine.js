@@ -4,6 +4,7 @@
     wfsLineLayer: null,//线图层
     mapUrl: "http://localhost:8080",
     drawedCallback: null,
+    features: new ol.Collection(),
     init: function () {
         var namespace = "ws_test";
         var lineLayerName = "L";
@@ -27,25 +28,29 @@
                     var features = format.readFeatures(response,
                             { featureProjection: projection }
                     );
-                    wfsLineSource.addFeatures(features);
-                    this.features = features;
+                    if (features && features.length > 0) {
+                        $.each(features, delegate(this, function (i, item) {
+                            this.features.push(item);
+                        }));
+                        wfsLineSource.addFeatures(features);
+                    }
+
                     //添加绘制
                     this.draw = new ol.interaction.Draw({
                         source: wfsLineSource,
                         features: this.features,
                         type: 'LineString'
                     });
-                    //this.modify = new ol.interaction.Modify({
-                    //    source: wfsLineLayer,
-                    //    features: this.features,
-                    //    // the SHIFT key must be pressed to delete vertices, so
-                    //    // that new vertices can be drawn at the same position
-                    //    // of existing vertices
-                    //    deleteCondition: function (event) {
-                    //        return ol.events.condition.shiftKeyOnly(event) &&
-                    //            ol.events.condition.singleClick(event);
-                    //    }
-                    //});
+                    this.modify = new ol.interaction.Modify({
+                        features: this.features,
+                        // the SHIFT key must be pressed to delete vertices, so
+                        // that new vertices can be drawn at the same position
+                        // of existing vertices
+                        deleteCondition: function (event) {
+                            return ol.events.condition.shiftKeyOnly(event) &&
+                                ol.events.condition.singleClick(event);
+                        }
+                    });
                     this.draw.on('drawend', delegate(this, function (evt) {
                         console.log(evt.feature);
                         var geo = evt.feature.getGeometry();

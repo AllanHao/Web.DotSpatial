@@ -1,9 +1,11 @@
 ﻿MapManager.MapControl.prototype.DrawPoint = {
     draw: null,//画点
+    modify: null,//改点
     wfsPointLayer: null,//点图层
     mapUrl: "http://localhost:8080",
     features: [],
     drawedCallback: null,
+    features: new ol.Collection(),
     init: function () {
         var namespace = "ws_test";
         var pointLayerName = "P";
@@ -27,23 +29,25 @@
                     var features = format.readFeatures(response,
                                { featureProjection: projection }
                        );
-                    //test
                     if (features && features.length > 0) {
+                        $.each(features, delegate(this, function (i, item) {
+                            this.features.push(item);
+                        }));
+                        //test
                         features[0].setStyle(new ol.style.Style({
                             image: new ol.style.Icon({
                                 src: '/Images/face_monkey.png'
                             })
                         }));
                     }
-
                     wfsPointSource.addFeatures(features);
-                    this.features = features;
                     //添加绘制
                     this.draw = new ol.interaction.Draw({
                         source: wfsPointSource,
                         features: this.features,
                         type: 'Point'
                     });
+
                     this.draw.on('drawend', delegate(this, function (evt) {
                         console.log(evt.feature);
                         var geo = evt.feature.getGeometry();
@@ -65,6 +69,17 @@
                         }), null, null, true);
 
                     }), this);
+
+                    this.modify = new ol.interaction.Modify({
+                        features: this.features,
+                        // the SHIFT key must be pressed to delete vertices, so
+                        // that new vertices can be drawn at the same position
+                        // of existing vertices
+                        deleteCondition: function (event) {
+                            return ol.events.condition.shiftKeyOnly(event) &&
+                                ol.events.condition.singleClick(event);
+                        }
+                    });
                 }));
             }),
             strategy: ol.loadingstrategy.tile(ol.tilegrid.createXYZ({
