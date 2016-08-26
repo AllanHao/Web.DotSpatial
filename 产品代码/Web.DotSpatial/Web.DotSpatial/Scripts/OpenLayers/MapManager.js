@@ -98,25 +98,19 @@ var MapManager = {
             this.map.on('click', this.clickHandler, this);
             this.map.on('dblclick', this.doubleClickHandler, this);
 
-            this.map.on('pointermove', delegate(this, function (evt) {
+            this.map.on('pointermove', function (evt) {
                 if (evt.dragging) {
                     return;
                 }
-                //var pixel = this.map.getEventPixel(evt.originalEvent);
-                //var hit = this.map.forEachLayerAtPixel(pixel, function () {
-                //    return true;
-                //});
-                var feature = this.map.forEachFeatureAtPixel(evt.pixel, function (feature) {
-                    return feature;
-                });
-                if (feature) {
-                    this.map.getTargetElement().style.cursor = 'pointer';
-                }
-                else {
-                    this.map.getTargetElement().style.cursor = '';
-                }
-                //this.map.getTargetElement().style.cursor = hit ? 'pointer' : '';
-            }));
+                var feature = this.map.forEachFeatureAtPixel(evt.pixel, delegate(this, function (feature) {
+                    if (feature) {
+                        this.map.getTargetElement().style.cursor = 'pointer';
+                    }
+                    else {
+                        this.map.getTargetElement().style.cursor = '';
+                    }
+                }));
+            }, this);
             this.map.once('postrender', delegate(this, function () {
                 if (this.loadSuccessCallback) {
                     this.loadSuccessCallback.call(this);

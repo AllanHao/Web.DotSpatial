@@ -80,10 +80,19 @@
                                 ol.events.condition.singleClick(event);
                         }
                     });
+                    var modifiedFeatures = [];
                     this.modify.on('modifyend', function (evt) {
-                        var features = evt.features;
-                        console.log(features);
+                        var features = evt.features.getArray();
+                        console.log(features.length);
+                        for (var i = 0; i < features.length; i++) {
+                            var rev = features[i].getRevision();
+                            if (rev > 1) {
+                                console.log("feature with revision:" + rev + " has been modified");
+                                modifiedFeatures.push(features[i]);
+                            }
+                        }
                     }, this);
+
                 }));
             }),
             strategy: ol.loadingstrategy.tile(ol.tilegrid.createXYZ({
