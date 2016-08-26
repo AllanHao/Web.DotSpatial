@@ -116,6 +116,8 @@
             if (mapWin) {
                 mapWin.LoadMap();
             }
+
+            //新增数据按钮
             mapWin.DrawPoint.drawedCallback = function () {
                 //$("#btnPoint").linkbutton('click');
                 $("#btnPoint").click();
@@ -192,12 +194,22 @@
                     }
                 }
             });
+
+            //删除数据按钮
             $("#btnDelGeo").bind('click', function () {
                 if (mapWin) {
                     mapWin.IsDel = true;
                 }
             });
+
+            //修改数据按钮
             $('#btnModifyPoint').bind('click', function () {
+                if ($('#btnModifyLine').linkbutton('options').selected) {
+                    $('#btnModifyLine').click();
+                }
+                if ($('#btnModifyRegion').linkbutton('options').selected) {
+                    $('#btnModifyRegion').click();
+                }
                 if ($('#btnModifyPoint').linkbutton('options').selected) {
                     mapWin.map.removeInteraction(mapWin.DrawPoint.modify);
                     $("#btnModifyPoint").linkbutton('unselect');
@@ -208,6 +220,12 @@
                 }
             });
             $('#btnModifyLine').bind('click', function () {
+                if ($('#btnModifyPoint').linkbutton('options').selected) {
+                    $('#btnModifyPoint').click();
+                }
+                if ($('#btnModifyRegion').linkbutton('options').selected) {
+                    $('#btnModifyRegion').click();
+                }
                 if ($('#btnModifyLine').linkbutton('options').selected) {
                     mapWin.map.removeInteraction(mapWin.DrawLine.modify);
                     $("#btnModifyLine").linkbutton('unselect');
@@ -218,6 +236,12 @@
                 }
             });
             $('#btnModifyRegion').bind('click', function () {
+                if ($('#btnModifyPoint').linkbutton('options').selected) {
+                    $('#btnModifyPoint').click();
+                }
+                if ($('#btnModifyLine').linkbutton('options').selected) {
+                    $('#btnModifyLine').click();
+                }
                 if ($('#btnModifyRegion').linkbutton('options').selected) {
                     mapWin.map.removeInteraction(mapWin.DrawRegion.modify);
                     $("#btnModifyRegion").linkbutton('unselect');
