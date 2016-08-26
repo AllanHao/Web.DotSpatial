@@ -6,6 +6,7 @@
     features: [],
     drawedCallback: null,
     features: new ol.Collection(),
+    selectedFeatureID: "",
     init: function () {
         var namespace = "ws_test";
         var pointLayerName = "P";
@@ -80,16 +81,35 @@
                                 ol.events.condition.singleClick(event);
                         }
                     });
-                    var modifiedFeatures = [];
+
                     this.modify.on('modifyend', function (evt) {
-                        var features = evt.features.getArray();
-                        console.log(features.length);
-                        for (var i = 0; i < features.length; i++) {
-                            var rev = features[i].getRevision();
-                            if (rev > 1) {
-                                console.log("feature with revision:" + rev + " has been modified");
-                                modifiedFeatures.push(features[i]);
+                        var feature;
+                        var features = this.features.getArray();
+                        $.each(features, delegate(this, function (i, item) {
+                            if (item.values_.ID == MapManager.selectedFeatureID) {
+                                feature = item;
+                                return false;
                             }
+                        }));
+                        if (feature) {
+                            var geo = feature.getGeometry();
+                            var array = geo.flatCoordinates;
+                            var args = {};
+                            args.Type = 1;
+                            args.CID = feature.values_.ID;
+                            args.PosList = new Array();
+                            for (var i = 0; i < array.length; i = i + 2) {
+                                args.PosList.push({ X: array[i], Y: array[i + 1] });
+                            }
+                            doActionAsync("GIS.DotSpatial.DataBP.Agent.ModifyGeometryBPProxy", { DataDTO: args }, delegate(this, function (data) {
+                                if (data) {
+                                    //evt.feature.values_.ID = data.CID;
+                                    //evt.feature.values_.Type = data.Type;
+                                    //if (this.drawedCallback) {
+                                    //    this.drawedCallback();
+                                    //}
+                                }
+                            }), null, null, true);
                         }
                     }, this);
 

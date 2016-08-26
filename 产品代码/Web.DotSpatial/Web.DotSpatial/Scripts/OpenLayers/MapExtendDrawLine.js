@@ -41,16 +41,7 @@
                         features: this.features,
                         type: 'LineString'
                     });
-                    this.modify = new ol.interaction.Modify({
-                        features: this.features,
-                        // the SHIFT key must be pressed to delete vertices, so
-                        // that new vertices can be drawn at the same position
-                        // of existing vertices
-                        deleteCondition: function (event) {
-                            return ol.events.condition.shiftKeyOnly(event) &&
-                                ol.events.condition.singleClick(event);
-                        }
-                    });
+
                     this.draw.on('drawend', delegate(this, function (evt) {
                         console.log(evt.feature);
                         var geo = evt.feature.getGeometry();
@@ -72,6 +63,48 @@
                         }), null, null, true);
 
                     }), this);
+
+                    this.modify = new ol.interaction.Modify({
+                        features: this.features,
+                        // the SHIFT key must be pressed to delete vertices, so
+                        // that new vertices can be drawn at the same position
+                        // of existing vertices
+                        deleteCondition: function (event) {
+                            return ol.events.condition.shiftKeyOnly(event) &&
+                                ol.events.condition.singleClick(event);
+                        }
+                    });
+
+                    this.modify.on('modifyend', function (evt) {
+                        var feature;
+                        var features = this.features.getArray();
+                        $.each(features, delegate(this, function (i, item) {
+                            if (item.values_.ID == MapManager.selectedFeatureID) {
+                                feature = item;
+                                return false;
+                            }
+                        }));
+                        if (feature) {
+                            var geo = feature.getGeometry();
+                            var array = geo.flatCoordinates;
+                            var args = {};
+                            args.Type = 2;
+                            args.CID = feature.values_.ID;
+                            args.PosList = new Array();
+                            for (var i = 0; i < array.length; i = i + 2) {
+                                args.PosList.push({ X: array[i], Y: array[i + 1] });
+                            }
+                            doActionAsync("GIS.DotSpatial.DataBP.Agent.ModifyGeometryBPProxy", { DataDTO: args }, delegate(this, function (data) {
+                                if (data) {
+                                    //evt.feature.values_.ID = data.CID;
+                                    //evt.feature.values_.Type = data.Type;
+                                    //if (this.drawedCallback) {
+                                    //    this.drawedCallback();
+                                    //}
+                                }
+                            }), null, null, true);
+                        }
+                    }, this);
                 }));
             }),
             strategy: ol.loadingstrategy.tile(ol.tilegrid.createXYZ({

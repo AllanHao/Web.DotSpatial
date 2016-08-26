@@ -7,6 +7,7 @@
 }
 
 var MapManager = {
+    selectedFeatureID: "",
     MapControl: function (id) {
         this.id = id;
         this.map = null;
@@ -19,6 +20,7 @@ var MapManager = {
 
         this.popupObj = {};//气泡对象封装
         this.loadSuccessCallback = null;
+        this.selectedFeatureID = "";//选中的featureID，为了记录修改的Feature
 
         this.clickHandler = function (event) {
             var feature = this.map.forEachFeatureAtPixel(event.pixel, function (feature) {
@@ -105,6 +107,10 @@ var MapManager = {
                 var feature = this.map.forEachFeatureAtPixel(evt.pixel, delegate(this, function (feature) {
                     if (feature) {
                         this.map.getTargetElement().style.cursor = 'pointer';
+                        if (feature.values_.ID) {
+                            this.DrawPoint.selectedFeatureID = feature.values_.ID;
+                            MapManager.selectedFeatureID = feature.values_.ID;
+                        }
                     }
                     else {
                         this.map.getTargetElement().style.cursor = '';
