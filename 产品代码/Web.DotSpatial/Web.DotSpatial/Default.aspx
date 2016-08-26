@@ -260,12 +260,6 @@
             <div class="head-left">
                 <img class="logo" src="../../Images/top-left.png" style="width: 30px; height: 30px" /><span>DEMO OF OL+GEOSERVER+DOTSPATIAL</span>
             </div>
-            <div class="head-right">
-
-                <div id="calender" class="top-text" style="width: 320px; cursor: pointer;">
-                </div>
-
-            </div>
         </div>
         <div data-options="region:'center',split:false">
             <div id="map1" style="width: 100%; height: 100%"></div>
@@ -274,7 +268,7 @@
                 <div id="popup-content"></div>
             </div>
         </div>
-        <div data-options="region:'east',split:true " style="width: 200px">
+        <div data-options="region:'east',split:false " style="width: 200px">
             <fieldset>
                 <legend>数据操作</legend>
                 <ul id="btnList">
