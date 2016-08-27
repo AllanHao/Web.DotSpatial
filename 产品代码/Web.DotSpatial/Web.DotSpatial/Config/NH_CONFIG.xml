@@ -7,7 +7,7 @@
     <session-factory name="NHibernate.Test">
       <property name="connection.driver_class">NHibernate.Driver.SqlClientDriver</property>
       <property name="connection.connection_string">
-        Server=223.223.198.162;initial catalog=GAIA_EMER_TEST;uid=sa;pwd=iwehave2305!
+        Server=118.186.246.210;initial catalog=GAIA_WEB_CENTER;uid=sa;pwd=iwehave2305!
       </property>
       <property name="adonet.batch_size">10</property>
       <property name="show_sql">false</property>

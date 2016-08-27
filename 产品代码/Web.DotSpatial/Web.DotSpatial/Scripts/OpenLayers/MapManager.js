@@ -65,8 +65,8 @@ var MapManager = {
         };
 
         function init() {
-            //this.Tile.init();
-            this.baseLayer = new ol.layer.Tile({ source: new ol.source.OSM() }); //this.Tile.layer;// 
+            this.Tile.init();
+            this.baseLayer = this.Tile.layer;// new ol.layer.Tile({ source: new ol.source.OSM() }); //
             //this.baseLayer.on('loadend', delegate(this, function () {
             //    if (this.loadSuccessCallback) {
             //        this.loadSuccessCallback;
@@ -79,11 +79,11 @@ var MapManager = {
                 //overlays: [this.popupObj.overlay],
                 view: new ol.View({
                     // 设置北京为地图中心，此处进行坐标转换， 把EPSG:4326的坐标，转换为EPSG:3857坐标，因为ol默认使用的是EPSG:3857坐标
-                    //center: ol.proj.transform([104.06, 30.67], 'EPSG:4326', 'EPSG:3857'),
+                    // center: ol.proj.transform([116.51146342, 39.92331272], 'EPSG:4326', 'EPSG:3857'),
                     center: [116.51146342, 39.92331272],//[113.33243347168, 22.9747657775879],//
                     // 指定投影使用EPSG:4326 WGS-1984
                     projection: 'EPSG:4326',
-                    zoom: 10,
+                    zoom: 16,
                 }),
                 interactions: ol.interaction.defaults({ doubleClickZoom: false }),
                 target: this.id
