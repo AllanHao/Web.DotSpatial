@@ -65,7 +65,8 @@ var MapManager = {
         };
 
         function init() {
-            this.baseLayer = new ol.layer.Tile({ source: new ol.source.OSM() });
+            //this.Tile.init();
+            this.baseLayer = new ol.layer.Tile({ source: new ol.source.OSM() }); //this.Tile.layer;// 
             //this.baseLayer.on('loadend', delegate(this, function () {
             //    if (this.loadSuccessCallback) {
             //        this.loadSuccessCallback;
@@ -82,7 +83,7 @@ var MapManager = {
                     center: [116.51146342, 39.92331272],//[113.33243347168, 22.9747657775879],//
                     // 指定投影使用EPSG:4326 WGS-1984
                     projection: 'EPSG:4326',
-                    zoom: 17,
+                    zoom: 10,
                 }),
                 interactions: ol.interaction.defaults({ doubleClickZoom: false }),
                 target: this.id
