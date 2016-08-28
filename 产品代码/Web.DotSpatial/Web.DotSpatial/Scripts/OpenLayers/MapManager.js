@@ -52,7 +52,7 @@ var MapManager = {
                     } else {
                         console.log(feature);
                         var coordinate = event.coordinate;
-                        this.Popup.content.innerHTML = '<p>ID:' + feature.values_.ID + '</p> ';
+                        this.Popup.content.innerHTML = "<h3 style='text-align: center'>属性信息</h3><p>ID:" + feature.values_.ID + "</p>  <input type='button'style='cursor:pointer; float:right ' value='编辑' />";
                         this.Popup.overlay.setPosition(coordinate);
                     }
                 }
@@ -105,18 +105,17 @@ var MapManager = {
                 if (evt.dragging) {
                     return;
                 }
-                var feature = this.map.forEachFeatureAtPixel(evt.pixel, delegate(this, function (feature) {
-                    if (feature) {
-                        this.map.getTargetElement().style.cursor = 'pointer';
-                        if (feature.values_.ID) {
-                            this.DrawPoint.selectedFeatureID = feature.values_.ID;
-                            MapManager.selectedFeatureID = feature.values_.ID;
-                        }
-                    }
-                    else {
-                        this.map.getTargetElement().style.cursor = '';
-                    }
-                }));
+                var feature = this.map.forEachFeatureAtPixel(evt.pixel, function (feature) {
+                    return feature;
+                });
+                if (feature && feature.values_.ID) {
+                    this.map.getTargetElement().style.cursor = 'pointer';
+                    this.DrawPoint.selectedFeatureID = feature.values_.ID;
+                    MapManager.selectedFeatureID = feature.values_.ID;
+                }
+                else {
+                    this.map.getTargetElement().style.cursor = '';
+                }
             }, this);
             this.map.once('postrender', delegate(this, function () {
                 if (this.loadSuccessCallback) {
