@@ -407,6 +407,7 @@
     <Content Include="Scripts\jscolor\hv.png" />
     <Content Include="Scripts\jscolor\jscolor.js" />
     <Content Include="Scripts\jshashtable-2.1.js" />
+    <Content Include="Scripts\OpenLayers\MapExtendDrag.js" />
     <Content Include="Scripts\OpenLayers\MapExtendDrawLine.js" />
     <Content Include="Scripts\OpenLayers\MapExtendDrawPoint.js" />
     <Content Include="Scripts\OpenLayers\MapExtendDrawRegion.js" />

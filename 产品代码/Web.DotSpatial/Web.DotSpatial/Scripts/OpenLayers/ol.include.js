@@ -19,12 +19,15 @@
         inputScript('ol/ol-debug.js');
         //inputScript('deprecated.js');
         //inputScript('OpenLayers.debug.js');
+   
         inputScript('MapManager.js');
+        inputScript('MapExtendDrag.js');
         inputScript('MapExtendPopup.js');
         inputScript('MapExtendDrawPoint.js');
         inputScript('MapExtendDrawLine.js');
         inputScript('MapExtendDrawRegion.js');
         inputScript('MapExtendTile.js');
+
         //inputScript('jquery-1.7.1.min.js');
         //inputScript('public.js');
         //inputScript('OpenLayers.Control.Legend.js');
