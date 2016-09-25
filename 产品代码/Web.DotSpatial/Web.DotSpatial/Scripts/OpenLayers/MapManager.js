@@ -85,7 +85,7 @@ var MapManager = {
                     projection: 'EPSG:4326',
                     zoom: 16,
                 }),
-                interactions: ol.interaction.defaults({ doubleClickZoom: false }).extend([new ol.interaction.Drag()]),
+                interactions: ol.interaction.defaults({ doubleClickZoom: false }),
                 target: this.id
             };
 

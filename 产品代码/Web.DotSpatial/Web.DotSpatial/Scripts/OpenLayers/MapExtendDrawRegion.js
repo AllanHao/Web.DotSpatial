@@ -105,9 +105,8 @@
 
         });
 
-        this.wfsRegionLayer = new ol.layer.Vector({
-            source: wfsRegionSource,
-            style: new ol.style.Style({
+        function polygonStyleFunction(feature, resolution) {
+            return new ol.style.Style({
                 stroke: new ol.style.Stroke({
                     color: 'rgba(0, 0, 255, 1.0)',
                     width: 2
@@ -115,8 +114,59 @@
                 fill: new ol.style.Fill({
                     color: [0, 153, 255, 1]
                 }),
-                text: new ol.style.Text()
-            })
+                text: createTextStyle(feature, resolution)
+            });
+        }
+
+        var createTextStyle = function (feature, resolution) {
+            //var align = dom.align.value;
+            //var baseline = dom.baseline.value;
+            //var size = dom.size.value;
+            //var offsetX = parseInt(dom.offsetX.value, 10);
+            //var offsetY = parseInt(dom.offsetY.value, 10);
+            //var weight = dom.weight.value;
+            //var rotation = parseFloat(dom.rotation.value);
+            //var font = weight + ' ' + size + ' ' + dom.font.value;
+            //var fillColor = dom.color.value;
+            //var outlineColor = dom.outline.value;
+            //var outlineWidth = parseInt(dom.outlineWidth.value, 10);
+
+            return new ol.style.Text({
+                textAlign: 'Center',
+                textBaseline: 'Middle',
+                font: 'Bold 10px Verdana',
+                text: getText(feature, resolution),
+                fill: new ol.style.Fill({ color: 'black' }),
+                stroke: new ol.style.Stroke({ color: 'yellow', width: 1 }),
+                offsetX: 0,
+                offsetY: 0
+                //rotation: rotation
+            });
+        };
+
+
+        var getText = function (feature, resolution) {
+            // var type = dom.text.value;
+            //var maxResolution = dom.maxreso.value;
+            var text = feature.get('ID');
+
+            //if (resolution > maxResolution) {
+            //    text = '';
+            //} else if (type == 'hide') {
+            //    text = '';
+            //} else if (type == 'shorten') {
+            //    text = text.trunc(12);
+            //} else if (type == 'wrap') {
+            //    text = stringDivider(text, 16, '\n');
+            //}
+
+            return text;
+        };
+
+
+        this.wfsRegionLayer = new ol.layer.Vector({
+            source: wfsRegionSource,
+            style: polygonStyleFunction
         });
     }
 }

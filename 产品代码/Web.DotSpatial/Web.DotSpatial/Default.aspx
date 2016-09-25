@@ -129,12 +129,7 @@
                 $("#btnRegion").click();
             };
             $("#btnPoint").bind('click', function () {
-                if ($("#btnLine").linkbutton('options').selected) {
-                    $("#btnLine").click();
-                }
-                if ($("#btnRegion").linkbutton('options').selected) {
-                    $("#btnRegion").click();
-                }
+                checkButton('btnPoint');
                 if ($("#btnPoint").linkbutton('options').selected) {
                     if (mapWin && mapWin.DrawPoint.draw) {
                         mapWin.map.removeInteraction(mapWin.DrawPoint.draw);
@@ -151,12 +146,7 @@
                 }
             });
             $("#btnLine").bind('click', function () {
-                if ($("#btnPoint").linkbutton('options').selected) {
-                    $("#btnPoint").click();
-                }
-                if ($("#btnRegion").linkbutton('options').selected) {
-                    $("#btnRegion").click();
-                }
+                checkButton('btnLine');
                 if ($("#btnLine").linkbutton('options').selected) {
                     if (mapWin && mapWin.DrawLine.draw) {
                         mapWin.map.removeInteraction(mapWin.DrawLine.draw);
@@ -173,12 +163,7 @@
                 }
             });
             $("#btnRegion").bind('click', function () {
-                if ($("#btnPoint").linkbutton('options').selected) {
-                    $("#btnPoint").click();
-                }
-                if ($("#btnLine").linkbutton('options').selected) {
-                    $("#btnLine").click();
-                }
+                checkButton('btnRegion');
                 if ($("#btnRegion").linkbutton('options').selected) {
                     if (mapWin && mapWin.DrawRegion.draw) {
                         mapWin.map.removeInteraction(mapWin.DrawRegion.draw);
@@ -197,19 +182,24 @@
 
             //删除数据按钮
             $("#btnDelGeo").bind('click', function () {
-                if (mapWin) {
-                    mapWin.IsDel = true;
+                checkButton('btnDelGeo');
+                if ($('#btnDelGeo').linkbutton('options').selected) {
+                    if (mapWin) {
+                        mapWin.IsDel = false;
+                    }
+                    $("#btnDelGeo").linkbutton('unselect');
+                }
+                else {
+                    if (mapWin) {
+                        mapWin.IsDel = true;
+                    }
+                    $("#btnDelGeo").linkbutton('select');
                 }
             });
 
             //修改数据按钮
             $('#btnModifyPoint').bind('click', function () {
-                if ($('#btnModifyLine').linkbutton('options').selected) {
-                    $('#btnModifyLine').click();
-                }
-                if ($('#btnModifyRegion').linkbutton('options').selected) {
-                    $('#btnModifyRegion').click();
-                }
+                checkButton('btnModifyPoint');
                 if ($('#btnModifyPoint').linkbutton('options').selected) {
                     mapWin.map.removeInteraction(mapWin.DrawPoint.modify);
                     $("#btnModifyPoint").linkbutton('unselect');
@@ -220,12 +210,7 @@
                 }
             });
             $('#btnModifyLine').bind('click', function () {
-                if ($('#btnModifyPoint').linkbutton('options').selected) {
-                    $('#btnModifyPoint').click();
-                }
-                if ($('#btnModifyRegion').linkbutton('options').selected) {
-                    $('#btnModifyRegion').click();
-                }
+                checkButton('btnModifyLine')
                 if ($('#btnModifyLine').linkbutton('options').selected) {
                     mapWin.map.removeInteraction(mapWin.DrawLine.modify);
                     $("#btnModifyLine").linkbutton('unselect');
@@ -236,12 +221,7 @@
                 }
             });
             $('#btnModifyRegion').bind('click', function () {
-                if ($('#btnModifyPoint').linkbutton('options').selected) {
-                    $('#btnModifyPoint').click();
-                }
-                if ($('#btnModifyLine').linkbutton('options').selected) {
-                    $('#btnModifyLine').click();
-                }
+                checkButton('btnModifyRegion');
                 if ($('#btnModifyRegion').linkbutton('options').selected) {
                     mapWin.map.removeInteraction(mapWin.DrawRegion.modify);
                     $("#btnModifyRegion").linkbutton('unselect');
@@ -251,6 +231,62 @@
                     $("#btnModifyRegion").linkbutton('select');
                 }
             });
+
+            $('#btnMoveGeo').bind('click', function () {
+                checkButton('btnMoveGeo');
+                if ($('#btnMoveGeo').linkbutton('options').selected) {
+                    mapWin.map.removeInteraction(mapWin.drag);
+                    $("#btnMoveGeo").linkbutton('unselect');
+                }
+                else {
+                    mapWin.map.addInteraction(mapWin.drag);
+                    $("#btnMoveGeo").linkbutton('select');
+                }
+            });
+
+            //检查反选除传入ID之外的所有按钮
+            function checkButton(id) {
+                if (id != 'btnPoint') {
+                    if ($("#btnPoint").linkbutton('options').selected) {
+                        $("#btnPoint").click();
+                    }
+                }
+                if (id != 'btnRegion') {
+                    if ($("#btnRegion").linkbutton('options').selected) {
+                        $("#btnRegion").click();
+                    }
+                }
+                if (id != 'btnLine') {
+                    if ($("#btnLine").linkbutton('options').selected) {
+                        $("#btnLine").click();
+                    }
+                }
+                if (id != 'btnDelGeo') {
+                    if ($("#btnDelGeo").linkbutton('options').selected) {
+                        $("#btnDelGeo").click();
+                    }
+                }
+                if (id != 'btnModifyPoint') {
+                    if ($("#btnModifyPoint").linkbutton('options').selected) {
+                        $("#btnModifyPoint").click();
+                    }
+                }
+                if (id != 'btnModifyLine') {
+                    if ($("#btnModifyLine").linkbutton('options').selected) {
+                        $("#btnModifyLine").click();
+                    }
+                }
+                if (id != 'btnModifyRegion') {
+                    if ($("#btnModifyRegion").linkbutton('options').selected) {
+                        $("#btnModifyRegion").click();
+                    }
+                }
+                if (id != 'btnMoveGeo') {
+                    if ($("#btnMoveGeo").linkbutton('options').selected) {
+                        $("#btnMoveGeo").click();
+                    }
+                }
+            }
         });
     </script>
 </head>
@@ -287,6 +323,7 @@
                     </li>
                     <li>
                         <a id="btnModifyRegion" class="easyui-linkbutton">改面</a>
+                        <a id="btnMoveGeo" class="easyui-linkbutton">移动</a>
                     </li>
                 </ul>
             </fieldset>
